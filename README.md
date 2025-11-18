@@ -2,6 +2,8 @@
 
 一個優雅的日語假名（平假名、片假名）記憶練習 Web 應用
 
+🌐 **在線體驗**: [https://kana.yahaha.net/](https://kana.yahaha.net/)
+
 ## ✨ 功能特性
 
 ### 🎯 核心功能
@@ -140,4 +142,11 @@ MIT License - 詳見 [LICENSE](LICENSE) 文件
 
 **如果這個項目對你有幫助，請給一個 ⭐️ Star 支持一下！**
 
-Made with ❤️ by [phpZ.xyz](https://phpz.xyz)
+## 👨‍💻 作者
+
+**Seven Yu**
+
+- 📧 Email: [dofyyu@gmail.com](mailto:dofyyu@gmail.com)
+- 🌐 Website: [phpZ.xyz](https://phpz.xyz)
+
+Made with ❤️ by Seven Yu

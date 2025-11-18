@@ -2,6 +2,12 @@
   "name": "kana-syllabary-memory",
   "version": "2.0.0",
   "private": true,
+  "homepage": "https://kana.yahaha.net",
+  "author": {
+    "name": "Seven Yu",
+    "email": "dofyyu@gmail.com",
+    "url": "https://phpz.xyz"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
