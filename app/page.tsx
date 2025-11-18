@@ -14,7 +14,21 @@ import {
 import { KanaData } from "@/lib/kana-data";
 import { LocalStorage } from "@/lib/local-storage";
 import { FYType, type DisplayMode, type MemoObject } from "@/lib/types";
-import { Github, Moon, Settings, Sun, Volume2 } from "lucide-react";
+import {
+  BookOpen,
+  Brain,
+  CheckSquare,
+  Eye,
+  Github,
+  Lightbulb,
+  ListChecks,
+  Moon,
+  Settings,
+  Square,
+  Sun,
+  Volume2,
+  Zap,
+} from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
@@ -259,53 +273,34 @@ export default function Home() {
               </SheetTrigger>
               <SheetContent className="w-full sm:max-w-md flex flex-col p-0">
                 <SheetHeader className="px-4 sm:px-6 pt-6 pb-4 border-b">
-                  <SheetTitle>設置</SheetTitle>
+                  <SheetTitle className="text-lg sm:text-xl">設置</SheetTitle>
                 </SheetHeader>
 
                 <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 sm:py-6 mb-4">
                   <div className="space-y-5 sm:space-y-6">
                     {/* Learning Mode */}
                     <div className="space-y-2 sm:space-y-3">
-                      <h3 className="font-semibold text-sm sm:text-base">
+                      <h3 className="font-semibold text-sm sm:text-base flex items-center gap-2">
+                        <Settings className="h-4 w-4" />
                         練習模式
                       </h3>
                       <div className="flex gap-2">
-                        <button
-                          type="button"
+                        <Button
+                          variant={isLearningMode ? "default" : "outline"}
                           onClick={() => handleLearningModeChange(true)}
-                          className={`
-                            flex-1 px-3 py-2 sm:px-4 sm:py-2.5
-                            text-xs sm:text-sm
-                            rounded-md
-                            border
-                            transition-all
-                            ${
-                              isLearningMode
-                                ? "bg-primary text-primary-foreground border-primary"
-                                : "bg-background hover:bg-accent hover:text-accent-foreground border-input"
-                            }
-                          `}
+                          className="flex-1 text-xs sm:text-sm h-auto py-2 sm:py-2.5"
                         >
+                          <BookOpen className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5" />
                           學習模式
-                        </button>
-                        <button
-                          type="button"
+                        </Button>
+                        <Button
+                          variant={!isLearningMode ? "default" : "outline"}
                           onClick={() => handleLearningModeChange(false)}
-                          className={`
-                            flex-1 px-3 py-2 sm:px-4 sm:py-2.5
-                            text-xs sm:text-sm
-                            rounded-md
-                            border
-                            transition-all
-                            ${
-                              !isLearningMode
-                                ? "bg-primary text-primary-foreground border-primary"
-                                : "bg-background hover:bg-accent hover:text-accent-foreground border-input"
-                            }
-                          `}
+                          className="flex-1 text-xs sm:text-sm h-auto py-2 sm:py-2.5"
                         >
+                          <Brain className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5" />
                           記憶模式
-                        </button>
+                        </Button>
                       </div>
                       <p className="text-xs text-muted-foreground">
                         {isLearningMode
@@ -316,10 +311,11 @@ export default function Home() {
 
                     {/* Display Mode */}
                     <div className="space-y-2 sm:space-y-3">
-                      <h3 className="font-semibold text-sm sm:text-base">
-                        顯示模式
+                      <h3 className="font-semibold text-sm sm:text-base flex items-center gap-2">
+                        <Eye className="h-4 w-4" />
+                        顯示內容
                       </h3>
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex justify-between gap-2">
                         {[
                           { value: "mixed", label: "混合" },
                           { value: "hiragana", label: "平假名" },
@@ -327,115 +323,113 @@ export default function Home() {
                           { value: "romaji", label: "羅馬音" },
                           { value: "swap", label: "互換" },
                         ].map((mode) => (
-                          <button
+                          <Button
                             key={mode.value}
-                            type="button"
+                            variant={
+                              displayMode === mode.value ? "default" : "outline"
+                            }
                             onClick={() =>
                               handleDisplayModeChange(mode.value as DisplayMode)
                             }
-                            className={`
-                              px-3 py-1.5 sm:px-4 sm:py-2
-                              text-xs sm:text-sm
-                              rounded-md
-                              border
-                              transition-all
-                              ${
-                                displayMode === mode.value
-                                  ? "bg-primary text-primary-foreground border-primary"
-                                  : "bg-background hover:bg-accent hover:text-accent-foreground border-input"
-                              }
-                            `}
+                            className="flex-1 text-xs sm:text-sm h-auto py-2 sm:py-2.5"
                           >
                             {mode.label}
-                          </button>
+                          </Button>
                         ))}
                       </div>
                     </div>
 
                     {/* Kana Selection */}
                     <div className="space-y-2 sm:space-y-3">
-                      <h3 className="font-semibold text-sm sm:text-base">
-                        快速選擇
+                      <h3 className="font-semibold text-sm sm:text-base flex items-center gap-2">
+                        <Zap className="h-4 w-4" />
+                        批量操作
                       </h3>
-                      <div className="grid grid-cols-3 gap-2">
-                        <div className="space-y-1">
-                          <div className="text-xs text-muted-foreground">
+                      <div className="grid grid-cols-3 gap-3">
+                        <div className="rounded-lg border bg-card p-3 space-y-2">
+                          <div className="text-xs font-medium text-center">
                             清音 {seionCount}/46
                           </div>
-                          <div className="flex gap-1">
+                          <div className="flex gap-1.5">
                             <Button
-                              size="sm"
-                              variant="outline"
-                              className="flex-1 text-xs h-7 px-2"
+                              size="icon"
+                              variant="ghost"
+                              className="flex-1 h-8"
                               onClick={() =>
                                 selectKanasByType(FYType.seion, true)
                               }
+                              title="全選"
                             >
-                              全選
+                              <CheckSquare className="h-4 w-4" />
                             </Button>
                             <Button
-                              size="sm"
-                              variant="outline"
-                              className="flex-1 text-xs h-7 px-2"
+                              size="icon"
+                              variant="ghost"
+                              className="flex-1 h-8"
                               onClick={() =>
                                 selectKanasByType(FYType.seion, false)
                               }
+                              title="清空"
                             >
-                              清空
+                              <Square className="h-4 w-4" />
                             </Button>
                           </div>
                         </div>
-                        <div className="space-y-1">
-                          <div className="text-xs text-muted-foreground">
+                        <div className="rounded-lg border bg-card p-3 space-y-2">
+                          <div className="text-xs font-medium text-center">
                             濁音 {dakuonCount}/25
                           </div>
-                          <div className="flex gap-1">
+                          <div className="flex gap-1.5">
                             <Button
-                              size="sm"
-                              variant="outline"
-                              className="flex-1 text-xs h-7 px-2"
+                              size="icon"
+                              variant="ghost"
+                              className="flex-1 h-8"
                               onClick={() =>
                                 selectKanasByType(FYType.dakuon, true)
                               }
+                              title="全選"
                             >
-                              全選
+                              <CheckSquare className="h-4 w-4" />
                             </Button>
                             <Button
-                              size="sm"
-                              variant="outline"
-                              className="flex-1 text-xs h-7 px-2"
+                              size="icon"
+                              variant="ghost"
+                              className="flex-1 h-8"
                               onClick={() =>
                                 selectKanasByType(FYType.dakuon, false)
                               }
+                              title="清空"
                             >
-                              清空
+                              <Square className="h-4 w-4" />
                             </Button>
                           </div>
                         </div>
-                        <div className="space-y-1">
-                          <div className="text-xs text-muted-foreground">
+                        <div className="rounded-lg border bg-card p-3 space-y-2">
+                          <div className="text-xs font-medium text-center">
                             拗音 {yoonCount}/33
                           </div>
-                          <div className="flex gap-1">
+                          <div className="flex gap-1.5">
                             <Button
-                              size="sm"
-                              variant="outline"
-                              className="flex-1 text-xs h-7 px-2"
+                              size="icon"
+                              variant="ghost"
+                              className="flex-1 h-8"
                               onClick={() =>
                                 selectKanasByType(FYType.yoon, true)
                               }
+                              title="全選"
                             >
-                              全選
+                              <CheckSquare className="h-4 w-4" />
                             </Button>
                             <Button
-                              size="sm"
-                              variant="outline"
-                              className="flex-1 text-xs h-7 px-2"
+                              size="icon"
+                              variant="ghost"
+                              className="flex-1 h-8"
                               onClick={() =>
                                 selectKanasByType(FYType.yoon, false)
                               }
+                              title="清空"
                             >
-                              清空
+                              <Square className="h-4 w-4" />
                             </Button>
                           </div>
                         </div>
@@ -444,8 +438,9 @@ export default function Home() {
 
                     {/* Individual Kana Selection */}
                     <div className="space-y-2 sm:space-y-3">
-                      <h3 className="font-semibold text-sm sm:text-base">
-                        詳細選擇
+                      <h3 className="font-semibold text-sm sm:text-base flex items-center gap-2">
+                        <ListChecks className="h-4 w-4" />
+                        單個選擇
                       </h3>
                       <div className="space-y-4">
                         {/* 清音 */}
@@ -457,7 +452,7 @@ export default function Home() {
                             </h4>
                             <div className="h-px flex-1 bg-border" />
                           </div>
-                          <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 pt-1">
+                          <div className="grid grid-cols-5 gap-3 pt-1">
                             {kanaList
                               .filter((k) => k.fyType === FYType.seion)
                               .map((kana) => (
@@ -493,7 +488,7 @@ export default function Home() {
                             </h4>
                             <div className="h-px flex-1 bg-border" />
                           </div>
-                          <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 pt-1">
+                          <div className="grid grid-cols-5 gap-3 pt-1">
                             {kanaList
                               .filter((k) => k.fyType === FYType.dakuon)
                               .map((kana) => (
@@ -529,7 +524,7 @@ export default function Home() {
                             </h4>
                             <div className="h-px flex-1 bg-border" />
                           </div>
-                          <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 pt-1">
+                          <div className="grid grid-cols-5 gap-3 pt-1">
                             {kanaList
                               .filter((k) => k.fyType === FYType.yoon)
                               .map((kana) => (
@@ -610,7 +605,7 @@ export default function Home() {
 
                   {showRemind && (
                     <div className="flex gap-3 sm:gap-4 animate-in fade-in px-4 sm:px-0">
-                      <div className="flex-1 rounded-lg border-2 bg-card px-4 py-3 sm:px-6 sm:py-4">
+                      <div className="flex-1 rounded-lg border-2 bg-card px-4 py-3 sm:px-6 sm:py-4 text-center">
                         <div className="text-xs sm:text-sm text-muted-foreground mb-1">
                           {currentKana.remind.split("  ")[0] ===
                           currentKana.displayText
@@ -625,7 +620,7 @@ export default function Home() {
                           {currentKana.remind.split("  ")[0]}
                         </div>
                       </div>
-                      <div className="flex-1 rounded-lg border-2 bg-card px-4 py-3 sm:px-6 sm:py-4">
+                      <div className="flex-1 rounded-lg border-2 bg-card px-4 py-3 sm:px-6 sm:py-4 text-center">
                         <div className="text-xs sm:text-sm text-muted-foreground mb-1">
                           {currentKana.remind.split("  ")[1] ===
                           currentKana.displayText
@@ -640,19 +635,6 @@ export default function Home() {
                           {currentKana.remind.split("  ")[1]}
                         </div>
                       </div>
-                    </div>
-                  )}
-
-                  {!isLearningMode && (
-                    <div className="w-full px-4 sm:px-0 sm:w-auto">
-                      <Button
-                        variant="outline"
-                        size="lg"
-                        className="w-full sm:w-auto sm:min-w-[200px]"
-                        onClick={() => setShowRemind(true)}
-                      >
-                        顯示提示
-                      </Button>
                     </div>
                   )}
                 </>
@@ -670,9 +652,22 @@ export default function Home() {
                   開始
                 </Button>
               ) : (
-                <Button className="w-full" size="lg" onClick={getRandomKana}>
-                  下一個
-                </Button>
+                <div className="flex gap-2 items-center">
+                  {!isLearningMode && (
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="h-12 w-12 rounded-full flex-shrink-0"
+                      onClick={() => setShowRemind(true)}
+                      title="顯示提示"
+                    >
+                      <Lightbulb className="h-5 w-5" />
+                    </Button>
+                  )}
+                  <Button className="flex-1" size="lg" onClick={getRandomKana}>
+                    下一個
+                  </Button>
+                </div>
               )}
             </div>
           </CardContent>
