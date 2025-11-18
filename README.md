@@ -147,6 +147,6 @@ MIT License - 詳見 [LICENSE](LICENSE) 文件
 **Seven Yu**
 
 - 📧 Email: [dofyyu@gmail.com](mailto:dofyyu@gmail.com)
-- 🌐 Website: [phpZ.xyz](https://phpz.xyz)
+- 🌐 Website: [yahaha.net](https://yahaha.net)
 
 Made with ❤️ by Seven Yu

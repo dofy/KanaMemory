@@ -24,10 +24,10 @@ export const metadata: Metadata = {
   ],
   authors: [
     { name: "Seven Yu", url: "mailto:dofyyu@gmail.com" },
-    { name: "phpZ.xyz", url: "https://phpz.xyz" },
+    { name: "yahaha.net", url: "https://yahaha.net" },
   ],
   creator: "Seven Yu",
-  publisher: "phpZ.xyz",
+  publisher: "yahaha.net",
   openGraph: {
     title: "假名記憶 - 智能日語假名學習工具",
     description: "互動式日語假名練習應用，輕鬆掌握平假名與片假名",

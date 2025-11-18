@@ -675,7 +675,17 @@ export default function Home() {
 
         {/* Footer */}
         <div className="text-center text-xs text-muted-foreground/60 px-4 py-3 sm:px-2 sm:py-0 border-t sm:border-t-0">
-          <p>Copyright © 2025 Powered by phpZ.xyz</p>
+          <p>
+            Copyright © 2025 Powered by{" "}
+            <a
+              href="https://yahaha.net"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-foreground transition-colors underline underline-offset-2"
+            >
+              yahaha.net
+            </a>
+          </p>
         </div>
       </div>
     </main>
