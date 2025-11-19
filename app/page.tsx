@@ -335,9 +335,9 @@ export default function Home() {
 
   return (
     <main className="min-h-screen flex flex-col sm:items-center sm:justify-center p-0 sm:p-6 md:p-8">
-      <div className="w-full max-w-2xl flex flex-col sm:block h-screen sm:h-auto sm:space-y-6">
+      <div className="w-full max-w-2xl flex flex-col sm:block h-screen sm:h-auto sm:space-y-4">
         {/* Header */}
-        <div className="relative px-4 pt-4 pb-3 sm:px-0 sm:pt-0 sm:pb-0 border-b sm:border-b-0">
+        <div className="relative px-4 pt-4 pb-3 sm:px-0 sm:pt-0 sm:pb-0 border-b sm:border-b-0 sm:mb-1">
           {/* Tool Buttons */}
           <div className="absolute top-4 right-4 sm:top-0 sm:right-0 flex gap-1.5 sm:gap-2">
             <Sheet open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
@@ -768,8 +768,8 @@ export default function Home() {
 
         {/* Main Card */}
         <Card className="flex-1 flex flex-col !border-0 rounded-none sm:rounded-lg overflow-hidden sm:flex-initial shadow-none">
-          <CardContent className="flex-1 flex flex-col p-6 sm:p-8 md:p-12">
-            <div className="flex-1 flex flex-col items-center justify-center space-y-6 sm:space-y-8">
+          <CardContent className="flex-1 flex flex-col p-4 sm:p-6">
+            <div className="flex-1 flex flex-col items-center justify-center space-y-8 sm:space-y-12 py-4 sm:py-8">
               {!isStarted ? (
                 <div className="text-center space-y-4 sm:space-y-6">
                   <div className="text-5xl sm:text-6xl md:text-7xl font-bold text-muted-foreground">
@@ -819,7 +819,7 @@ export default function Home() {
               )}
             </div>
 
-            <div className="p-4 sm:px-0 sm:pb-0">
+            <div className="mt-8 sm:mt-12 md:mt-16">
               {!isStarted ? (
                 <Button
                   className="w-full"
