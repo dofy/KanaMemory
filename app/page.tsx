@@ -34,6 +34,7 @@ import {
   Zap,
 } from "lucide-react";
 import { useTheme } from "next-themes";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
@@ -751,15 +752,22 @@ export default function Home() {
           </div>
 
           {/* Title Section */}
-          <div className="pr-20 sm:pr-24">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+          <div className="pr-20 sm:pr-24 flex items-center gap-3 sm:gap-4">
+            <Image
+              src="/images/favicon.png"
+              alt="Logo"
+              width={48}
+              height={48}
+              className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg"
+            />
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">
               假名記憶
             </h1>
           </div>
         </div>
 
         {/* Main Card */}
-        <Card className="flex-1 flex flex-col border-0 sm:border-2 rounded-none sm:rounded-lg overflow-hidden sm:flex-initial">
+        <Card className="flex-1 flex flex-col !border-0 rounded-none sm:rounded-lg overflow-hidden sm:flex-initial shadow-none">
           <CardContent className="flex-1 flex flex-col p-6 sm:p-8 md:p-12">
             <div className="flex-1 flex flex-col items-center justify-center space-y-6 sm:space-y-8">
               {!isStarted ? (
