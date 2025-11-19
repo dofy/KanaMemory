@@ -25,6 +25,7 @@ import {
   Keyboard,
   Lightbulb,
   ListChecks,
+  Monitor,
   Moon,
   Settings,
   Square,
@@ -129,11 +130,6 @@ export default function Home() {
       }
 
       switch (e.key.toLowerCase()) {
-        case "t":
-        case "d":
-          // Toggle theme
-          setTheme(theme === "dark" ? "light" : "dark");
-          break;
         case "s":
           // Toggle settings
           setIsSettingsOpen((prev) => !prev);
@@ -169,7 +165,7 @@ export default function Home() {
     window.addEventListener("keydown", handleKeyPress);
     return () => window.removeEventListener("keydown", handleKeyPress);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [theme, setTheme, isStarted, isSettingsOpen, currentKana.displayText]);
+  }, [isStarted, isSettingsOpen, currentKana.displayText]);
 
   const toggleKanaSelection = (id: string) => {
     const updated = kanaList.map((k) =>
@@ -343,18 +339,6 @@ export default function Home() {
         <div className="relative px-4 pt-4 pb-3 sm:px-0 sm:pt-0 sm:pb-0 border-b sm:border-b-0">
           {/* Tool Buttons */}
           <div className="absolute top-4 right-4 sm:top-0 sm:right-0 flex gap-1.5 sm:gap-2">
-            <Button
-              variant="outline"
-              size="icon"
-              className="h-9 w-9 sm:h-10 sm:w-10"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            >
-              {theme === "dark" ? (
-                <Sun className="h-4 w-4 sm:h-5 sm:w-5" />
-              ) : (
-                <Moon className="h-4 w-4 sm:h-5 sm:w-5" />
-              )}
-            </Button>
             <Sheet open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
               <SheetTrigger asChild>
                 <Button
@@ -372,6 +356,40 @@ export default function Home() {
 
                 <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 sm:py-6 mb-4">
                   <div className="space-y-5 sm:space-y-6">
+                    {/* Theme Mode */}
+                    <div className="space-y-2 sm:space-y-3">
+                      <h3 className="font-semibold text-sm sm:text-base flex items-center gap-2">
+                        <Monitor className="h-4 w-4" />
+                        主題模式
+                      </h3>
+                      <div className="grid grid-cols-3 gap-2">
+                        <Button
+                          variant={theme === "light" ? "default" : "outline"}
+                          onClick={() => setTheme("light")}
+                          className="flex-1 text-xs sm:text-sm h-auto py-2 sm:py-2.5"
+                        >
+                          <Sun className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5" />
+                          亮色
+                        </Button>
+                        <Button
+                          variant={theme === "dark" ? "default" : "outline"}
+                          onClick={() => setTheme("dark")}
+                          className="flex-1 text-xs sm:text-sm h-auto py-2 sm:py-2.5"
+                        >
+                          <Moon className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5" />
+                          暗色
+                        </Button>
+                        <Button
+                          variant={theme === "system" ? "default" : "outline"}
+                          onClick={() => setTheme("system")}
+                          className="flex-1 text-xs sm:text-sm h-auto py-2 sm:py-2.5"
+                        >
+                          <Monitor className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5" />
+                          系統
+                        </Button>
+                      </div>
+                    </div>
+
                     {/* Learning Mode */}
                     <div className="space-y-2 sm:space-y-3">
                       <h3 className="font-semibold text-sm sm:text-base flex items-center gap-2">
@@ -683,14 +701,6 @@ export default function Home() {
                       </h3>
                       <div className="rounded-lg border bg-card p-3 sm:p-4 space-y-2">
                         <div className="grid grid-cols-2 gap-2 text-xs sm:text-sm">
-                          <div className="flex items-center gap-2">
-                            <kbd className="px-2 py-1 bg-muted rounded text-[10px] sm:text-xs font-mono">
-                              T / D
-                            </kbd>
-                            <span className="text-muted-foreground">
-                              切換主題
-                            </span>
-                          </div>
                           <div className="flex items-center gap-2">
                             <kbd className="px-2 py-1 bg-muted rounded text-[10px] sm:text-xs font-mono">
                               S
