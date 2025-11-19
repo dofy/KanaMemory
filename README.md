@@ -2,7 +2,7 @@
 
 一個優雅的日語假名（平假名、片假名）記憶練習 Web 應用
 
-🌐 **在線體驗**: [https://kana.yahaha.net/](https://kana.yahaha.net/)
+🌐 **在線體驗**: [kana.yahaha.net](https://kana.yahaha.net/)
 
 ## ✨ 功能特性
 

@@ -11,8 +11,10 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { Switch } from "@/components/ui/switch";
 import { KanaData } from "@/lib/kana-data";
 import { LocalStorage } from "@/lib/local-storage";
+import { TTSService } from "@/lib/tts";
 import { FYType, type DisplayMode, type MemoObject } from "@/lib/types";
 import {
   BookOpen,
@@ -20,6 +22,7 @@ import {
   CheckSquare,
   Eye,
   Github,
+  Keyboard,
   Lightbulb,
   ListChecks,
   Moon,
@@ -36,7 +39,7 @@ import { toast } from "sonner";
 export default function Home() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const ttsServiceRef = useRef<TTSService | null>(null);
 
   const [kanaList, setKanaList] = useState<MemoObject[]>([]);
   const [displayKanaList, setDisplayKanaList] = useState<MemoObject[]>([]);
@@ -53,10 +56,15 @@ export default function Home() {
   const [displayMode, setDisplayMode] = useState<DisplayMode>("mixed");
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isLearningMode, setIsLearningMode] = useState(false);
+  const [autoPlaySound, setAutoPlaySound] = useState(false);
 
   useEffect(() => {
     setMounted(true);
     loadKanaData();
+
+    if (!ttsServiceRef.current) {
+      ttsServiceRef.current = new TTSService();
+    }
   }, []);
 
   const loadKanaData = () => {
@@ -64,6 +72,7 @@ export default function Home() {
     const savedData = LocalStorage.load<MemoObject[]>("selectedData");
     const savedMode = LocalStorage.load<DisplayMode>("displayType");
     const savedLearningMode = LocalStorage.load<boolean>("learningMode");
+    const savedAutoPlaySound = LocalStorage.load<boolean>("autoPlaySound");
 
     if (savedData) {
       setKanaList(savedData);
@@ -77,6 +86,10 @@ export default function Home() {
 
     if (savedLearningMode !== null) {
       setIsLearningMode(savedLearningMode);
+    }
+
+    if (savedAutoPlaySound !== null) {
+      setAutoPlaySound(savedAutoPlaySound);
     }
   };
 
@@ -92,6 +105,71 @@ export default function Home() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [kanaList]);
+
+  useEffect(() => {
+    if (
+      isStarted &&
+      isLearningMode &&
+      autoPlaySound &&
+      currentKana.displayText
+    ) {
+      playSound(currentKana.displayText);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentKana.displayText]);
+
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      // Ignore if typing in input fields
+      if (
+        e.target instanceof HTMLInputElement ||
+        e.target instanceof HTMLTextAreaElement
+      ) {
+        return;
+      }
+
+      switch (e.key.toLowerCase()) {
+        case "t":
+        case "d":
+          // Toggle theme
+          setTheme(theme === "dark" ? "light" : "dark");
+          break;
+        case "s":
+          // Toggle settings
+          setIsSettingsOpen((prev) => !prev);
+          break;
+        case " ":
+        case "arrowright":
+        case "n":
+          // Next kana (prevent when settings open)
+          if (isStarted && !isSettingsOpen) {
+            e.preventDefault();
+            getRandomKana();
+          }
+          break;
+        case "h":
+        case "?":
+          // Show/toggle hint
+          if (isStarted && !isSettingsOpen) {
+            setShowRemind((prev) => !prev);
+          }
+          break;
+        case "p":
+        case "v":
+          // Play sound
+          if (isStarted && currentKana.displayText && !isSettingsOpen) {
+            playSound(currentKana.displayText);
+          }
+          break;
+        default:
+          break;
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+    return () => window.removeEventListener("keydown", handleKeyPress);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [theme, setTheme, isStarted, isSettingsOpen, currentKana.displayText]);
 
   const toggleKanaSelection = (id: string) => {
     const updated = kanaList.map((k) =>
@@ -190,13 +268,25 @@ export default function Home() {
     }
   };
 
-  const playSound = (id: string) => {
-    if (audioRef.current) {
-      audioRef.current.src = `/assets/${id}.mp3`;
-      audioRef.current
-        .play()
-        .catch((err) => console.error("Audio play error:", err));
+  const playSound = (text: string) => {
+    if (ttsServiceRef.current) {
+      ttsServiceRef.current.speak(text).catch(() => {
+        // TTS failed silently
+      });
     }
+  };
+
+  const getKanaType = (text: string): string => {
+    if (!text) return "";
+    if (/^[a-z]+$/i.test(text)) return "羅馬音";
+
+    const firstChar = text.charCodeAt(0);
+    // Hiragana range: U+3040 - U+309F
+    if (firstChar >= 0x3040 && firstChar <= 0x309f) return "平假名";
+    // Katakana range: U+30A0 - U+30FF
+    if (firstChar >= 0x30a0 && firstChar <= 0x30ff) return "片假名";
+
+    return "";
   };
 
   const handleDisplayModeChange = (mode: DisplayMode) => {
@@ -224,6 +314,12 @@ export default function Home() {
     toast.success(`已切換至${modeName}`);
   };
 
+  const handleAutoPlaySoundChange = (enabled: boolean) => {
+    setAutoPlaySound(enabled);
+    LocalStorage.save("autoPlaySound", enabled);
+    toast.success(enabled ? "已開啟自動發音" : "已關閉自動發音");
+  };
+
   const goToGitHub = () => {
     window.open("https://github.com/dofy/KanaSyllabaryMemory", "_blank");
   };
@@ -242,8 +338,6 @@ export default function Home() {
 
   return (
     <main className="min-h-screen flex flex-col sm:items-center sm:justify-center p-0 sm:p-6 md:p-8">
-      <audio ref={audioRef} />
-
       <div className="w-full max-w-2xl flex flex-col sm:block h-screen sm:h-auto sm:space-y-6">
         {/* Header */}
         <div className="relative px-4 pt-4 pb-3 sm:px-0 sm:pt-0 sm:pb-0 border-b sm:border-b-0">
@@ -307,6 +401,34 @@ export default function Home() {
                           ? "學習模式：自動顯示提示，適合初學者"
                           : "記憶模式：手動顯示提示，適合複習鞏固"}
                       </p>
+
+                      {/* Auto Play Sound - Sub-option for Learning Mode */}
+                      {isLearningMode && (
+                        <div className="ml-3 sm:ml-4 mt-3 pl-3 sm:pl-4 border-l-2 border-primary/30">
+                          <div className="flex items-center justify-between gap-3 p-2.5 sm:p-3 rounded-md bg-muted/50">
+                            <div className="flex items-center gap-2 flex-1 min-w-0">
+                              <Volume2 className="h-3.5 w-3.5 text-muted-foreground flex-shrink-0" />
+                              <div className="flex-1 min-w-0">
+                                <Label
+                                  htmlFor="autoPlaySound"
+                                  className="text-xs sm:text-sm font-medium cursor-pointer block"
+                                >
+                                  自動發音
+                                </Label>
+                                <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5">
+                                  顯示假名時自動朗讀
+                                </p>
+                              </div>
+                            </div>
+                            <Switch
+                              id="autoPlaySound"
+                              checked={autoPlaySound}
+                              onCheckedChange={handleAutoPlaySoundChange}
+                              className="flex-shrink-0 scale-90"
+                            />
+                          </div>
+                        </div>
+                      )}
                     </div>
 
                     {/* Display Mode */}
@@ -552,6 +674,58 @@ export default function Home() {
                         </div>
                       </div>
                     </div>
+
+                    {/* Keyboard Shortcuts */}
+                    <div className="space-y-2 sm:space-y-3">
+                      <h3 className="font-semibold text-sm sm:text-base flex items-center gap-2">
+                        <Keyboard className="h-4 w-4" />
+                        鍵盤快捷鍵
+                      </h3>
+                      <div className="rounded-lg border bg-card p-3 sm:p-4 space-y-2">
+                        <div className="grid grid-cols-2 gap-2 text-xs sm:text-sm">
+                          <div className="flex items-center gap-2">
+                            <kbd className="px-2 py-1 bg-muted rounded text-[10px] sm:text-xs font-mono">
+                              T / D
+                            </kbd>
+                            <span className="text-muted-foreground">
+                              切換主題
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <kbd className="px-2 py-1 bg-muted rounded text-[10px] sm:text-xs font-mono">
+                              S
+                            </kbd>
+                            <span className="text-muted-foreground">
+                              開關設置
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <kbd className="px-2 py-1 bg-muted rounded text-[10px] sm:text-xs font-mono">
+                              Space
+                            </kbd>
+                            <span className="text-muted-foreground">
+                              下一個
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <kbd className="px-2 py-1 bg-muted rounded text-[10px] sm:text-xs font-mono">
+                              H / ?
+                            </kbd>
+                            <span className="text-muted-foreground">
+                              顯示提示
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <kbd className="px-2 py-1 bg-muted rounded text-[10px] sm:text-xs font-mono">
+                              P / V
+                            </kbd>
+                            <span className="text-muted-foreground">
+                              播放發音
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </SheetContent>
@@ -597,7 +771,7 @@ export default function Home() {
                       variant="ghost"
                       size="icon"
                       className="h-14 w-14 sm:h-16 sm:w-16 rounded-full hover:bg-accent flex-shrink-0"
-                      onClick={() => playSound(currentKana.id)}
+                      onClick={() => playSound(currentKana.displayText)}
                     >
                       <Volume2 className="h-7 w-7 sm:h-8 sm:w-8" />
                     </Button>
@@ -605,33 +779,19 @@ export default function Home() {
 
                   {showRemind && (
                     <div className="flex gap-3 sm:gap-4 animate-in fade-in px-4 sm:px-0">
-                      <div className="flex-1 rounded-lg border-2 bg-card px-4 py-3 sm:px-6 sm:py-4 text-center">
+                      <div className="flex-1 min-w-[120px] sm:min-w-[140px] rounded-lg border-2 bg-card px-4 py-3 sm:px-6 sm:py-4 text-center">
                         <div className="text-xs sm:text-sm text-muted-foreground mb-1">
-                          {currentKana.remind.split("  ")[0] ===
-                          currentKana.displayText
-                            ? "片假名"
-                            : currentKana.remind
-                                .split("  ")[0]
-                                .match(/^[a-z]+$/i)
-                            ? "羅馬音"
-                            : "平假名"}
+                          {getKanaType(currentKana.remind.split("  ")[0])}
                         </div>
-                        <div className="text-2xl sm:text-3xl md:text-4xl font-bold font-kana">
+                        <div className="text-2xl sm:text-3xl md:text-4xl font-bold font-kana whitespace-nowrap">
                           {currentKana.remind.split("  ")[0]}
                         </div>
                       </div>
-                      <div className="flex-1 rounded-lg border-2 bg-card px-4 py-3 sm:px-6 sm:py-4 text-center">
+                      <div className="flex-1 min-w-[120px] sm:min-w-[140px] rounded-lg border-2 bg-card px-4 py-3 sm:px-6 sm:py-4 text-center">
                         <div className="text-xs sm:text-sm text-muted-foreground mb-1">
-                          {currentKana.remind.split("  ")[1] ===
-                          currentKana.displayText
-                            ? "片假名"
-                            : currentKana.remind
-                                .split("  ")[1]
-                                .match(/^[a-z]+$/i)
-                            ? "羅馬音"
-                            : "平假名"}
+                          {getKanaType(currentKana.remind.split("  ")[1])}
                         </div>
-                        <div className="text-2xl sm:text-3xl md:text-4xl font-bold font-kana">
+                        <div className="text-2xl sm:text-3xl md:text-4xl font-bold font-kana whitespace-nowrap">
                           {currentKana.remind.split("  ")[1]}
                         </div>
                       </div>
