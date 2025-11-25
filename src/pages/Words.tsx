@@ -2,23 +2,24 @@ import { HelpDialog } from "@/components/help-dialog";
 import { KanaSelector } from "@/components/kana-selector";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
+import { PracticeModeSelector } from "@/components/practice-mode-selector";
+import { DisplayModeSelector } from "@/components/display-mode-selector";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { Switch } from "@/components/ui/switch";
 import {
   STANDARD_SHORTCUTS,
   useKeyboardShortcuts,
 } from "@/hooks/use-keyboard-shortcuts";
+import { usePracticeState } from "@/hooks/use-practice-state";
+import { useTTS } from "@/hooks/use-tts";
 import { DataLoader } from "@/lib/data-loader";
 import { LocalStorage } from "@/lib/local-storage";
-import { TTSService } from "@/lib/tts";
 import {
   PracticeMode,
   type MemoObject,
@@ -27,23 +28,38 @@ import {
 } from "@/lib/types";
 import {
   BookOpen,
-  GraduationCap,
-  BookMarked,
-  Sparkles,
-  Eye,
   Filter,
   Lightbulb,
   Volume2,
 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
+
+const DISPLAY_MODES = [
+  { value: "mixed" as const, label: "混合" },
+  { value: "kana" as const, label: "假名" },
+  { value: "japanese" as const, label: "日文" },
+];
 
 export default function WordsPage() {
   const [mounted, setMounted] = useState(false);
-  const ttsServiceRef = useRef<TTSService | null>(null);
+  const { speak } = useTTS();
+
+  const {
+    practiceMode,
+    displayMode,
+    autoPlaySound,
+    setPracticeMode,
+    setDisplayMode,
+    setAutoPlaySound,
+  } = usePracticeState<UnifiedDisplayMode>({
+    storagePrefix: "words",
+    defaultPracticeMode: PracticeMode.memory,
+    defaultDisplayMode: "mixed",
+  });
 
   const [allWords, setAllWords] = useState<WordObject[]>([]);
-  const [kanaList, setKanaList] = useState<MemoObject[]>([]); // 假名选择列表
+  const [kanaList, setKanaList] = useState<MemoObject[]>([]);
   const [displayWords, setDisplayWords] = useState<WordObject[]>([]);
   const [usedWords, setUsedWords] = useState<WordObject[]>([]);
 
@@ -59,74 +75,43 @@ export default function WordsPage() {
 
   const [isStarted, setIsStarted] = useState(false);
   const [showHint, setShowHint] = useState(false);
-  const [practiceMode, setPracticeMode] = useState<PracticeMode>(
-    PracticeMode.memory
-  );
-  const [displayMode, setDisplayMode] = useState<UnifiedDisplayMode>("mixed");
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isHelpOpen, setIsHelpOpen] = useState(false);
-  const [autoPlaySound, setAutoPlaySound] = useState(false);
+  const [mixedModeDisplay, setMixedModeDisplay] = useState<"kana" | "japanese">(
+    "kana"
+  );
 
   useEffect(() => {
     setMounted(true);
     loadData();
-    loadSettings();
-
-    if (!ttsServiceRef.current) {
-      ttsServiceRef.current = new TTSService();
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadData = async () => {
     try {
-      // 加载单词数据
       const wordsData = await DataLoader.loadWordsData();
       setAllWords(wordsData);
 
-      // 加载假名数据（用于选择器）
       const kanaData = await DataLoader.loadKanaData();
       const savedKanaSelections = LocalStorage.load<string[]>(
         "words_kana_selections"
       );
 
-      // 应用保存的假名选择
       const initializedKanaList = kanaData.map((k) => ({
         ...k,
         selected: savedKanaSelections
           ? savedKanaSelections.includes(k.romaji)
-          : k.selected, // 默认使用 DataLoader 的默认值（清音全选）
+          : k.selected,
       }));
 
       setKanaList(initializedKanaList);
       updateDisplayWords(wordsData, initializedKanaList);
     } catch (error) {
       console.error("Failed to load data:", error);
-      toast.error("加载数据失败");
+      toast.error("載入資料失敗");
     }
   };
 
-  const loadSettings = () => {
-    const savedPracticeMode =
-      LocalStorage.load<PracticeMode>("words_practiceMode");
-    const savedDisplayMode =
-      LocalStorage.load<UnifiedDisplayMode>("words_displayMode");
-    const savedAutoPlaySound = LocalStorage.load<boolean>(
-      "words_autoPlaySound"
-    );
-
-    if (savedPracticeMode) {
-      setPracticeMode(savedPracticeMode);
-    }
-    if (savedDisplayMode) {
-      setDisplayMode(savedDisplayMode);
-    }
-    if (savedAutoPlaySound !== null) {
-      setAutoPlaySound(savedAutoPlaySound);
-    }
-  };
-
-  // 核心筛选逻辑：根据选中的假名筛选单词
   const updateDisplayWords = (words: WordObject[], kanas: MemoObject[]) => {
     const selectedKanas = kanas.filter((k) => k.selected);
 
@@ -135,18 +120,13 @@ export default function WordsPage() {
       return;
     }
 
-    // 提取选中的假名字符（平假名）
-    // 按长度降序排列，优先匹配拗音（2个字符）再匹配单个假名
     const selectedHiraganas = selectedKanas
       .map((k) => k.hiragana)
       .sort((a, b) => b.length - a.length);
 
-    // 筛选逻辑：单词的假名中是否包含任意一个选中的假名
     const matched = words.filter((word) => {
-      // 移除声调标记
       const cleanHiragana = word.hiragana.replace(/[①②③④⑤⑥⑦⑧⑨⓪]/g, "");
 
-      // 检查单词是否包含任意选中的假名（支持拗音）
       for (const kana of selectedHiraganas) {
         if (cleanHiragana.includes(kana)) {
           return true;
@@ -163,7 +143,6 @@ export default function WordsPage() {
     setKanaList(updatedKanaList);
     updateDisplayWords(allWords, updatedKanaList);
 
-    // 保存选择
     const selectedRomaji = updatedKanaList
       .filter((k) => k.selected)
       .map((k) => k.romaji);
@@ -172,7 +151,7 @@ export default function WordsPage() {
 
   const handleStart = () => {
     if (displayWords.length === 0) {
-      toast.error("请至少选择一个假名，且确保有匹配的单词");
+      toast.error("請至少選擇一個假名，且確保有匹配的單詞");
       return;
     }
 
@@ -184,8 +163,9 @@ export default function WordsPage() {
   const getNextWord = () => {
     setShowHint(practiceMode === PracticeMode.learning);
 
-    // 混合模式：随机选择显示假名或日文
-    if (displayMode === "mixed") {
+    const currentDisplayMode = displayMode || "mixed";
+
+    if (currentDisplayMode === "mixed") {
       setMixedModeDisplay(Math.random() > 0.5 ? "kana" : "japanese");
     }
 
@@ -195,15 +175,15 @@ export default function WordsPage() {
         setUsedWords([]);
         return;
       }
-      toast.info("没有更多单词了");
+      toast.info("沒有更多單詞了");
       return;
     }
 
     const randomIndex = Math.floor(Math.random() * displayWords.length);
     const selected = displayWords[randomIndex];
 
-    const displayText = getDisplayText(selected, displayMode);
-    const hintText = getHintText(selected, displayMode);
+    const displayText = getDisplayText(selected, currentDisplayMode);
+    const hintText = getHintText(selected, currentDisplayMode);
 
     setCurrentWord({
       word: selected,
@@ -215,28 +195,20 @@ export default function WordsPage() {
     setUsedWords((prev) => [...prev, selected]);
   };
 
-  // 用于混合模式的随机选择
-  const [mixedModeDisplay, setMixedModeDisplay] = useState<"kana" | "japanese">(
-    "kana"
-  );
-
   const getDisplayText = (
     word: WordObject,
     mode: UnifiedDisplayMode
   ): string => {
     switch (mode) {
       case "mixed":
-        // 混合模式：随机显示假名或日文
         if (mixedModeDisplay === "kana") {
           return word.hiragana;
         } else {
           return word.japanese;
         }
       case "kana":
-        // 假名模式：显示假名
         return word.hiragana;
       case "japanese":
-        // 日文模式：显示日文
         return word.japanese;
       default:
         return word.chinese;
@@ -246,17 +218,14 @@ export default function WordsPage() {
   const getHintText = (word: WordObject, mode: UnifiedDisplayMode): string => {
     switch (mode) {
       case "mixed":
-        // 混合模式：提示显示其他信息
         if (mixedModeDisplay === "kana") {
           return `${word.japanese}\n${word.romaji}\n${word.chinese}`;
         } else {
           return `${word.hiragana}\n${word.romaji}\n${word.chinese}`;
         }
       case "kana":
-        // 假名模式：提示显示日文、罗马音、中文
         return `${word.japanese}\n${word.romaji}\n${word.chinese}`;
       case "japanese":
-        // 日文模式：提示显示假名、罗马音、中文
         return `${word.hiragana}\n${word.romaji}\n${word.chinese}`;
       default:
         return "";
@@ -268,32 +237,28 @@ export default function WordsPage() {
   };
 
   const handlePronounce = async () => {
-    if (currentWord.word && ttsServiceRef.current) {
-      try {
-        // 优先发音假名
-        await ttsServiceRef.current.speak(currentWord.word.hiragana);
-      } catch (error) {
-        console.error("TTS error:", error);
-      }
+    if (currentWord.word) {
+      await speak(currentWord.word.hiragana);
     }
   };
 
   const handlePracticeModeChange = (mode: PracticeMode) => {
     setPracticeMode(mode);
-    LocalStorage.save("words_practiceMode", mode);
+    toast.success(mode === PracticeMode.learning ? "已切換至學習模式" : "已切換至記憶模式");
   };
 
   const handleDisplayModeChange = (mode: UnifiedDisplayMode) => {
     setDisplayMode(mode);
-    LocalStorage.save("words_displayMode", mode);
+    const modeNames = { mixed: "混合", kana: "假名", japanese: "日文" };
+    toast.success(`已切換至${modeNames[mode]}模式`);
   };
 
   const handleAutoPlaySoundChange = (enabled: boolean) => {
     setAutoPlaySound(enabled);
-    LocalStorage.save("words_autoPlaySound", enabled);
+    toast.success(enabled ? "已開啟自動發音" : "已關閉自動發音");
   };
 
-  // 自动发音：当切换到新单词时自动发音
+  // Auto play sound effect
   useEffect(() => {
     if (
       isStarted &&
@@ -302,10 +267,8 @@ export default function WordsPage() {
       currentWord.word?.hiragana
     ) {
       const timer = setTimeout(() => {
-        if (ttsServiceRef.current && currentWord.word) {
-          ttsServiceRef.current.speak(currentWord.word.hiragana).catch(() => {
-            // TTS failed silently
-          });
+        if (currentWord.word) {
+          speak(currentWord.word.hiragana);
         }
       }, 500);
       return () => clearTimeout(timer);
@@ -370,7 +333,7 @@ export default function WordsPage() {
 
                     <div className="text-sm text-muted-foreground max-w-md mx-auto">
                       <Lightbulb className="inline h-4 w-4 mr-1 mb-1" />
-                      選擇假名，系統會自動篩選包含這些假名的單詞
+                      選擇已掌握的假名，系統會篩選包含這些假名的單詞
                     </div>
                   </div>
                 ) : (
@@ -403,7 +366,7 @@ export default function WordsPage() {
                           <div className="text-xs sm:text-sm text-muted-foreground mb-1">
                             提示
                           </div>
-                          <div className="text-2xl sm:text-3xl text-foreground whitespace-pre-line leading-relaxed">
+                          <div className="text-xl sm:text-2xl md:text-3xl text-foreground whitespace-pre-line leading-relaxed">
                             {currentWord.hint}
                           </div>
                         </div>
@@ -453,7 +416,7 @@ export default function WordsPage() {
         <Footer />
       </div>
 
-      {/* 设置面板 */}
+      {/* Settings Sheet */}
       <Sheet open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
         <SheetContent className="w-full sm:max-w-md flex flex-col p-0">
           <SheetHeader className="px-4 sm:px-6 pt-6 pb-4 border-b">
@@ -462,108 +425,23 @@ export default function WordsPage() {
 
           <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 sm:py-6 mb-4">
             <div className="space-y-5 sm:space-y-6">
-              {/* 学习模式 */}
-              <div className="space-y-2 sm:space-y-3">
-                <h3 className="font-semibold text-sm sm:text-base flex items-center gap-2">
-                  <GraduationCap className="h-4 w-4" />
-                  練習模式
-                </h3>
-                <div className="flex gap-2">
-                  <Button
-                    variant={
-                      practiceMode === PracticeMode.learning
-                        ? "default"
-                        : "outline"
-                    }
-                    onClick={() =>
-                      handlePracticeModeChange(PracticeMode.learning)
-                    }
-                    className="flex-1 text-xs sm:text-sm h-auto py-2 sm:py-2.5"
-                  >
-                    <BookMarked className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5" />
-                    學習模式
-                  </Button>
-                  <Button
-                    variant={
-                      practiceMode === PracticeMode.memory
-                        ? "default"
-                        : "outline"
-                    }
-                    onClick={() =>
-                      handlePracticeModeChange(PracticeMode.memory)
-                    }
-                    className="flex-1 text-xs sm:text-sm h-auto py-2 sm:py-2.5"
-                  >
-                    <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5" />
-                    記憶模式
-                  </Button>
-                </div>
-                <p className="text-xs text-muted-foreground">
-                  {practiceMode === PracticeMode.learning
-                    ? "學習模式：自動顯示提示，適合初學者"
-                    : "記憶模式：手動控制提示和發音，適合複習鞏固"}
-                </p>
+              {/* Practice Mode Selector */}
+              <PracticeModeSelector
+                practiceMode={practiceMode}
+                autoPlaySound={autoPlaySound}
+                onPracticeModeChange={handlePracticeModeChange}
+                onAutoPlaySoundChange={handleAutoPlaySoundChange}
+                autoPlayLabel="切換單詞時自動朗讀"
+              />
 
-                {/* Auto Play Sound - Sub-option for Learning Mode */}
-                {practiceMode === PracticeMode.learning && (
-                  <div className="ml-3 sm:ml-4 mt-3 pl-3 sm:pl-4 border-l-2 border-primary/30">
-                    <div className="flex items-center justify-between gap-3 p-2.5 sm:p-3 rounded-md bg-muted/50">
-                      <div className="flex items-center gap-2 flex-1 min-w-0">
-                        <Volume2 className="h-3.5 w-3.5 text-muted-foreground flex-shrink-0" />
-                        <div className="flex-1 min-w-0">
-                          <Label
-                            htmlFor="autoPlaySound"
-                            className="text-xs sm:text-sm font-medium cursor-pointer block"
-                          >
-                            自動發音
-                          </Label>
-                          <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5">
-                            切換單詞時自動朗讀
-                          </p>
-                        </div>
-                      </div>
-                      <Switch
-                        id="autoPlaySound"
-                        checked={autoPlaySound}
-                        onCheckedChange={handleAutoPlaySoundChange}
-                        className="flex-shrink-0 scale-90"
-                      />
-                    </div>
-                  </div>
-                )}
-              </div>
+              {/* Display Mode Selector */}
+              <DisplayModeSelector
+                displayMode={displayMode || "mixed"}
+                modes={DISPLAY_MODES}
+                onChange={handleDisplayModeChange}
+              />
 
-              {/* 显示内容 */}
-              <div className="space-y-2 sm:space-y-3">
-                <h3 className="font-semibold text-sm sm:text-base flex items-center gap-2">
-                  <Eye className="h-4 w-4" />
-                  顯示內容
-                </h3>
-                <div className="flex justify-between gap-2">
-                  {[
-                    { value: "mixed", label: "混合" },
-                    { value: "kana", label: "假名" },
-                    { value: "japanese", label: "日文" },
-                  ].map((mode) => (
-                    <Button
-                      key={mode.value}
-                      variant={
-                        displayMode === mode.value ? "default" : "outline"
-                      }
-                      onClick={() =>
-                        handleDisplayModeChange(
-                          mode.value as UnifiedDisplayMode
-                        )
-                      }
-                      className="flex-1 text-xs sm:text-sm h-auto py-2 sm:py-2.5"
-                    >
-                      {mode.label}
-                    </Button>
-                  ))}
-                </div>
-              </div>
-
-              {/* 假名范围选择 */}
+              {/* Kana Range Selection */}
               <div className="space-y-2 sm:space-y-3">
                 <div className="flex items-center justify-between">
                   <h3 className="font-semibold text-sm sm:text-base flex items-center gap-2">

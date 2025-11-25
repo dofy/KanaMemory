@@ -47,22 +47,22 @@ export default function Home() {
 
   const learningModes = [
     {
-      title: "假名学习",
-      description: "学习和记忆日语假名",
+      title: "假名學習",
+      description: "學習和記憶日語假名",
       icon: Languages,
       href: "/kana",
       color: "text-blue-500",
     },
     {
-      title: "单词学习",
-      description: "按假名行分类学习日语单词",
+      title: "單詞學習",
+      description: "按假名行分類學習日語單詞",
       icon: BookText,
       href: "/words",
       color: "text-green-500",
     },
     {
-      title: "句子学习",
-      description: "学习常用日语句子",
+      title: "句子學習",
+      description: "學習常用日語句子",
       icon: MessageCircle,
       href: "/phrases",
       color: "text-purple-500",
@@ -82,7 +82,7 @@ export default function Home() {
               height={32}
               className="rounded"
             />
-            <h1 className="text-xl font-bold">日语学习工具</h1>
+            <h1 className="text-xl font-bold">日語學習工具</h1>
           </div>
 
           <div className="flex items-center gap-4">
@@ -127,9 +127,9 @@ export default function Home() {
       {/* Main Content */}
       <main className="flex-1 container mx-auto px-4 py-12">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4">选择学习模式</h2>
+          <h2 className="text-4xl font-bold mb-4">選擇學習模式</h2>
           <p className="text-muted-foreground text-lg">
-            从假名学习开始，逐步掌握日语单词和常用句子
+            從假名學習開始，逐步掌握日語單詞和常用句子
           </p>
         </div>
 
@@ -149,7 +149,7 @@ export default function Home() {
                     <CardDescription>{mode.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Button className="w-full">开始学习</Button>
+                    <Button className="w-full">開始學習</Button>
                   </CardContent>
                 </Card>
               </Link>
@@ -160,7 +160,7 @@ export default function Home() {
         <div className="mt-16 text-center text-muted-foreground">
           <p className="mb-2">功能特点</p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
-            <span>✓ 多种学习模式</span>
+            <span>✓ 多種學習模式</span>
             <span>✓ 语音朗读</span>
             <span>✓ 快捷键支持</span>
             <span>✓ 深色模式</span>

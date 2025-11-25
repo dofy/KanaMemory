@@ -42,9 +42,9 @@ export function Navigation({
   const getPageTitle = () => {
     if (title !== "日语学习工具") return title;
 
-    if (location.pathname === "/kana") return "假名学习";
-    if (location.pathname === "/words") return "单词学习";
-    if (location.pathname === "/phrases") return "句子学习";
+    if (location.pathname === "/kana") return "假名學習";
+    if (location.pathname === "/words") return "單詞學習";
+    if (location.pathname === "/phrases") return "句子學習";
     return title;
   };
 

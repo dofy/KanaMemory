@@ -2,39 +2,58 @@ import { HelpDialog } from "@/components/help-dialog";
 import { KanaSelector } from "@/components/kana-selector";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
+import { PracticeModeSelector } from "@/components/practice-mode-selector";
+import { DisplayModeSelector } from "@/components/display-mode-selector";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { Switch } from "@/components/ui/switch";
 import {
   STANDARD_SHORTCUTS,
   useKeyboardShortcuts,
 } from "@/hooks/use-keyboard-shortcuts";
+import { usePracticeState } from "@/hooks/use-practice-state";
+import { useTTS } from "@/hooks/use-tts";
 import { DataLoader } from "@/lib/data-loader";
 import { LocalStorage } from "@/lib/local-storage";
-import { TTSService } from "@/lib/tts";
-import { FYType, type DisplayMode, type MemoObject } from "@/lib/types";
+import { FYType, PracticeMode, type DisplayMode, type MemoObject } from "@/lib/types";
 import {
-  BookMarked,
-  Eye,
-  GraduationCap,
-  Lightbulb,
+  BookOpen,
   ListChecks,
-  Sparkles,
+  Lightbulb,
   Volume2,
 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
+
+const DISPLAY_MODES = [
+  { value: "mixed" as const, label: "混合" },
+  { value: "hiragana" as const, label: "平假名" },
+  { value: "katakana" as const, label: "片假名" },
+  { value: "romaji" as const, label: "羅馬音" },
+  { value: "swap" as const, label: "互換" },
+];
 
 export default function KanaPage() {
   const [mounted, setMounted] = useState(false);
-  const ttsServiceRef = useRef<TTSService | null>(null);
+  const { speak } = useTTS();
+
+  const {
+    practiceMode,
+    displayMode,
+    autoPlaySound,
+    setPracticeMode,
+    setDisplayMode,
+    setAutoPlaySound,
+  } = usePracticeState<DisplayMode>({
+    storagePrefix: "kana",
+    defaultPracticeMode: PracticeMode.memory,
+    defaultDisplayMode: "mixed",
+  });
 
   const [kanaList, setKanaList] = useState<MemoObject[]>([]);
   const [displayKanaList, setDisplayKanaList] = useState<MemoObject[]>([]);
@@ -48,31 +67,27 @@ export default function KanaPage() {
 
   const [isStarted, setIsStarted] = useState(false);
   const [showRemind, setShowRemind] = useState(false);
-  const [displayMode, setDisplayMode] = useState<DisplayMode>("mixed");
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isHelpOpen, setIsHelpOpen] = useState(false);
-  const [isLearningMode, setIsLearningMode] = useState(false);
-  const [autoPlaySound, setAutoPlaySound] = useState(false);
 
   useEffect(() => {
     setMounted(true);
     loadKanaData();
-
-    if (!ttsServiceRef.current) {
-      ttsServiceRef.current = new TTSService();
-    }
   }, []);
 
   const loadKanaData = async () => {
     const savedData = LocalStorage.load<MemoObject[]>("kana_selectedData");
-    const savedMode = LocalStorage.load<DisplayMode>("kana_displayType");
-    const savedLearningMode = LocalStorage.load<boolean>("kana_learningMode");
-    const savedAutoPlaySound = LocalStorage.load<boolean>("kana_autoPlaySound");
 
-    // Always load fresh data from JSON to ensure correct data structure
+    // Migrate old learningMode to practiceMode
+    const oldLearningMode = LocalStorage.load<boolean>("kana_learningMode");
+    if (oldLearningMode !== null) {
+      const newPracticeMode = oldLearningMode ? PracticeMode.learning : PracticeMode.memory;
+      LocalStorage.save("kana_practiceMode", newPracticeMode);
+      LocalStorage.remove("kana_learningMode");
+    }
+
     const data = await DataLoader.loadKanaData();
 
-    // If there's saved data, merge the selection state
     if (savedData && savedData.length > 0) {
       const savedSelectionMap = new Map(
         savedData.map((item) => [item.romaji, item.selected])
@@ -86,18 +101,6 @@ export default function KanaPage() {
       setKanaList(mergedData);
     } else {
       setKanaList(data);
-    }
-
-    if (savedMode) {
-      setDisplayMode(savedMode);
-    }
-
-    if (savedLearningMode !== null) {
-      setIsLearningMode(savedLearningMode);
-    }
-
-    if (savedAutoPlaySound !== null) {
-      setAutoPlaySound(savedAutoPlaySound);
     }
   };
 
@@ -117,25 +120,17 @@ export default function KanaPage() {
   useEffect(() => {
     if (
       isStarted &&
-      isLearningMode &&
+      practiceMode === PracticeMode.learning &&
       autoPlaySound &&
       currentKana.displayText
     ) {
-      playSound(currentKana.displayText);
+      speak(currentKana.displayText);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentKana.displayText]);
 
-  const playSound = (text: string) => {
-    if (ttsServiceRef.current) {
-      ttsServiceRef.current.speak(text).catch(() => {
-        // TTS failed silently
-      });
-    }
-  };
-
   const getRandomKana = () => {
-    setShowRemind(isLearningMode);
+    setShowRemind(practiceMode === PracticeMode.learning);
 
     if (displayKanaList.length === 0) {
       return;
@@ -170,7 +165,6 @@ export default function KanaPage() {
       }
     }
 
-    // Smart remind logic based on what's displayed
     let remindText = "";
     if (displayText === selectedKana.displayText) {
       remindText = `${selectedKana.displayText2}  ${selectedKana.remind}`;
@@ -205,8 +199,7 @@ export default function KanaPage() {
   useKeyboardShortcuts({
     onNext: getRandomKana,
     onShowHint: () => setShowRemind((prev) => !prev),
-    onPlaySound: () =>
-      currentKana.displayText && playSound(currentKana.displayText),
+    onPlaySound: () => currentKana.displayText && speak(currentKana.displayText),
     onToggleSettings: () => setIsSettingsOpen((prev) => !prev),
     onToggleHelp: () => setIsHelpOpen((prev) => !prev),
     isStarted,
@@ -237,8 +230,6 @@ export default function KanaPage() {
 
   const handleDisplayModeChange = (mode: DisplayMode) => {
     setDisplayMode(mode);
-    LocalStorage.save("kana_displayType", mode);
-
     const modeNames: Record<DisplayMode, string> = {
       mixed: "混合",
       hiragana: "平假名",
@@ -249,20 +240,16 @@ export default function KanaPage() {
     toast.success(`已切換至${modeNames[mode]}模式`);
   };
 
-  const handleLearningModeChange = (isLearning: boolean) => {
-    setIsLearningMode(isLearning);
-    LocalStorage.save("kana_learningMode", isLearning);
+  const handlePracticeModeChange = (mode: PracticeMode) => {
+    setPracticeMode(mode);
     if (isStarted) {
-      setShowRemind(isLearning);
+      setShowRemind(mode === PracticeMode.learning);
     }
-
-    const modeName = isLearning ? "學習模式" : "記憶模式";
-    toast.success(`已切換至${modeName}`);
+    toast.success(mode === PracticeMode.learning ? "已切換至學習模式" : "已切換至記憶模式");
   };
 
   const handleAutoPlaySoundChange = (enabled: boolean) => {
     setAutoPlaySound(enabled);
-    LocalStorage.save("kana_autoPlaySound", enabled);
     toast.success(enabled ? "已開啟自動發音" : "已關閉自動發音");
   };
 
@@ -277,6 +264,7 @@ export default function KanaPage() {
   const yoonCount = kanaList.filter(
     (k) => k.fyType === FYType.yoon && k.selected
   ).length;
+  const totalCount = seionCount + dakuonCount + yoonCount;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -297,96 +285,23 @@ export default function KanaPage() {
 
               <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 sm:py-6 mb-4">
                 <div className="space-y-5 sm:space-y-6">
-                  {/* Learning Mode */}
-                  <div className="space-y-2 sm:space-y-3">
-                    <h3 className="font-semibold text-sm sm:text-base flex items-center gap-2">
-                      <GraduationCap className="h-4 w-4" />
-                      練習模式
-                    </h3>
-                    <div className="flex gap-2">
-                      <Button
-                        variant={isLearningMode ? "default" : "outline"}
-                        onClick={() => handleLearningModeChange(true)}
-                        className="flex-1 text-xs sm:text-sm h-auto py-2 sm:py-2.5"
-                      >
-                        <BookMarked className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5" />
-                        學習模式
-                      </Button>
-                      <Button
-                        variant={!isLearningMode ? "default" : "outline"}
-                        onClick={() => handleLearningModeChange(false)}
-                        className="flex-1 text-xs sm:text-sm h-auto py-2 sm:py-2.5"
-                      >
-                        <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5" />
-                        記憶模式
-                      </Button>
-                    </div>
-                    <p className="text-xs text-muted-foreground">
-                      {isLearningMode
-                        ? "學習模式：自動顯示提示，適合初學者"
-                        : "記憶模式：手動顯示提示，適合複習鞏固"}
-                    </p>
+                  {/* Practice Mode Selector */}
+                  <PracticeModeSelector
+                    practiceMode={practiceMode}
+                    autoPlaySound={autoPlaySound}
+                    onPracticeModeChange={handlePracticeModeChange}
+                    onAutoPlaySoundChange={handleAutoPlaySoundChange}
+                    autoPlayLabel="顯示假名時自動朗讀"
+                  />
 
-                    {/* Auto Play Sound */}
-                    {isLearningMode && (
-                      <div className="ml-3 sm:ml-4 mt-3 pl-3 sm:pl-4 border-l-2 border-primary/30">
-                        <div className="flex items-center justify-between gap-3 p-2.5 sm:p-3 rounded-md bg-muted/50">
-                          <div className="flex items-center gap-2 flex-1 min-w-0">
-                            <Volume2 className="h-3.5 w-3.5 text-muted-foreground flex-shrink-0" />
-                            <div className="flex-1 min-w-0">
-                              <Label
-                                htmlFor="autoPlaySound"
-                                className="text-xs sm:text-sm font-medium cursor-pointer block"
-                              >
-                                自動發音
-                              </Label>
-                              <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5">
-                                顯示假名時自動朗讀
-                              </p>
-                            </div>
-                          </div>
-                          <Switch
-                            id="autoPlaySound"
-                            checked={autoPlaySound}
-                            onCheckedChange={handleAutoPlaySoundChange}
-                            className="flex-shrink-0 scale-90"
-                          />
-                        </div>
-                      </div>
-                    )}
-                  </div>
+                  {/* Display Mode Selector */}
+                  <DisplayModeSelector
+                    displayMode={displayMode || "mixed"}
+                    modes={DISPLAY_MODES}
+                    onChange={handleDisplayModeChange}
+                  />
 
-                  {/* Display Mode */}
-                  <div className="space-y-2 sm:space-y-3">
-                    <h3 className="font-semibold text-sm sm:text-base flex items-center gap-2">
-                      <Eye className="h-4 w-4" />
-                      顯示內容
-                    </h3>
-                    <div className="flex justify-between gap-2">
-                      {[
-                        { value: "mixed", label: "混合" },
-                        { value: "hiragana", label: "平假名" },
-                        { value: "katakana", label: "片假名" },
-                        { value: "romaji", label: "羅馬音" },
-                        { value: "swap", label: "互換" },
-                      ].map((mode) => (
-                        <Button
-                          key={mode.value}
-                          variant={
-                            displayMode === mode.value ? "default" : "outline"
-                          }
-                          onClick={() =>
-                            handleDisplayModeChange(mode.value as DisplayMode)
-                          }
-                          className="flex-1 text-xs sm:text-sm h-auto py-2 sm:py-2.5"
-                        >
-                          {mode.label}
-                        </Button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* 假名选择 */}
+                  {/* Kana Selection */}
                   <div className="space-y-2 sm:space-y-3">
                     <h3 className="font-semibold text-sm sm:text-base flex items-center gap-2">
                       <ListChecks className="h-4 w-4" />
@@ -419,11 +334,28 @@ export default function KanaPage() {
                 {!isStarted ? (
                   <div className="text-center space-y-4 sm:space-y-6">
                     <div className="text-5xl sm:text-6xl md:text-7xl font-bold text-muted-foreground">
-                      準備
+                      假名
                     </div>
-                    <p className="text-base sm:text-lg text-muted-foreground">
-                      已選擇: {seionCount + dakuonCount + yoonCount} 個假名
-                    </p>
+
+                    <div className="grid grid-cols-3 gap-4 p-4 bg-muted/50 rounded-lg max-w-md mx-auto">
+                      <div>
+                        <p className="text-sm text-muted-foreground">清音</p>
+                        <p className="text-2xl font-bold">{seionCount}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-muted-foreground">濁音</p>
+                        <p className="text-2xl font-bold">{dakuonCount}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-muted-foreground">拗音</p>
+                        <p className="text-2xl font-bold">{yoonCount}</p>
+                      </div>
+                    </div>
+
+                    <div className="text-sm text-muted-foreground max-w-md mx-auto">
+                      <Lightbulb className="inline h-4 w-4 mr-1 mb-1" />
+                      選擇假名類型和範圍，開始練習日語假名
+                    </div>
                   </div>
                 ) : (
                   <>
@@ -435,7 +367,7 @@ export default function KanaPage() {
                         variant="ghost"
                         size="icon"
                         className="h-14 w-14 sm:h-16 sm:w-16 rounded-full hover:bg-accent flex-shrink-0"
-                        onClick={() => playSound(currentKana.displayText)}
+                        onClick={() => speak(currentKana.displayText)}
                       >
                         <Volume2 className="h-7 w-7 sm:h-8 sm:w-8" />
                       </Button>
@@ -474,13 +406,14 @@ export default function KanaPage() {
                 className="w-full"
                 size="lg"
                 onClick={handleStart}
-                disabled={seionCount + dakuonCount + yoonCount === 0}
+                disabled={totalCount === 0}
               >
-                開始
+                <BookOpen className="h-5 w-5 mr-2" />
+                開始學習 ({totalCount} 個假名)
               </Button>
             ) : (
               <div className="flex gap-2 items-center max-w-2xl mx-auto">
-                {!isLearningMode && (
+                {practiceMode === PracticeMode.memory && (
                   <Button
                     variant="outline"
                     size="icon"
