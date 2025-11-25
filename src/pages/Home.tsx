@@ -1,4 +1,5 @@
 import { useTheme } from "@/components/theme-provider-custom";
+import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -167,6 +168,8 @@ export default function Home() {
           </div>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 }

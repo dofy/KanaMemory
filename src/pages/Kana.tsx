@@ -1,6 +1,7 @@
 import { HelpDialog } from "@/components/help-dialog";
 import { KanaSelector } from "@/components/kana-selector";
 import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -285,8 +286,8 @@ export default function KanaPage() {
         onHelpClick={() => setIsHelpOpen(true)}
       />
 
-      <main className="flex-1 flex flex-col sm:items-center sm:justify-center p-0 sm:p-6 md:p-8">
-        <div className="w-full max-w-2xl flex flex-col sm:block h-full sm:h-auto sm:space-y-4">
+      <main className="flex-1 flex flex-col items-center justify-center p-0 sm:p-6 md:p-8">
+        <div className="w-full max-w-2xl flex flex-col h-full sm:h-auto">
           {/* Settings Sheet */}
           <Sheet open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
             <SheetContent className="w-full sm:max-w-md flex flex-col p-0">
@@ -412,9 +413,9 @@ export default function KanaPage() {
           />
 
           {/* Main Card */}
-          <Card className="flex-1 flex flex-col !border-0 rounded-none sm:rounded-lg overflow-hidden sm:flex-initial shadow-none">
-            <CardContent className="flex-1 flex flex-col p-4 sm:p-6">
-              <div className="flex-1 flex flex-col items-center justify-center space-y-8 sm:space-y-12 py-4 sm:py-8">
+          <Card className="flex-1 flex flex-col !border-0 rounded-none sm:rounded-lg overflow-hidden shadow-none">
+            <CardContent className="flex-1 flex items-center justify-center p-4 sm:p-6">
+              <div className="w-full space-y-8 sm:space-y-12">
                 {!isStarted ? (
                   <div className="text-center space-y-4 sm:space-y-6">
                     <div className="text-5xl sm:text-6xl md:text-7xl font-bold text-muted-foreground">
@@ -426,7 +427,7 @@ export default function KanaPage() {
                   </div>
                 ) : (
                   <>
-                    <div className="flex items-center gap-4 sm:gap-6 md:gap-8">
+                    <div className="flex items-center justify-center gap-4 sm:gap-6 md:gap-8">
                       <div className="text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] font-bold font-kana">
                         {currentKana.displayText}
                       </div>
@@ -463,44 +464,45 @@ export default function KanaPage() {
                   </>
                 )}
               </div>
-
-              <div className="mt-8 sm:mt-12 md:mt-16">
-                {!isStarted ? (
-                  <Button
-                    className="w-full"
-                    size="lg"
-                    onClick={handleStart}
-                    disabled={seionCount + dakuonCount + yoonCount === 0}
-                  >
-                    開始
-                  </Button>
-                ) : (
-                  <div className="flex gap-2 items-center">
-                    {!isLearningMode && (
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        className="h-12 w-12 rounded-full flex-shrink-0"
-                        onClick={() => setShowRemind(true)}
-                        title="顯示提示"
-                      >
-                        <Lightbulb className="h-5 w-5" />
-                      </Button>
-                    )}
-                    <Button
-                      className="flex-1"
-                      size="lg"
-                      onClick={getRandomKana}
-                    >
-                      下一個
-                    </Button>
-                  </div>
-                )}
-              </div>
             </CardContent>
           </Card>
+
+          {/* Action Buttons - Fixed at bottom on mobile */}
+          <div className="fixed bottom-0 left-0 right-0 p-4 pb-safe bg-background border-t sm:static sm:border-0 sm:p-0 sm:mt-4 z-10">
+            {!isStarted ? (
+              <Button
+                className="w-full"
+                size="lg"
+                onClick={handleStart}
+                disabled={seionCount + dakuonCount + yoonCount === 0}
+              >
+                開始
+              </Button>
+            ) : (
+              <div className="flex gap-2 items-center max-w-2xl mx-auto">
+                {!isLearningMode && (
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="h-12 w-12 rounded-full flex-shrink-0"
+                    onClick={() => setShowRemind(true)}
+                    title="顯示提示"
+                  >
+                    <Lightbulb className="h-5 w-5" />
+                  </Button>
+                )}
+                <Button className="flex-1" size="lg" onClick={getRandomKana}>
+                  下一個
+                </Button>
+              </div>
+            )}
+          </div>
         </div>
       </main>
+
+      <div className="hidden sm:block">
+        <Footer />
+      </div>
     </div>
   );
 }

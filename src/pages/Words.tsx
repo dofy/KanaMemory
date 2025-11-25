@@ -1,6 +1,7 @@
 import { HelpDialog } from "@/components/help-dialog";
 import { KanaSelector } from "@/components/kana-selector";
 import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -24,7 +25,16 @@ import {
   type UnifiedDisplayMode,
   type WordObject,
 } from "@/lib/types";
-import { BookOpen, GraduationCap, BookMarked, Sparkles, Eye, Filter, Lightbulb, Volume2 } from "lucide-react";
+import {
+  BookOpen,
+  GraduationCap,
+  BookMarked,
+  Sparkles,
+  Eye,
+  Filter,
+  Lightbulb,
+  Volume2,
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
@@ -330,24 +340,30 @@ export default function WordsPage() {
         onHelpClick={() => setIsHelpOpen(true)}
       />
 
-      <main className="flex-1 flex flex-col sm:items-center sm:justify-center p-0 sm:p-6 md:p-8">
-        <div className="w-full max-w-2xl flex flex-col sm:block h-full sm:h-auto sm:space-y-4">
-          <Card className="flex-1 flex flex-col !border-0 rounded-none sm:rounded-lg overflow-hidden sm:flex-initial shadow-none">
-            <CardContent className="flex-1 flex flex-col p-4 sm:p-6">
-              <div className="flex-1 flex flex-col items-center justify-center space-y-8 sm:space-y-12 py-4 sm:py-8">
+      <main className="flex-1 flex flex-col items-center justify-center p-0 sm:p-6 md:p-8">
+        <div className="w-full max-w-2xl flex flex-col h-full sm:h-auto">
+          <Card className="flex-1 flex flex-col !border-0 rounded-none sm:rounded-lg overflow-hidden shadow-none">
+            <CardContent className="flex-1 flex items-center justify-center p-4 sm:p-6">
+              <div className="w-full space-y-8 sm:space-y-12">
                 {!isStarted ? (
                   <div className="text-center space-y-4 sm:space-y-6 w-full">
                     <div className="text-5xl sm:text-6xl md:text-7xl font-bold text-muted-foreground">
                       單詞
                     </div>
-                    
+
                     <div className="grid grid-cols-2 gap-4 p-4 bg-muted/50 rounded-lg max-w-md mx-auto">
                       <div>
-                        <p className="text-sm text-muted-foreground">已選假名</p>
-                        <p className="text-2xl font-bold">{selectedKanaCount}</p>
+                        <p className="text-sm text-muted-foreground">
+                          已選假名
+                        </p>
+                        <p className="text-2xl font-bold">
+                          {selectedKanaCount}
+                        </p>
                       </div>
                       <div>
-                        <p className="text-sm text-muted-foreground">關聯單詞</p>
+                        <p className="text-sm text-muted-foreground">
+                          關聯單詞
+                        </p>
                         <p className="text-2xl font-bold">{matchedWordCount}</p>
                       </div>
                     </div>
@@ -359,7 +375,7 @@ export default function WordsPage() {
                   </div>
                 ) : (
                   <>
-                    <div className="flex items-center gap-4 sm:gap-6 md:gap-8">
+                    <div className="flex items-center justify-center gap-4 sm:gap-6 md:gap-8">
                       <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-foreground text-center font-kana">
                         <span className="whitespace-pre-line">
                           {currentWord.displayText}
@@ -370,16 +386,15 @@ export default function WordsPage() {
                           )}
                         </span>
                       </div>
-                      {practiceMode === PracticeMode.memory && (
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="h-14 w-14 sm:h-16 sm:w-16 rounded-full hover:bg-accent flex-shrink-0"
-                          onClick={handlePronounce}
-                        >
-                          <Volume2 className="h-7 w-7 sm:h-8 sm:w-8" />
-                        </Button>
-                      )}
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-14 w-14 sm:h-16 sm:w-16 rounded-full hover:bg-accent flex-shrink-0"
+                        onClick={handlePronounce}
+                        title="發音"
+                      >
+                        <Volume2 className="h-7 w-7 sm:h-8 sm:w-8" />
+                      </Button>
                     </div>
 
                     {showHint && currentWord.hint && (
@@ -397,45 +412,46 @@ export default function WordsPage() {
                   </>
                 )}
               </div>
-
-              <div className="mt-8 sm:mt-12 md:mt-16">
-                {!isStarted ? (
-                  <Button
-                    className="w-full"
-                    size="lg"
-                    onClick={handleStart}
-                    disabled={matchedWordCount === 0}
-                  >
-                    <BookOpen className="h-5 w-5 mr-2" />
-                    開始學習 ({matchedWordCount} 個單詞)
-                  </Button>
-                ) : (
-                  <div className="flex gap-2 items-center">
-                    {practiceMode === PracticeMode.memory && (
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        className="h-12 w-12 rounded-full flex-shrink-0"
-                        onClick={handleShowHint}
-                        title="顯示提示"
-                      >
-                        <Lightbulb className="h-5 w-5" />
-                      </Button>
-                    )}
-                    <Button
-                      className="flex-1"
-                      size="lg"
-                      onClick={getNextWord}
-                    >
-                      下一個
-                    </Button>
-                  </div>
-                )}
-              </div>
             </CardContent>
           </Card>
+
+          {/* Action Buttons - Fixed at bottom on mobile */}
+          <div className="fixed bottom-0 left-0 right-0 p-4 pb-safe bg-background border-t sm:static sm:border-0 sm:p-0 sm:mt-4 z-10">
+            {!isStarted ? (
+              <Button
+                className="w-full"
+                size="lg"
+                onClick={handleStart}
+                disabled={matchedWordCount === 0}
+              >
+                <BookOpen className="h-5 w-5 mr-2" />
+                開始學習 ({matchedWordCount} 個單詞)
+              </Button>
+            ) : (
+              <div className="flex gap-2 items-center max-w-2xl mx-auto">
+                {practiceMode === PracticeMode.memory && (
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="h-12 w-12 rounded-full flex-shrink-0"
+                    onClick={handleShowHint}
+                    title="顯示提示"
+                  >
+                    <Lightbulb className="h-5 w-5" />
+                  </Button>
+                )}
+                <Button className="flex-1" size="lg" onClick={getNextWord}>
+                  下一個
+                </Button>
+              </div>
+            )}
+          </div>
         </div>
       </main>
+
+      <div className="hidden sm:block">
+        <Footer />
+      </div>
 
       {/* 设置面板 */}
       <Sheet open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
