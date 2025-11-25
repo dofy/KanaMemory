@@ -1,3 +1,4 @@
+import { useTheme } from "@/components/theme-provider-custom";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,17 +14,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
-  Languages,
   BookText,
-  MessageCircle,
   Github,
+  Languages,
+  MessageCircle,
+  Monitor,
   Moon,
   Sun,
-  Monitor,
 } from "lucide-react";
-import { useTheme } from "@/components/theme-provider-custom";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);

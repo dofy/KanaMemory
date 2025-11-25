@@ -1,10 +1,10 @@
-import { Routes, Route } from 'react-router-dom'
-import { ThemeProvider } from '@/components/theme-provider-custom'
-import { Toaster } from '@/components/ui/sonner'
-import HomePage from '@/pages/Home'
-import KanaPage from '@/pages/Kana'
-import WordsPage from '@/pages/Words'
-import PhrasesPage from '@/pages/Phrases'
+import { ThemeProvider } from "@/components/theme-provider-custom";
+import { Toaster } from "@/components/ui/sonner";
+import HomePage from "@/pages/Home";
+import KanaPage from "@/pages/Kana";
+import PhrasesPage from "@/pages/Phrases";
+import WordsPage from "@/pages/Words";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
@@ -17,8 +17,7 @@ function App() {
       </Routes>
       <Toaster />
     </ThemeProvider>
-  )
+  );
 }
 
-export default App
-
+export default App;

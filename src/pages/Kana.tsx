@@ -1,3 +1,6 @@
+import { HelpDialog } from "@/components/help-dialog";
+import { KanaSelector } from "@/components/kana-selector";
+import { Navigation } from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -8,26 +11,23 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { Switch } from "@/components/ui/switch";
-import { Navigation } from "@/components/navigation";
-import { KanaSelector } from "@/components/kana-selector";
+import {
+  STANDARD_SHORTCUTS,
+  useKeyboardShortcuts,
+} from "@/hooks/use-keyboard-shortcuts";
 import { DataLoader } from "@/lib/data-loader";
 import { LocalStorage } from "@/lib/local-storage";
 import { TTSService } from "@/lib/tts";
 import { FYType, type DisplayMode, type MemoObject } from "@/lib/types";
 import {
-  GraduationCap,
   BookMarked,
-  Sparkles,
   Eye,
+  GraduationCap,
   Lightbulb,
   ListChecks,
+  Sparkles,
   Volume2,
 } from "lucide-react";
-import { HelpDialog } from "@/components/help-dialog";
-import {
-  useKeyboardShortcuts,
-  STANDARD_SHORTCUTS,
-} from "@/hooks/use-keyboard-shortcuts";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
@@ -70,18 +70,18 @@ export default function KanaPage() {
 
     // Always load fresh data from JSON to ensure correct data structure
     const data = await DataLoader.loadKanaData();
-    
+
     // If there's saved data, merge the selection state
     if (savedData && savedData.length > 0) {
       const savedSelectionMap = new Map(
-        savedData.map(item => [item.romaji, item.selected])
+        savedData.map((item) => [item.romaji, item.selected])
       );
-      
-      const mergedData = data.map(item => ({
+
+      const mergedData = data.map((item) => ({
         ...item,
-        selected: savedSelectionMap.get(item.romaji) ?? item.selected
+        selected: savedSelectionMap.get(item.romaji) ?? item.selected,
       }));
-      
+
       setKanaList(mergedData);
     } else {
       setKanaList(data);
@@ -146,11 +146,12 @@ export default function KanaPage() {
     let displayText = "";
 
     switch (displayMode) {
-      case "mixed":
+      case "mixed": {
         const rand = Math.round(Math.random());
         displayText =
           rand === 1 ? selectedKana.displayText : selectedKana.displayText2;
         break;
+      }
       case "hiragana":
         displayText = selectedKana.displayText;
         break;
@@ -160,11 +161,12 @@ export default function KanaPage() {
       case "romaji":
         displayText = selectedKana.remind;
         break;
-      case "swap":
+      case "swap": {
         const rand2 = Math.round(Math.random());
         displayText =
           rand2 === 1 ? selectedKana.displayText : selectedKana.displayText2;
         break;
+      }
     }
 
     // Smart remind logic based on what's displayed
@@ -392,9 +394,9 @@ export default function KanaPage() {
                     <p className="text-xs text-muted-foreground">
                       選擇您想要練習的假名類型和範圍。
                     </p>
-                    <KanaSelector 
-                      kanaList={kanaList} 
-                      onSelectionChange={handleKanaSelectionChange} 
+                    <KanaSelector
+                      kanaList={kanaList}
+                      onSelectionChange={handleKanaSelectionChange}
                     />
                   </div>
                 </div>

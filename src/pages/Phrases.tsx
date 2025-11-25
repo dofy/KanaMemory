@@ -84,6 +84,7 @@ export default function PhrasesPage() {
     if (!ttsServiceRef.current) {
       ttsServiceRef.current = new TTSService();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadPhrasesData = async () => {
@@ -308,6 +309,7 @@ export default function PhrasesPage() {
       }, 500);
       return () => clearTimeout(timer);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPhrase.phrase?.hiragana, isStarted, practiceMode, autoPlaySound]);
 
   // Keyboard shortcuts

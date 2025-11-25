@@ -1,3 +1,4 @@
+import { useTheme } from "@/components/theme-provider-custom";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -6,17 +7,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
-  Moon,
-  Sun,
-  Monitor,
-  Github,
-  Settings,
   ArrowLeft,
+  Github,
   HelpCircle,
+  Monitor,
+  Moon,
+  Settings,
+  Sun,
 } from "lucide-react";
-import { useTheme } from "@/components/theme-provider-custom";
-import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 interface NavigationProps {
   title?: string;
@@ -131,10 +131,11 @@ export function Navigation({
           </DropdownMenu>
 
           <a
-            href="https://github.com"
+            href="https://github.com/dofy/KanaSyllabaryMemory"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:block"
+            title="GitHub"
           >
             <Button variant="ghost" size="icon">
               <Github className="h-5 w-5" />

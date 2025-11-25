@@ -65,6 +65,7 @@ export default function WordsPage() {
     if (!ttsServiceRef.current) {
       ttsServiceRef.current = new TTSService();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadData = async () => {
@@ -299,6 +300,7 @@ export default function WordsPage() {
       }, 500);
       return () => clearTimeout(timer);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentWord.word?.hiragana, isStarted, practiceMode, autoPlaySound]);
 
   // Keyboard shortcuts
