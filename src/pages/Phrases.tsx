@@ -13,6 +13,7 @@ import { Footer } from "@/components/footer";
 import { HelpDialog } from "@/components/help-dialog";
 import { PracticeModeSelector } from "@/components/practice-mode-selector";
 import { DisplayModeSelector } from "@/components/display-mode-selector";
+import { PracticeDisplay } from "@/components/practice-display";
 import {
   useKeyboardShortcuts,
   STANDARD_SHORTCUTS,
@@ -314,8 +315,8 @@ export default function PhrasesPage() {
 
       <main className="flex-1 flex flex-col items-center justify-center p-0 sm:p-6 md:p-8">
         <div className="w-full max-w-2xl flex flex-col h-full sm:h-auto">
-          <Card className="flex-1 flex flex-col !border-0 rounded-none sm:rounded-lg overflow-hidden shadow-none">
-            <CardContent className="flex-1 flex items-center justify-center p-4 sm:p-6">
+          <Card className="flex-1 flex flex-col !border-0 rounded-none sm:rounded-lg overflow-hidden shadow-none bg-transparent sm:bg-card">
+            <CardContent className="flex-1 flex items-center justify-center p-3 sm:p-5 md:p-6">
               <div className="w-full space-y-8 sm:space-y-12">
                 {!isStarted ? (
                   <div className="text-center space-y-4 sm:space-y-6 w-full">
@@ -372,45 +373,49 @@ export default function PhrasesPage() {
                       </div>
                     </div>
 
-                    <div className="text-sm text-muted-foreground max-w-md mx-auto">
-                      <Lightbulb className="inline h-4 w-4 mr-1 mb-1" />
-                      選擇感興趣的場景，開始學習實用日語句子
+                <div className="text-sm text-muted-foreground max-w-md mx-auto">
+                  <Lightbulb className="inline h-4 w-4 mr-1 mb-1" />
+                  選擇感興趣的場景，開始學習實用日語句子
+                </div>
+              </div>
+            ) : (
+              <PracticeDisplay
+                content={
+                  <div className="flex items-center justify-center gap-4 sm:gap-6 md:gap-8">
+                    <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground text-center leading-relaxed whitespace-pre-line font-kana px-4">
+                      {currentPhrase.displayText}
                     </div>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-14 w-14 sm:h-16 sm:w-16 rounded-full hover:bg-accent flex-shrink-0"
+                      onClick={handlePronounce}
+                      title="發音"
+                    >
+                      <Volume2 className="h-7 w-7 sm:h-8 sm:w-8" />
+                    </Button>
                   </div>
-                ) : (
-                  <>
-                    <div className="flex items-center justify-center gap-4 sm:gap-6 md:gap-8">
-                      <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground text-center leading-relaxed whitespace-pre-line font-kana px-4">
-                        {currentPhrase.displayText}
-                      </div>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-14 w-14 sm:h-16 sm:w-16 rounded-full hover:bg-accent flex-shrink-0"
-                        onClick={handlePronounce}
-                        title="發音"
-                      >
-                        <Volume2 className="h-7 w-7 sm:h-8 sm:w-8" />
-                      </Button>
-                    </div>
-
-                    {showHint && currentPhrase.hint && (
-                      <div className="flex gap-3 sm:gap-4 animate-in fade-in px-4 sm:px-0 w-full justify-center">
-                        <div className="rounded-lg border-2 bg-card px-4 py-3 sm:px-6 sm:py-4 text-center max-w-md">
-                          <div className="text-xs sm:text-sm text-muted-foreground mb-1">
-                            提示
-                          </div>
-                          <div className="text-xl sm:text-2xl md:text-3xl text-foreground whitespace-pre-line leading-relaxed">
-                            {currentPhrase.hint}
-                          </div>
+                }
+                hint={
+                  currentPhrase.hint && (
+                    <div className="flex gap-3 sm:gap-4 animate-in fade-in px-4 sm:px-0 w-full justify-center">
+                      <div className="rounded-lg border-2 bg-card px-4 py-3 sm:px-6 sm:py-4 text-center max-w-md">
+                        <div className="text-xs sm:text-sm text-muted-foreground mb-1">
+                          提示
+                        </div>
+                        <div className="text-xl sm:text-2xl md:text-3xl text-foreground whitespace-pre-line leading-relaxed">
+                          {currentPhrase.hint}
                         </div>
                       </div>
-                    )}
-                  </>
-                )}
-              </div>
-            </CardContent>
-          </Card>
+                    </div>
+                  )
+                }
+                showHint={showHint && !!currentPhrase.hint}
+              />
+            )}
+          </div>
+        </CardContent>
+      </Card>
 
           {/* Action Buttons - Fixed at bottom on mobile */}
           <div className="fixed bottom-0 left-0 right-0 p-4 pb-safe bg-background border-t sm:static sm:border-0 sm:p-0 sm:mt-4 z-10">

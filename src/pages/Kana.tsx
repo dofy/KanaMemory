@@ -4,6 +4,7 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { PracticeModeSelector } from "@/components/practice-mode-selector";
 import { DisplayModeSelector } from "@/components/display-mode-selector";
+import { PracticeDisplay } from "@/components/practice-display";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -335,8 +336,8 @@ export default function KanaPage() {
           />
 
           {/* Main Card */}
-          <Card className="flex-1 flex flex-col !border-0 rounded-none sm:rounded-lg overflow-hidden shadow-none">
-            <CardContent className="flex-1 flex items-center justify-center p-4 sm:p-6">
+          <Card className="flex-1 flex flex-col !border-0 rounded-none sm:rounded-lg overflow-hidden shadow-none bg-transparent sm:bg-card">
+            <CardContent className="flex-1 flex items-center justify-center p-3 sm:p-5 md:p-6">
               <div className="w-full space-y-8 sm:space-y-12">
                 {!isStarted ? (
                   <div className="text-center space-y-4 sm:space-y-6">
@@ -365,22 +366,23 @@ export default function KanaPage() {
                     </div>
                   </div>
                 ) : (
-                  <>
-                    <div className="flex items-center justify-center gap-4 sm:gap-6 md:gap-8">
-                      <div className="text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] font-bold font-kana">
-                        {currentKana.displayText}
+                  <PracticeDisplay
+                    content={
+                      <div className="flex items-center justify-center gap-4 sm:gap-6 md:gap-8">
+                        <div className="text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] font-bold font-kana">
+                          {currentKana.displayText}
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-14 w-14 sm:h-16 sm:w-16 rounded-full hover:bg-accent flex-shrink-0"
+                          onClick={() => speak(currentKana.displayText)}
+                        >
+                          <Volume2 className="h-7 w-7 sm:h-8 sm:w-8" />
+                        </Button>
                       </div>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-14 w-14 sm:h-16 sm:w-16 rounded-full hover:bg-accent flex-shrink-0"
-                        onClick={() => speak(currentKana.displayText)}
-                      >
-                        <Volume2 className="h-7 w-7 sm:h-8 sm:w-8" />
-                      </Button>
-                    </div>
-
-                    {showRemind && (
+                    }
+                    hint={
                       <div className="flex gap-3 sm:gap-4 animate-in fade-in px-4 sm:px-0">
                         <div className="flex-1 min-w-[120px] sm:min-w-[140px] rounded-lg border-2 bg-card px-4 py-3 sm:px-6 sm:py-4 text-center">
                           <div className="text-xs sm:text-sm text-muted-foreground mb-1">
@@ -399,8 +401,9 @@ export default function KanaPage() {
                           </div>
                         </div>
                       </div>
-                    )}
-                  </>
+                    }
+                    showHint={showRemind}
+                  />
                 )}
               </div>
             </CardContent>

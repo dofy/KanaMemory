@@ -4,6 +4,7 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { PracticeModeSelector } from "@/components/practice-mode-selector";
 import { DisplayModeSelector } from "@/components/display-mode-selector";
+import { PracticeDisplay } from "@/components/practice-display";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -312,8 +313,8 @@ export default function WordsPage() {
 
       <main className="flex-1 flex flex-col items-center justify-center p-0 sm:p-6 md:p-8">
         <div className="w-full max-w-2xl flex flex-col h-full sm:h-auto">
-          <Card className="flex-1 flex flex-col !border-0 rounded-none sm:rounded-lg overflow-hidden shadow-none">
-            <CardContent className="flex-1 flex items-center justify-center p-4 sm:p-6">
+          <Card className="flex-1 flex flex-col !border-0 rounded-none sm:rounded-lg overflow-hidden shadow-none bg-transparent sm:bg-card">
+            <CardContent className="flex-1 flex items-center justify-center p-3 sm:p-5 md:p-6">
               <div className="w-full space-y-8 sm:space-y-12">
                 {!isStarted ? (
                   <div className="text-center space-y-4 sm:space-y-6 w-full">
@@ -345,40 +346,46 @@ export default function WordsPage() {
                   </div>
                 ) : (
                   <>
-                    <div className="flex items-center justify-center gap-4 sm:gap-6 md:gap-8">
-                      <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-foreground text-center font-kana">
-                        <span className="whitespace-pre-line">
-                          {currentWord.displayText}
-                          {currentWord.word && currentWord.word.pitch && (
-                            <sup className="text-2xl text-muted-foreground ml-1 font-normal">
-                              {currentWord.word.pitch}
-                            </sup>
-                          )}
-                        </span>
-                      </div>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-14 w-14 sm:h-16 sm:w-16 rounded-full hover:bg-accent flex-shrink-0"
-                        onClick={handlePronounce}
-                        title="發音"
-                      >
-                        <Volume2 className="h-7 w-7 sm:h-8 sm:w-8" />
-                      </Button>
-                    </div>
-
-                    {showHint && currentWord.hint && (
-                      <div className="flex gap-3 sm:gap-4 animate-in fade-in px-4 sm:px-0 w-full justify-center">
-                        <div className="rounded-lg border-2 bg-card px-4 py-3 sm:px-6 sm:py-4 text-center max-w-md">
-                          <div className="text-xs sm:text-sm text-muted-foreground mb-1">
-                            提示
+                    <PracticeDisplay
+                      content={
+                        <div className="flex items-center justify-center gap-4 sm:gap-6 md:gap-8">
+                          <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-foreground text-center font-kana">
+                            <span className="whitespace-pre-line">
+                              {currentWord.displayText}
+                              {currentWord.word && currentWord.word.pitch && (
+                                <sup className="text-2xl text-muted-foreground ml-1 font-normal">
+                                  {currentWord.word.pitch}
+                                </sup>
+                              )}
+                            </span>
                           </div>
-                          <div className="text-xl sm:text-2xl md:text-3xl text-foreground whitespace-pre-line leading-relaxed">
-                            {currentWord.hint}
-                          </div>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="h-14 w-14 sm:h-16 sm:w-16 rounded-full hover:bg-accent flex-shrink-0"
+                            onClick={handlePronounce}
+                            title="發音"
+                          >
+                            <Volume2 className="h-7 w-7 sm:h-8 sm:w-8" />
+                          </Button>
                         </div>
-                      </div>
-                    )}
+                      }
+                      hint={
+                        currentWord.hint && (
+                          <div className="flex gap-3 sm:gap-4 animate-in fade-in px-4 sm:px-0 w-full justify-center">
+                            <div className="rounded-lg border-2 bg-card px-4 py-3 sm:px-6 sm:py-4 text-center max-w-md">
+                              <div className="text-xs sm:text-sm text-muted-foreground mb-1">
+                                提示
+                              </div>
+                              <div className="text-xl sm:text-2xl md:text-3xl text-foreground whitespace-pre-line leading-relaxed">
+                                {currentWord.hint}
+                              </div>
+                            </div>
+                          </div>
+                        )
+                      }
+                      showHint={showHint && !!currentWord.hint}
+                    />
                   </>
                 )}
               </div>
