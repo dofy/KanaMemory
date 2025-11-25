@@ -1,4 +1,3 @@
-import { useTheme } from "@/components/theme-provider-custom";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,38 +7,34 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  BookText,
-  Github,
-  Languages,
-  MessageCircle,
-  Monitor,
-  Moon,
-  Sun,
-} from "lucide-react";
+import { BookText, Languages, MessageCircle } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { HelpDialog } from "@/components/help-dialog";
+import {
+  STANDARD_SHORTCUTS,
+  useKeyboardShortcuts,
+} from "@/hooks/use-keyboard-shortcuts";
+import { HeaderActions } from "@/components/header-actions";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  const getThemeIcon = () => {
-    if (!mounted) return <Monitor className="h-5 w-5" />;
-    if (theme === "light") return <Sun className="h-5 w-5" />;
-    if (theme === "dark") return <Moon className="h-5 w-5" />;
-    return <Monitor className="h-5 w-5" />;
-  };
+  useKeyboardShortcuts({
+    onGoHome: () => navigate("/"),
+    onGoKana: () => navigate("/kana"),
+    onGoWords: () => navigate("/words"),
+    onGoPhrases: () => navigate("/phrases"),
+    onToggleHelp: () => setIsHelpOpen((prev) => !prev),
+    isHelpOpen,
+    enabled: mounted,
+  });
 
   if (!mounted) {
     return null;
@@ -85,42 +80,7 @@ export default function Home() {
             <h1 className="text-xl font-bold">日語學習工具</h1>
           </div>
 
-          <div className="flex items-center gap-4">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" title="主题设置">
-                  {getThemeIcon()}
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => setTheme("light")}>
-                  <Sun className="mr-2 h-4 w-4" />
-                  <span>亮色</span>
-                  {theme === "light" && <span className="ml-auto">✓</span>}
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("dark")}>
-                  <Moon className="mr-2 h-4 w-4" />
-                  <span>暗色</span>
-                  {theme === "dark" && <span className="ml-auto">✓</span>}
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("system")}>
-                  <Monitor className="mr-2 h-4 w-4" />
-                  <span>跟随系统</span>
-                  {theme === "system" && <span className="ml-auto">✓</span>}
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            <a
-              href="https://github.com/dofy/KanaSyllabaryMemory"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-              title="GitHub"
-            >
-              <Github className="h-5 w-5" />
-            </a>
-          </div>
+          <HeaderActions onHelpClick={() => setIsHelpOpen(true)} />
         </div>
       </header>
 
@@ -170,6 +130,12 @@ export default function Home() {
       </main>
 
       <Footer />
+
+      <HelpDialog
+        open={isHelpOpen}
+        onOpenChange={setIsHelpOpen}
+        shortcuts={STANDARD_SHORTCUTS}
+      />
     </div>
   );
 }

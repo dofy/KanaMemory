@@ -34,6 +34,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const DISPLAY_MODES = [
   { value: "mixed" as const, label: "混合" },
@@ -80,6 +81,7 @@ export default function WordsPage() {
   const [mixedModeDisplay, setMixedModeDisplay] = useState<"kana" | "japanese">(
     "kana"
   );
+  const navigate = useNavigate();
 
   useEffect(() => {
     setMounted(true);
@@ -232,8 +234,8 @@ export default function WordsPage() {
     }
   };
 
-  const handleShowHint = () => {
-    setShowHint(true);
+  const handleToggleHint = () => {
+    setShowHint((prev) => !prev);
   };
 
   const handlePronounce = async () => {
@@ -279,8 +281,13 @@ export default function WordsPage() {
   // Keyboard shortcuts
   useKeyboardShortcuts({
     onNext: getNextWord,
-    onShowHint: handleShowHint,
+    onToggleHint: handleToggleHint,
     onPlaySound: handlePronounce,
+    onStart: handleStart,
+    onGoHome: () => navigate("/"),
+    onGoKana: () => navigate("/kana"),
+    onGoWords: () => navigate("/words"),
+    onGoPhrases: () => navigate("/phrases"),
     onToggleSettings: () => setIsSettingsOpen((prev) => !prev),
     onToggleHelp: () => setIsHelpOpen((prev) => !prev),
     isStarted,
@@ -385,6 +392,7 @@ export default function WordsPage() {
                 className="w-full"
                 size="lg"
                 onClick={handleStart}
+                title="開始學習 (Enter)"
                 disabled={matchedWordCount === 0}
               >
                 <BookOpen className="h-5 w-5 mr-2" />
@@ -397,8 +405,8 @@ export default function WordsPage() {
                     variant="outline"
                     size="icon"
                     className="h-12 w-12 rounded-full flex-shrink-0"
-                    onClick={handleShowHint}
-                    title="顯示提示"
+                    onClick={handleToggleHint}
+                    title="顯示/隱藏提示 (H)"
                   >
                     <Lightbulb className="h-5 w-5" />
                   </Button>

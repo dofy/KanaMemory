@@ -29,6 +29,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const DISPLAY_MODES = [
   { value: "mixed" as const, label: "混合" },
@@ -69,6 +70,7 @@ export default function KanaPage() {
   const [showRemind, setShowRemind] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isHelpOpen, setIsHelpOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setMounted(true);
@@ -195,11 +197,21 @@ export default function KanaPage() {
     }
   };
 
+  const handleStart = () => {
+    setIsStarted(true);
+    getRandomKana();
+  };
+
   // Keyboard shortcuts
   useKeyboardShortcuts({
     onNext: getRandomKana,
-    onShowHint: () => setShowRemind((prev) => !prev),
+    onToggleHint: () => setShowRemind((prev) => !prev),
     onPlaySound: () => currentKana.displayText && speak(currentKana.displayText),
+    onStart: handleStart,
+    onGoHome: () => navigate("/"),
+    onGoKana: () => navigate("/kana"),
+    onGoWords: () => navigate("/words"),
+    onGoPhrases: () => navigate("/phrases"),
     onToggleSettings: () => setIsSettingsOpen((prev) => !prev),
     onToggleHelp: () => setIsHelpOpen((prev) => !prev),
     isStarted,
@@ -210,11 +222,6 @@ export default function KanaPage() {
   const handleKanaSelectionChange = (updatedList: MemoObject[]) => {
     setKanaList(updatedList);
     LocalStorage.save("kana_selectedData", updatedList);
-  };
-
-  const handleStart = () => {
-    setIsStarted(true);
-    getRandomKana();
   };
 
   const getKanaType = (text: string): string => {
@@ -406,6 +413,7 @@ export default function KanaPage() {
                 className="w-full"
                 size="lg"
                 onClick={handleStart}
+                title="開始學習 (Enter)"
                 disabled={totalCount === 0}
               >
                 <BookOpen className="h-5 w-5 mr-2" />
@@ -418,8 +426,8 @@ export default function KanaPage() {
                     variant="outline"
                     size="icon"
                     className="h-12 w-12 rounded-full flex-shrink-0"
-                    onClick={() => setShowRemind(true)}
-                    title="顯示提示"
+                    onClick={() => setShowRemind((prev) => !prev)}
+                    title="顯示/隱藏提示 (H)"
                   >
                     <Lightbulb className="h-5 w-5" />
                   </Button>

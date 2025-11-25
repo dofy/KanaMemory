@@ -29,6 +29,7 @@ import {
 import { BookOpen, Lightbulb, Volume2, Layers } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const CATEGORY_NAMES = {
   greeting: "問候語",
@@ -86,6 +87,7 @@ export default function PhrasesPage() {
   const [mixedModeDisplay, setMixedModeDisplay] = useState<"kana" | "japanese">(
     "kana"
   );
+  const navigate = useNavigate();
 
   useEffect(() => {
     setMounted(true);
@@ -233,8 +235,8 @@ export default function PhrasesPage() {
     }
   };
 
-  const handleShowHint = () => {
-    setShowHint(true);
+  const handleToggleHint = () => {
+    setShowHint((prev) => !prev);
   };
 
   const handlePronounce = async () => {
@@ -282,8 +284,13 @@ export default function PhrasesPage() {
   // Keyboard shortcuts
   useKeyboardShortcuts({
     onNext: getNextPhrase,
-    onShowHint: handleShowHint,
+    onToggleHint: handleToggleHint,
     onPlaySound: handlePronounce,
+    onStart: handleStart,
+    onGoHome: () => navigate("/"),
+    onGoKana: () => navigate("/kana"),
+    onGoWords: () => navigate("/words"),
+    onGoPhrases: () => navigate("/phrases"),
     onToggleSettings: () => setIsSettingsOpen((prev) => !prev),
     onToggleHelp: () => setIsHelpOpen((prev) => !prev),
     isStarted,
@@ -412,6 +419,7 @@ export default function PhrasesPage() {
                 className="w-full"
                 size="lg"
                 onClick={handleStart}
+                title="開始學習 (Enter)"
                 disabled={totalPhraseCount === 0}
               >
                 <BookOpen className="h-5 w-5 mr-2" />
@@ -424,8 +432,8 @@ export default function PhrasesPage() {
                     variant="outline"
                     size="icon"
                     className="h-12 w-12 rounded-full flex-shrink-0"
-                    onClick={handleShowHint}
-                    title="顯示提示"
+                    onClick={handleToggleHint}
+                    title="顯示/隱藏提示 (H)"
                   >
                     <Lightbulb className="h-5 w-5" />
                   </Button>
