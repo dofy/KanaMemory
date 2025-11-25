@@ -1,0 +1,897 @@
+{
+  "a": [
+    {
+      "hiragana": "あい①",
+      "katakana": "アイ①",
+      "kanji": "愛",
+      "chinese": "爱，爱情"
+    },
+    {
+      "hiragana": "あう①",
+      "katakana": "アウ①",
+      "kanji": "会う",
+      "chinese": "见面；碰见"
+    },
+    {
+      "hiragana": "いい①",
+      "katakana": "イイ①",
+      "kanji": "良い",
+      "chinese": "好"
+    },
+    {
+      "hiragana": "いう⓪",
+      "katakana": "イウ⓪",
+      "kanji": "言う",
+      "chinese": "说，讲"
+    },
+    {
+      "hiragana": "いえ②",
+      "katakana": "イエ②",
+      "kanji": "家",
+      "chinese": "家，房子"
+    },
+    {
+      "hiragana": "うえ⓪",
+      "katakana": "ウエ⓪",
+      "kanji": "上",
+      "chinese": "上，上面"
+    },
+    {
+      "hiragana": "うお⓪",
+      "katakana": "ウオ⓪",
+      "kanji": "魚",
+      "chinese": "鱼"
+    },
+    {
+      "hiragana": "おい⓪",
+      "katakana": "オイ⓪",
+      "kanji": "甥",
+      "chinese": "外甥"
+    },
+    {
+      "hiragana": "あおい②",
+      "katakana": "アオイ②",
+      "kanji": "青い",
+      "chinese": "蓝，蓝色"
+    },
+    {
+      "hiragana": "えあ①",
+      "katakana": "エア①",
+      "kanji": "エア",
+      "chinese": "空气"
+    }
+  ],
+  "ka": [
+    {
+      "hiragana": "あかい⓪",
+      "katakana": "アカイ⓪",
+      "kanji": "赤い",
+      "chinese": "红，红色"
+    },
+    {
+      "hiragana": "かお⓪",
+      "katakana": "カオ⓪",
+      "kanji": "顔",
+      "chinese": "脸；表情"
+    },
+    {
+      "hiragana": "えき①",
+      "katakana": "エキ①",
+      "kanji": "駅",
+      "chinese": "车站，地铁站"
+    },
+    {
+      "hiragana": "きかい②⓪",
+      "katakana": "キカイ②⓪",
+      "kanji": "機会",
+      "chinese": "机会"
+    },
+    {
+      "hiragana": "いく⓪",
+      "katakana": "イク⓪",
+      "kanji": "行く",
+      "chinese": "去"
+    },
+    {
+      "hiragana": "かく①",
+      "katakana": "カク①",
+      "kanji": "書く",
+      "chinese": "写"
+    },
+    {
+      "hiragana": "きく⓪",
+      "katakana": "キク⓪",
+      "kanji": "聞く",
+      "chinese": "听"
+    },
+    {
+      "hiragana": "いけ②",
+      "katakana": "イケ②",
+      "kanji": "池",
+      "chinese": "水池，池塘"
+    },
+    {
+      "hiragana": "けあ①",
+      "katakana": "ケア①",
+      "kanji": "ケア",
+      "chinese": "看护，护理"
+    },
+    {
+      "hiragana": "きこく⓪",
+      "katakana": "キコク⓪",
+      "kanji": "帰国",
+      "chinese": "回国"
+    },
+    {
+      "hiragana": "こえ①",
+      "katakana": "コエ①",
+      "kanji": "声",
+      "chinese": "（人或动物的）声音"
+    }
+  ],
+  "sa": [
+    {
+      "hiragana": "あさ①",
+      "katakana": "アサ①",
+      "kanji": "朝",
+      "chinese": "早晨，早上"
+    },
+    {
+      "hiragana": "かさ①",
+      "katakana": "カサ①",
+      "kanji": "傘",
+      "chinese": "伞"
+    },
+    {
+      "hiragana": "しお②",
+      "katakana": "シオ②",
+      "kanji": "塩",
+      "chinese": "盐"
+    },
+    {
+      "hiragana": "すし②①",
+      "katakana": "スシ②①",
+      "kanji": "寿司",
+      "chinese": "寿司"
+    },
+    {
+      "hiragana": "かす⓪",
+      "katakana": "カス⓪",
+      "kanji": "貸す",
+      "chinese": "借出；出租"
+    },
+    {
+      "hiragana": "すいか⓪",
+      "katakana": "スイカ⓪",
+      "kanji": "すいか",
+      "chinese": "西瓜"
+    },
+    {
+      "hiragana": "あせ①",
+      "katakana": "アセ①",
+      "kanji": "汗",
+      "chinese": "汗"
+    },
+    {
+      "hiragana": "せかい①②",
+      "katakana": "セカイ①②",
+      "kanji": "世界",
+      "chinese": "世界"
+    },
+    {
+      "hiragana": "そこ⓪",
+      "katakana": "ソコ⓪",
+      "kanji": "そこ",
+      "chinese": "那里，那边"
+    },
+    {
+      "hiragana": "おそい⓪",
+      "katakana": "オソイ⓪",
+      "kanji": "遅い",
+      "chinese": "慢；晚"
+    }
+  ],
+  "ta": [
+    {
+      "hiragana": "あした③",
+      "katakana": "アシタ③",
+      "kanji": "明日",
+      "chinese": "明天"
+    },
+    {
+      "hiragana": "たかい②",
+      "katakana": "タカイ②",
+      "kanji": "高い",
+      "chinese": "高；贵"
+    },
+    {
+      "hiragana": "うち⓪",
+      "katakana": "ウチ⓪",
+      "kanji": "内・家",
+      "chinese": "家，家庭"
+    },
+    {
+      "hiragana": "ちかい②",
+      "katakana": "チカイ②",
+      "kanji": "近い",
+      "chinese": "近"
+    },
+    {
+      "hiragana": "あつい②",
+      "katakana": "アツイ②",
+      "kanji": "暑い",
+      "chinese": "热"
+    },
+    {
+      "hiragana": "つくえ⓪",
+      "katakana": "ツクエ⓪",
+      "kanji": "机",
+      "chinese": "桌子，书桌"
+    },
+    {
+      "hiragana": "あいて③",
+      "katakana": "アイテ③",
+      "kanji": "相手",
+      "chinese": "对方"
+    },
+    {
+      "hiragana": "ちかてつ⓪",
+      "katakana": "チカテツ⓪",
+      "kanji": "地下鉄",
+      "chinese": "地铁"
+    },
+    {
+      "hiragana": "おと②",
+      "katakana": "オト②",
+      "kanji": "音",
+      "chinese": "声音"
+    },
+    {
+      "hiragana": "おとこ③",
+      "katakana": "オトコ③",
+      "kanji": "男",
+      "chinese": "男子，男人"
+    }
+  ],
+  "na": [
+    {
+      "hiragana": "さかな⓪",
+      "katakana": "サカナ⓪",
+      "kanji": "魚",
+      "chinese": "鱼"
+    },
+    {
+      "hiragana": "いなか⓪",
+      "katakana": "イナカ⓪",
+      "kanji": "田舎",
+      "chinese": "乡下"
+    },
+    {
+      "hiragana": "いちにち④⓪",
+      "katakana": "イチニチ④⓪",
+      "kanji": "一日",
+      "chinese": "一天"
+    },
+    {
+      "hiragana": "にく②",
+      "katakana": "ニク②",
+      "kanji": "肉",
+      "chinese": "肉"
+    },
+    {
+      "hiragana": "いぬ②",
+      "katakana": "イヌ②",
+      "kanji": "犬",
+      "chinese": "狗"
+    },
+    {
+      "hiragana": "しぬ⓪",
+      "katakana": "シヌ⓪",
+      "kanji": "死ぬ",
+      "chinese": "死亡"
+    },
+    {
+      "hiragana": "あね⓪",
+      "katakana": "アネ⓪",
+      "kanji": "姉",
+      "chinese": "姐姐"
+    },
+    {
+      "hiragana": "ねこ①",
+      "katakana": "ネコ①",
+      "kanji": "猫",
+      "chinese": "猫"
+    },
+    {
+      "hiragana": "のど①",
+      "katakana": "ノド①",
+      "kanji": "喉",
+      "chinese": "嗓子，咽喉"
+    },
+    { "hiragana": "ぬの⓪", "katakana": "ヌノ⓪", "kanji": "布", "chinese": "布" }
+  ],
+  "ha": [
+    {
+      "hiragana": "はは①",
+      "katakana": "ハハ①",
+      "kanji": "母",
+      "chinese": "妈妈，母亲"
+    },
+    {
+      "hiragana": "はし②",
+      "katakana": "ハシ②",
+      "kanji": "橋",
+      "chinese": "桥"
+    },
+    {
+      "hiragana": "あさひ①",
+      "katakana": "アサヒ①",
+      "kanji": "朝日",
+      "chinese": "朝日"
+    },
+    {
+      "hiragana": "ひとつ②",
+      "katakana": "ヒトツ②",
+      "kanji": "一つ",
+      "chinese": "一个"
+    },
+    {
+      "hiragana": "さいふ⓪",
+      "katakana": "サイフ⓪",
+      "kanji": "財布",
+      "chinese": "钱包"
+    },
+    {
+      "hiragana": "ふたつ③",
+      "katakana": "フタツ③",
+      "kanji": "二つ",
+      "chinese": "两个"
+    },
+    {
+      "hiragana": "へた②",
+      "katakana": "ヘタ②",
+      "kanji": "下手",
+      "chinese": "笨拙"
+    },
+    {
+      "hiragana": "へちま⓪",
+      "katakana": "ヘチマ⓪",
+      "kanji": "へちま",
+      "chinese": "丝瓜"
+    },
+    {
+      "hiragana": "たいほ①",
+      "katakana": "タイホ①",
+      "kanji": "逮捕",
+      "chinese": "逮捕"
+    },
+    {
+      "hiragana": "ほし⓪",
+      "katakana": "ホシ⓪",
+      "kanji": "星",
+      "chinese": "星星"
+    }
+  ],
+  "ma": [
+    {
+      "hiragana": "なまえ⓪",
+      "katakana": "ナマエ⓪",
+      "kanji": "名前",
+      "chinese": "名字"
+    },
+    {
+      "hiragana": "まいにち①",
+      "katakana": "マイニチ①",
+      "kanji": "毎日",
+      "chinese": "每天"
+    },
+    {
+      "hiragana": "みち⓪",
+      "katakana": "ミチ⓪",
+      "kanji": "道",
+      "chinese": "道路"
+    },
+    {
+      "hiragana": "みせ②",
+      "katakana": "ミセ②",
+      "kanji": "店",
+      "chinese": "商店"
+    },
+    {
+      "hiragana": "さむい②",
+      "katakana": "サムイ②",
+      "kanji": "寒い",
+      "chinese": "冷"
+    },
+    {
+      "hiragana": "のむ①",
+      "katakana": "ノム①",
+      "kanji": "飲む",
+      "chinese": "喝"
+    },
+    {
+      "hiragana": "あめ①",
+      "katakana": "アメ①",
+      "kanji": "雨",
+      "chinese": "雨"
+    },
+    {
+      "hiragana": "つめたい⓪",
+      "katakana": "ツメタイ⓪",
+      "kanji": "冷たい",
+      "chinese": "凉"
+    },
+    {
+      "hiragana": "もしもし①",
+      "katakana": "モシモシ①",
+      "kanji": "もしもし",
+      "chinese": "喂（打电话时）"
+    },
+    {
+      "hiragana": "もも⓪",
+      "katakana": "モモ⓪",
+      "kanji": "桃",
+      "chinese": "桃树，桃子"
+    }
+  ],
+  "ya": [
+    {
+      "hiragana": "へや②",
+      "katakana": "ヘヤ②",
+      "kanji": "部屋",
+      "chinese": "房间"
+    },
+    {
+      "hiragana": "やさい⓪",
+      "katakana": "ヤサイ⓪",
+      "kanji": "野菜",
+      "chinese": "蔬菜"
+    },
+    {
+      "hiragana": "いや②",
+      "katakana": "イヤ②",
+      "kanji": "嫌",
+      "chinese": "不愿意，讨厌"
+    },
+    {
+      "hiragana": "はやい②",
+      "katakana": "ハヤイ②",
+      "kanji": "早い",
+      "chinese": "早"
+    },
+    {
+      "hiragana": "ゆき②",
+      "katakana": "ユキ②",
+      "kanji": "雪",
+      "chinese": "雪"
+    },
+    {
+      "hiragana": "かゆい②",
+      "katakana": "カユイ②",
+      "kanji": "痒い",
+      "chinese": "痒"
+    },
+    {
+      "hiragana": "よむ①",
+      "katakana": "ヨム①",
+      "kanji": "読む",
+      "chinese": "读"
+    },
+    {
+      "hiragana": "よなか③",
+      "katakana": "ヨナカ③",
+      "kanji": "夜中",
+      "chinese": "深夜，半夜"
+    }
+  ],
+  "ra": [
+    {
+      "hiragana": "さくら⓪",
+      "katakana": "サクラ⓪",
+      "kanji": "桜",
+      "chinese": "樱花"
+    },
+    {
+      "hiragana": "からい②",
+      "katakana": "カライ②",
+      "kanji": "辛い",
+      "chinese": "辣"
+    },
+    {
+      "hiragana": "りかい①",
+      "katakana": "リカイ①",
+      "kanji": "理解",
+      "chinese": "理解"
+    },
+    {
+      "hiragana": "とり⓪",
+      "katakana": "トリ⓪",
+      "kanji": "鳥",
+      "chinese": "鸟，小鸟"
+    },
+    {
+      "hiragana": "おきる②",
+      "katakana": "オキル②",
+      "kanji": "起きる",
+      "chinese": "起床"
+    },
+    {
+      "hiragana": "くるま⓪",
+      "katakana": "クルマ⓪",
+      "kanji": "車",
+      "chinese": "车"
+    },
+    {
+      "hiragana": "かれ①",
+      "katakana": "カレ①",
+      "kanji": "彼",
+      "chinese": "他"
+    },
+    {
+      "hiragana": "れきし⓪",
+      "katakana": "レキシ⓪",
+      "kanji": "歴史",
+      "chinese": "历史"
+    },
+    {
+      "hiragana": "しろい②",
+      "katakana": "シロイ②",
+      "kanji": "白い",
+      "chinese": "白，白色"
+    },
+    {
+      "hiragana": "いろいろ⓪",
+      "katakana": "イロイロ⓪",
+      "kanji": "色々",
+      "chinese": "各种各样"
+    }
+  ],
+  "wa": [
+    {
+      "hiragana": "かわ②",
+      "katakana": "カワ②",
+      "kanji": "川",
+      "chinese": "河，河流"
+    },
+    {
+      "hiragana": "かいわ⓪",
+      "katakana": "カイワ⓪",
+      "kanji": "会話",
+      "chinese": "会话"
+    },
+    {
+      "hiragana": "こわい②",
+      "katakana": "コワイ②",
+      "kanji": "怖い",
+      "chinese": "害怕"
+    },
+    {
+      "hiragana": "にわ⓪",
+      "katakana": "ニワ⓪",
+      "kanji": "庭",
+      "chinese": "院子，庭院"
+    },
+    {
+      "hiragana": "わしつ⓪",
+      "katakana": "ワシツ⓪",
+      "kanji": "和室",
+      "chinese": "日式房间"
+    },
+    {
+      "hiragana": "わたし⓪",
+      "katakana": "ワタシ⓪",
+      "kanji": "私",
+      "chinese": "我"
+    }
+  ],
+  "ga": [
+    {
+      "hiragana": "がいこくご⓪",
+      "katakana": "ガイコクゴ⓪",
+      "kanji": "外国語",
+      "chinese": "外语"
+    },
+    {
+      "hiragana": "てがみ⓪",
+      "katakana": "テガミ⓪",
+      "kanji": "手紙",
+      "chinese": "信，书信"
+    },
+    {
+      "hiragana": "かぎ②",
+      "katakana": "カギ②",
+      "kanji": "鍵",
+      "chinese": "钥匙，锁"
+    },
+    {
+      "hiragana": "かいぎ①",
+      "katakana": "カイギ①",
+      "kanji": "会議",
+      "chinese": "会议"
+    },
+    {
+      "hiragana": "ぐあい⓪",
+      "katakana": "グアイ⓪",
+      "kanji": "具合",
+      "chinese": "情况，状况"
+    },
+    {
+      "hiragana": "いりぐち⓪",
+      "katakana": "イリグチ⓪",
+      "kanji": "入口",
+      "chinese": "入口"
+    },
+    {
+      "hiragana": "げき①",
+      "katakana": "ゲキ①",
+      "kanji": "劇",
+      "chinese": "戏剧"
+    },
+    {
+      "hiragana": "ひげ⓪",
+      "katakana": "ヒゲ⓪",
+      "kanji": "髭",
+      "chinese": "胡须"
+    },
+    {
+      "hiragana": "ごご①",
+      "katakana": "ゴゴ①",
+      "kanji": "午後",
+      "chinese": "下午"
+    },
+    {
+      "hiragana": "しごと⓪",
+      "katakana": "シゴト⓪",
+      "kanji": "仕事",
+      "chinese": "工作"
+    }
+  ],
+  "za": [
+    {
+      "hiragana": "ひざ⓪",
+      "katakana": "ヒザ⓪",
+      "kanji": "膝",
+      "chinese": "膝盖"
+    },
+    {
+      "hiragana": "ざせき⓪",
+      "katakana": "ザセキ⓪",
+      "kanji": "座席",
+      "chinese": "座位"
+    },
+    {
+      "hiragana": "おやじ⓪①",
+      "katakana": "オヤジ⓪①",
+      "kanji": "親父",
+      "chinese": "老爸，老爹"
+    },
+    {
+      "hiragana": "あじあ①",
+      "katakana": "アジア①",
+      "kanji": "アジア",
+      "chinese": "亚洲"
+    },
+    {
+      "hiragana": "しずか①",
+      "katakana": "シズカ①",
+      "kanji": "静か",
+      "chinese": "安静，寂静"
+    },
+    {
+      "hiragana": "さいず①",
+      "katakana": "サイズ①",
+      "kanji": "サイズ",
+      "chinese": "尺寸"
+    },
+    {
+      "hiragana": "かぜ⓪",
+      "katakana": "カゼ⓪",
+      "kanji": "風",
+      "chinese": "风"
+    },
+    {
+      "hiragana": "ぜひ①",
+      "katakana": "ゼヒ①",
+      "kanji": "是非",
+      "chinese": "务必，一定"
+    },
+    {
+      "hiragana": "かぞえる③",
+      "katakana": "カゾエル③",
+      "kanji": "数える",
+      "chinese": "数，计算"
+    },
+    {
+      "hiragana": "ぞくぞく⓪①",
+      "katakana": "ゾクゾク⓪①",
+      "kanji": "続々",
+      "chinese": "连续，陆续"
+    }
+  ],
+  "da": [
+    {
+      "hiragana": "からだ⓪",
+      "katakana": "カラダ⓪",
+      "kanji": "体",
+      "chinese": "身体"
+    },
+    {
+      "hiragana": "くだもの②",
+      "katakana": "クダモノ②",
+      "kanji": "果物",
+      "chinese": "水果"
+    },
+    {
+      "hiragana": "ちぢむ⓪",
+      "katakana": "チヂム⓪",
+      "kanji": "縮む",
+      "chinese": "缩小"
+    },
+    {
+      "hiragana": "はなぢ⓪",
+      "katakana": "ハナヂ⓪",
+      "kanji": "鼻血",
+      "chinese": "鼻血"
+    },
+    {
+      "hiragana": "つづく⓪",
+      "katakana": "ツヅク⓪",
+      "kanji": "続く",
+      "chinese": "继续，持续"
+    },
+    {
+      "hiragana": "こづかい①",
+      "katakana": "コヅカイ①",
+      "kanji": "小遣い",
+      "chinese": "零花钱，零用钱"
+    },
+    {
+      "hiragana": "でぐち①",
+      "katakana": "デグチ①",
+      "kanji": "出口",
+      "chinese": "出口"
+    },
+    {
+      "hiragana": "できる②",
+      "katakana": "デキル②",
+      "kanji": "出来る",
+      "chinese": "能，会"
+    },
+    {
+      "hiragana": "まど①",
+      "katakana": "マド①",
+      "kanji": "窓",
+      "chinese": "窗，窗户"
+    },
+    {
+      "hiragana": "こども⓪",
+      "katakana": "コドモ⓪",
+      "kanji": "子供",
+      "chinese": "孩子，小孩"
+    }
+  ],
+  "ba": [
+    {
+      "hiragana": "ことば③",
+      "katakana": "コトバ③",
+      "kanji": "言葉",
+      "chinese": "语言；词汇"
+    },
+    {
+      "hiragana": "たばこ⓪",
+      "katakana": "タバコ⓪",
+      "kanji": "タバコ",
+      "chinese": "香烟"
+    },
+    {
+      "hiragana": "びざ①",
+      "katakana": "ビザ①",
+      "kanji": "ビザ",
+      "chinese": "签证"
+    },
+    {
+      "hiragana": "ゆびわ⓪",
+      "katakana": "ユビワ⓪",
+      "kanji": "指輪",
+      "chinese": "戒指"
+    },
+    {
+      "hiragana": "あそぶ⓪",
+      "katakana": "アソブ⓪",
+      "kanji": "遊ぶ",
+      "chinese": "玩"
+    },
+    {
+      "hiragana": "あぶら⓪",
+      "katakana": "アブラ⓪",
+      "kanji": "油",
+      "chinese": "油"
+    },
+    {
+      "hiragana": "かべ⓪",
+      "katakana": "カベ⓪",
+      "kanji": "壁",
+      "chinese": "墙，墙壁"
+    },
+    {
+      "hiragana": "たべる②",
+      "katakana": "タベル②",
+      "kanji": "食べる",
+      "chinese": "吃"
+    },
+    {
+      "hiragana": "そぼ①",
+      "katakana": "ソボ①",
+      "kanji": "祖母",
+      "chinese": "祖母，外祖母"
+    },
+    {
+      "hiragana": "のぼる⓪",
+      "katakana": "ノボル⓪",
+      "kanji": "登る",
+      "chinese": "登，爬"
+    }
+  ],
+  "pa": [
+    {
+      "hiragana": "ぱす①",
+      "katakana": "パス①",
+      "kanji": "パス",
+      "chinese": "通过，合格"
+    },
+    {
+      "hiragana": "ぱらぱら①",
+      "katakana": "パラパラ①",
+      "kanji": "ぱらぱら",
+      "chinese": "稀稀落落"
+    },
+    {
+      "hiragana": "ぴあの⓪",
+      "katakana": "ピアノ⓪",
+      "kanji": "ピアノ",
+      "chinese": "钢琴"
+    },
+    {
+      "hiragana": "ぴざ①",
+      "katakana": "ピザ①",
+      "kanji": "ピザ",
+      "chinese": "比萨"
+    },
+    {
+      "hiragana": "たいぷ①",
+      "katakana": "タイプ①",
+      "kanji": "タイプ",
+      "chinese": "类型"
+    },
+    {
+      "hiragana": "ぷろぐらむ③",
+      "katakana": "プログラム③",
+      "kanji": "プログラム",
+      "chinese": "节目单；日程安排"
+    },
+    {
+      "hiragana": "ぺあ①",
+      "katakana": "ペア①",
+      "kanji": "ペア",
+      "chinese": "一双，一对"
+    },
+    {
+      "hiragana": "ぺらぺら①",
+      "katakana": "ペラペラ①",
+      "kanji": "ぺらぺら",
+      "chinese": "流利"
+    },
+    {
+      "hiragana": "ぽすと①",
+      "katakana": "ポスト①",
+      "kanji": "ポスト",
+      "chinese": "邮筒，信箱"
+    },
+    {
+      "hiragana": "ぽてと①",
+      "katakana": "ポテト①",
+      "kanji": "ポテト",
+      "chinese": "土豆，马铃薯"
+    }
+  ]
+}

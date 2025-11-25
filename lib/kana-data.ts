@@ -1,6 +1,14 @@
 import { FYType, type MemoObject } from "./types";
+import { DataLoader } from "./data-loader";
 
 export class KanaData {
+  // Load kana data from JSON (async)
+  public async getJP50Async(): Promise<MemoObject[]> {
+    return await DataLoader.loadKanaData();
+  }
+
+  // Synchronous method for backward compatibility
+  // This will be deprecated - use getJP50Async instead
   public getJP50(): MemoObject[] {
     const result: MemoObject[] = [];
 

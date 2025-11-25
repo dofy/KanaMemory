@@ -1,0 +1,1192 @@
+{
+  "greeting": [
+    {
+      "japanese": "お早うございます",
+      "romaji": "ohayou gozaimasu",
+      "chinese": "早上好",
+      "category": "greeting"
+    },
+    {
+      "japanese": "今日は",
+      "romaji": "konnichiwa",
+      "chinese": "你好 / 下午好",
+      "category": "greeting"
+    },
+    {
+      "japanese": "今晩は",
+      "romaji": "konbanwa",
+      "chinese": "晚上好",
+      "category": "greeting"
+    },
+    {
+      "japanese": "お休みなさい",
+      "romaji": "oyasuminasai",
+      "chinese": "晚安",
+      "category": "greeting"
+    },
+    {
+      "japanese": "有難うございます",
+      "romaji": "arigatou gozaimasu",
+      "chinese": "非常感谢",
+      "category": "greeting"
+    },
+    {
+      "japanese": "どういたしまして",
+      "romaji": "douitashimashite",
+      "chinese": "不客气",
+      "category": "greeting"
+    },
+    {
+      "japanese": "すみません",
+      "romaji": "sumimasen",
+      "chinese": "对不起 / 打扰了",
+      "category": "greeting"
+    },
+    {
+      "japanese": "御免なさい",
+      "romaji": "gomennasai",
+      "chinese": "对不起",
+      "category": "greeting"
+    },
+    {
+      "japanese": "失礼します",
+      "romaji": "shitsurei shimasu",
+      "chinese": "打扰了 / 告辞",
+      "category": "greeting"
+    },
+    {
+      "japanese": "初めまして",
+      "romaji": "hajimemashite",
+      "chinese": "初次见面",
+      "category": "greeting"
+    },
+    {
+      "japanese": "よろしくお願いします",
+      "romaji": "yoroshiku onegai shimasu",
+      "chinese": "请多关照",
+      "category": "greeting"
+    },
+    {
+      "japanese": "お元気ですか",
+      "romaji": "ogenki desu ka",
+      "chinese": "你好吗？",
+      "category": "greeting"
+    },
+    {
+      "japanese": "元気です",
+      "romaji": "genki desu",
+      "chinese": "我很好",
+      "category": "greeting"
+    },
+    {
+      "japanese": "お久しぶりです",
+      "romaji": "ohisashiburi desu",
+      "chinese": "好久不见",
+      "category": "greeting"
+    },
+    {
+      "japanese": "また会いましょう",
+      "romaji": "mata aimashou",
+      "chinese": "再见面吧",
+      "category": "greeting"
+    },
+    {
+      "japanese": "行ってきます",
+      "romaji": "ittekimasu",
+      "chinese": "我走了",
+      "category": "greeting"
+    },
+    {
+      "japanese": "行ってらっしゃい",
+      "romaji": "itterasshai",
+      "chinese": "慢走",
+      "category": "greeting"
+    },
+    {
+      "japanese": "ただいま",
+      "romaji": "tadaima",
+      "chinese": "我回来了",
+      "category": "greeting"
+    },
+    {
+      "japanese": "お帰りなさい",
+      "romaji": "okaerinasai",
+      "chinese": "欢迎回来",
+      "category": "greeting"
+    },
+    {
+      "japanese": "いただきます",
+      "romaji": "itadakimasu",
+      "chinese": "我开动了",
+      "category": "greeting"
+    },
+    {
+      "japanese": "御馳走様でした",
+      "romaji": "gochisousama deshita",
+      "chinese": "多谢款待",
+      "category": "greeting"
+    },
+    {
+      "japanese": "お疲れ様です",
+      "romaji": "otsukaresama desu",
+      "chinese": "辛苦了",
+      "category": "greeting"
+    },
+    {
+      "japanese": "頑張って",
+      "romaji": "ganbatte",
+      "chinese": "加油",
+      "category": "greeting"
+    },
+    {
+      "japanese": "お大事に",
+      "romaji": "odaiji ni",
+      "chinese": "保重",
+      "category": "greeting"
+    },
+    {
+      "japanese": "お気をつけて",
+      "romaji": "oki wo tsukete",
+      "chinese": "请小心",
+      "category": "greeting"
+    },
+    {
+      "japanese": "お願いします",
+      "romaji": "onegai shimasu",
+      "chinese": "拜托了 / 请",
+      "category": "greeting"
+    },
+    {
+      "japanese": "分かりました",
+      "romaji": "wakarimashita",
+      "chinese": "我明白了",
+      "category": "greeting"
+    },
+    {
+      "japanese": "分かりません",
+      "romaji": "wakarimasen",
+      "chinese": "我不明白",
+      "category": "greeting"
+    },
+    {
+      "japanese": "大丈夫です",
+      "romaji": "daijoubu desu",
+      "chinese": "没关系 / 没问题",
+      "category": "greeting"
+    },
+    {
+      "japanese": "構いません",
+      "romaji": "kamaimasen",
+      "chinese": "不要紧",
+      "category": "greeting"
+    },
+    {
+      "japanese": "いいです",
+      "romaji": "ii desu",
+      "chinese": "好的 / 可以",
+      "category": "greeting"
+    },
+    {
+      "japanese": "駄目です",
+      "romaji": "dame desu",
+      "chinese": "不行 / 不可以",
+      "category": "greeting"
+    },
+    {
+      "japanese": "結構です",
+      "romaji": "kekkou desu",
+      "chinese": "足够了 / 不用了",
+      "category": "greeting"
+    },
+    {
+      "japanese": "少々お待ち下さい",
+      "romaji": "shoushou omachi kudasai",
+      "chinese": "请稍等",
+      "category": "greeting"
+    },
+    {
+      "japanese": "仕方がないです",
+      "romaji": "shikata ga nai desu",
+      "chinese": "没办法",
+      "category": "greeting"
+    },
+    {
+      "japanese": "本当ですか",
+      "romaji": "hontou desu ka",
+      "chinese": "真的吗？",
+      "category": "greeting"
+    },
+    {
+      "japanese": "そうです",
+      "romaji": "sou desu",
+      "chinese": "是的",
+      "category": "greeting"
+    },
+    {
+      "japanese": "違います",
+      "romaji": "chigaimasu",
+      "chinese": "不对 / 不是",
+      "category": "greeting"
+    },
+    {
+      "japanese": "どうぞ",
+      "romaji": "douzo",
+      "chinese": "请",
+      "category": "greeting"
+    },
+    {
+      "japanese": "お先に失礼します",
+      "romaji": "osaki ni shitsurei shimasu",
+      "chinese": "我先走了",
+      "category": "greeting"
+    }
+  ],
+  "daily": [
+    {
+      "japanese": "これは何ですか",
+      "romaji": "kore wa nan desu ka",
+      "chinese": "这是什么？",
+      "category": "daily"
+    },
+    {
+      "japanese": "それは何ですか",
+      "romaji": "sore wa nan desu ka",
+      "chinese": "那是什么？",
+      "category": "daily"
+    },
+    {
+      "japanese": "幾らですか",
+      "romaji": "ikura desu ka",
+      "chinese": "多少钱？",
+      "category": "daily"
+    },
+    {
+      "japanese": "高いです",
+      "romaji": "takai desu",
+      "chinese": "太贵了",
+      "category": "daily"
+    },
+    {
+      "japanese": "安いです",
+      "romaji": "yasui desu",
+      "chinese": "便宜",
+      "category": "daily"
+    },
+    {
+      "japanese": "何処ですか",
+      "romaji": "doko desu ka",
+      "chinese": "在哪里？",
+      "category": "daily"
+    },
+    {
+      "japanese": "誰ですか",
+      "romaji": "dare desu ka",
+      "chinese": "谁？",
+      "category": "daily"
+    },
+    {
+      "japanese": "何時ですか",
+      "romaji": "nanji desu ka",
+      "chinese": "几点？",
+      "category": "daily"
+    },
+    {
+      "japanese": "今何時ですか",
+      "romaji": "ima nanji desu ka",
+      "chinese": "现在几点？",
+      "category": "daily"
+    },
+    {
+      "japanese": "いつですか",
+      "romaji": "itsu desu ka",
+      "chinese": "什么时候？",
+      "category": "daily"
+    },
+    {
+      "japanese": "どうしてですか",
+      "romaji": "doushite desu ka",
+      "chinese": "为什么？",
+      "category": "daily"
+    },
+    {
+      "japanese": "どうやって行きますか",
+      "romaji": "douyatte ikimasu ka",
+      "chinese": "怎么去？",
+      "category": "daily"
+    },
+    {
+      "japanese": "電話番号は何番ですか",
+      "romaji": "denwa bangou wa nanban desu ka",
+      "chinese": "电话号码是多少？",
+      "category": "daily"
+    },
+    {
+      "japanese": "名前は何ですか",
+      "romaji": "namae wa nan desu ka",
+      "chinese": "名字是什么？",
+      "category": "daily"
+    },
+    {
+      "japanese": "お名前を教えて下さい",
+      "romaji": "onamae wo oshiete kudasai",
+      "chinese": "请告诉我你的名字",
+      "category": "daily"
+    },
+    {
+      "japanese": "住所はどこですか",
+      "romaji": "juusho wa doko desu ka",
+      "chinese": "地址在哪里？",
+      "category": "daily"
+    },
+    {
+      "japanese": "日本語が話せますか",
+      "romaji": "nihongo ga hanasemasu ka",
+      "chinese": "会说日语吗？",
+      "category": "daily"
+    },
+    {
+      "japanese": "英語が話せますか",
+      "romaji": "eigo ga hanasemasu ka",
+      "chinese": "会说英语吗？",
+      "category": "daily"
+    },
+    {
+      "japanese": "中国語が話せます",
+      "romaji": "chuugokugo ga hanasemasu",
+      "chinese": "我会说中文",
+      "category": "daily"
+    },
+    {
+      "japanese": "ゆっくり話して下さい",
+      "romaji": "yukkuri hanashite kudasai",
+      "chinese": "请说慢一点",
+      "category": "daily"
+    },
+    {
+      "japanese": "もう一度言って下さい",
+      "romaji": "mou ichido itte kudasai",
+      "chinese": "请再说一遍",
+      "category": "daily"
+    },
+    {
+      "japanese": "書いて下さい",
+      "romaji": "kaite kudasai",
+      "chinese": "请写下来",
+      "category": "daily"
+    },
+    {
+      "japanese": "これを下さい",
+      "romaji": "kore wo kudasai",
+      "chinese": "请给我这个",
+      "category": "daily"
+    },
+    {
+      "japanese": "見せて下さい",
+      "romaji": "misete kudasai",
+      "chinese": "请给我看看",
+      "category": "daily"
+    },
+    {
+      "japanese": "写真を撮ってもいいですか",
+      "romaji": "shashin wo tottemo ii desu ka",
+      "chinese": "可以拍照吗？",
+      "category": "daily"
+    },
+    {
+      "japanese": "手伝って下さい",
+      "romaji": "tetsudatte kudasai",
+      "chinese": "请帮帮我",
+      "category": "daily"
+    },
+    {
+      "japanese": "急いでいます",
+      "romaji": "isoideimasu",
+      "chinese": "我赶时间",
+      "category": "daily"
+    },
+    {
+      "japanese": "疲れました",
+      "romaji": "tsukaremashita",
+      "chinese": "我累了",
+      "category": "daily"
+    },
+    {
+      "japanese": "忙しいです",
+      "romaji": "isogashii desu",
+      "chinese": "很忙",
+      "category": "daily"
+    },
+    {
+      "japanese": "暇です",
+      "romaji": "hima desu",
+      "chinese": "有空",
+      "category": "daily"
+    },
+    {
+      "japanese": "暑いです",
+      "romaji": "atsui desu",
+      "chinese": "很热",
+      "category": "daily"
+    },
+    {
+      "japanese": "寒いです",
+      "romaji": "samui desu",
+      "chinese": "很冷",
+      "category": "daily"
+    },
+    {
+      "japanese": "良い天気ですね",
+      "romaji": "ii tenki desu ne",
+      "chinese": "天气真好啊",
+      "category": "daily"
+    },
+    {
+      "japanese": "雨が降っています",
+      "romaji": "ame ga futteimasu",
+      "chinese": "在下雨",
+      "category": "daily"
+    },
+    {
+      "japanese": "綺麗ですね",
+      "romaji": "kirei desu ne",
+      "chinese": "真漂亮啊",
+      "category": "daily"
+    },
+    {
+      "japanese": "美味しいです",
+      "romaji": "oishii desu",
+      "chinese": "好吃",
+      "category": "daily"
+    },
+    {
+      "japanese": "面白いです",
+      "romaji": "omoshiroi desu",
+      "chinese": "有趣",
+      "category": "daily"
+    },
+    {
+      "japanese": "楽しいです",
+      "romaji": "tanoshii desu",
+      "chinese": "开心 / 快乐",
+      "category": "daily"
+    },
+    {
+      "japanese": "嬉しいです",
+      "romaji": "ureshii desu",
+      "chinese": "高兴",
+      "category": "daily"
+    },
+    {
+      "japanese": "悲しいです",
+      "romaji": "kanashii desu",
+      "chinese": "悲伤",
+      "category": "daily"
+    },
+    {
+      "japanese": "怖いです",
+      "romaji": "kowai desu",
+      "chinese": "害怕",
+      "category": "daily"
+    },
+    {
+      "japanese": "痛いです",
+      "romaji": "itai desu",
+      "chinese": "疼",
+      "category": "daily"
+    },
+    {
+      "japanese": "お腹が空きました",
+      "romaji": "onaka ga sukimashita",
+      "chinese": "我饿了",
+      "category": "daily"
+    },
+    {
+      "japanese": "喉が渇きました",
+      "romaji": "nodo ga kawakimashita",
+      "chinese": "我渴了",
+      "category": "daily"
+    },
+    {
+      "japanese": "眠いです",
+      "romaji": "nemui desu",
+      "chinese": "困 / 想睡",
+      "category": "daily"
+    },
+    {
+      "japanese": "気分が悪いです",
+      "romaji": "kibun ga warui desu",
+      "chinese": "感觉不舒服",
+      "category": "daily"
+    },
+    {
+      "japanese": "頭が痛いです",
+      "romaji": "atama ga itai desu",
+      "chinese": "头疼",
+      "category": "daily"
+    },
+    {
+      "japanese": "熱があります",
+      "romaji": "netsu ga arimasu",
+      "chinese": "发烧了",
+      "category": "daily"
+    },
+    {
+      "japanese": "風邪を引きました",
+      "romaji": "kaze wo hikimashita",
+      "chinese": "感冒了",
+      "category": "daily"
+    },
+    {
+      "japanese": "病院はどこですか",
+      "romaji": "byouin wa doko desu ka",
+      "chinese": "医院在哪里？",
+      "category": "daily"
+    },
+    {
+      "japanese": "薬が欲しいです",
+      "romaji": "kusuri ga hoshii desu",
+      "chinese": "我想要药",
+      "category": "daily"
+    },
+    {
+      "japanese": "水を下さい",
+      "romaji": "mizu wo kudasai",
+      "chinese": "请给我水",
+      "category": "daily"
+    },
+    {
+      "japanese": "トイレはどこですか",
+      "romaji": "toire wa doko desu ka",
+      "chinese": "厕所在哪里？",
+      "category": "daily"
+    },
+    {
+      "japanese": "Wi-Fi はありますか",
+      "romaji": "waifai wa arimasu ka",
+      "chinese": "有 WiFi 吗？",
+      "category": "daily"
+    },
+    {
+      "japanese": "充電器はありますか",
+      "romaji": "juudenki wa arimasu ka",
+      "chinese": "有充电器吗？",
+      "category": "daily"
+    },
+    {
+      "japanese": "地図を見せて下さい",
+      "romaji": "chizu wo misete kudasai",
+      "chinese": "请给我看地图",
+      "category": "daily"
+    },
+    {
+      "japanese": "道に迷いました",
+      "romaji": "michi ni mayoimashita",
+      "chinese": "我迷路了",
+      "category": "daily"
+    },
+    {
+      "japanese": "携帯電話を失くしました",
+      "romaji": "keitai denwa wo nakushimashita",
+      "chinese": "我手机丢了",
+      "category": "daily"
+    },
+    {
+      "japanese": "警察を呼んで下さい",
+      "romaji": "keisatsu wo yonde kudasai",
+      "chinese": "请叫警察",
+      "category": "daily"
+    },
+    {
+      "japanese": "大使館はどこですか",
+      "romaji": "taishikan wa doko desu ka",
+      "chinese": "大使馆在哪里？",
+      "category": "daily"
+    },
+    {
+      "japanese": "日本語が分かりません",
+      "romaji": "nihongo ga wakarimasen",
+      "chinese": "我不懂日语",
+      "category": "daily"
+    },
+    {
+      "japanese": "英語のメニューはありますか",
+      "romaji": "eigo no menyuu wa arimasu ka",
+      "chinese": "有英文菜单吗？",
+      "category": "daily"
+    },
+    {
+      "japanese": "領収書を下さい",
+      "romaji": "ryoushuusho wo kudasai",
+      "chinese": "请给我收据",
+      "category": "daily"
+    },
+    {
+      "japanese": "クレジットカードは使えますか",
+      "romaji": "kurejitto kaado wa tsukaemasu ka",
+      "chinese": "能用信用卡吗？",
+      "category": "daily"
+    },
+    {
+      "japanese": "現金だけですか",
+      "romaji": "genkin dake desu ka",
+      "chinese": "只能用现金吗？",
+      "category": "daily"
+    },
+    {
+      "japanese": "ATM はどこですか",
+      "romaji": "eetiiemu wa doko desu ka",
+      "chinese": "ATM 在哪里？",
+      "category": "daily"
+    },
+    {
+      "japanese": "両替できますか",
+      "romaji": "ryougae dekimasu ka",
+      "chinese": "可以换钱吗？",
+      "category": "daily"
+    },
+    {
+      "japanese": "日本円に両替して下さい",
+      "romaji": "nihon en ni ryougae shite kudasai",
+      "chinese": "请换成日元",
+      "category": "daily"
+    },
+    {
+      "japanese": "予約したいです",
+      "romaji": "yoyaku shitai desu",
+      "chinese": "我想预约",
+      "category": "daily"
+    },
+    {
+      "japanese": "キャンセルしたいです",
+      "romaji": "kyanseru shitai desu",
+      "chinese": "我想取消",
+      "category": "daily"
+    },
+    {
+      "japanese": "確認したいです",
+      "romaji": "kakunin shitai desu",
+      "chinese": "我想确认",
+      "category": "daily"
+    },
+    {
+      "japanese": "荷物を預けたいです",
+      "romaji": "nimotsu wo asuketai desu",
+      "chinese": "我想寄存行李",
+      "category": "daily"
+    },
+    {
+      "japanese": "荷物を取りたいです",
+      "romaji": "nimotsu wo toritai desu",
+      "chinese": "我想取行李",
+      "category": "daily"
+    },
+    {
+      "japanese": "袋を下さい",
+      "romaji": "fukuro wo kudasai",
+      "chinese": "请给我袋子",
+      "category": "daily"
+    },
+    {
+      "japanese": "包んで下さい",
+      "romaji": "tsutsunde kudasai",
+      "chinese": "请包起来",
+      "category": "daily"
+    },
+    {
+      "japanese": "割引はありますか",
+      "romaji": "waribiki wa arimasu ka",
+      "chinese": "有折扣吗？",
+      "category": "daily"
+    },
+    {
+      "japanese": "試着できますか",
+      "romaji": "shichaku dekimasu ka",
+      "chinese": "可以试穿吗？",
+      "category": "daily"
+    }
+  ],
+  "travel": [
+    {
+      "japanese": "駅はどこですか",
+      "romaji": "eki wa doko desu ka",
+      "chinese": "车站在哪里？",
+      "category": "travel"
+    },
+    {
+      "japanese": "空港へ行きたいです",
+      "romaji": "kuukou e ikitai desu",
+      "chinese": "我想去机场",
+      "category": "travel"
+    },
+    {
+      "japanese": "タクシーを呼んで下さい",
+      "romaji": "takushii wo yonde kudasai",
+      "chinese": "请叫出租车",
+      "category": "travel"
+    },
+    {
+      "japanese": "地下鉄の駅はどこですか",
+      "romaji": "chikatetsu no eki wa doko desu ka",
+      "chinese": "地铁站在哪里？",
+      "category": "travel"
+    },
+    {
+      "japanese": "バス停はどこですか",
+      "romaji": "basutei wa doko desu ka",
+      "chinese": "公交站在哪里？",
+      "category": "travel"
+    },
+    {
+      "japanese": "切符はどこで買いますか",
+      "romaji": "kippu wa doko de kaimasu ka",
+      "chinese": "在哪里买票？",
+      "category": "travel"
+    },
+    {
+      "japanese": "一枚下さい",
+      "romaji": "ichimai kudasai",
+      "chinese": "请给我一张",
+      "category": "travel"
+    },
+    {
+      "japanese": "東京駅まで幾らですか",
+      "romaji": "toukyou eki made ikura desu ka",
+      "chinese": "到东京站多少钱？",
+      "category": "travel"
+    },
+    {
+      "japanese": "この電車は新宿へ行きますか",
+      "romaji": "kono densha wa shinjuku e ikimasu ka",
+      "chinese": "这趟电车去新宿吗？",
+      "category": "travel"
+    },
+    {
+      "japanese": "何番線ですか",
+      "romaji": "nanban sen desu ka",
+      "chinese": "几号线？",
+      "category": "travel"
+    },
+    {
+      "japanese": "次の駅は何ですか",
+      "romaji": "tsugi no eki wa nan desu ka",
+      "chinese": "下一站是什么？",
+      "category": "travel"
+    },
+    {
+      "japanese": "ここで降ります",
+      "romaji": "koko de orimasu",
+      "chinese": "我在这里下车",
+      "category": "travel"
+    },
+    {
+      "japanese": "乗り換えはどこですか",
+      "romaji": "norikae wa doko desu ka",
+      "chinese": "在哪里换乘？",
+      "category": "travel"
+    },
+    {
+      "japanese": "ホテルを探しています",
+      "romaji": "hoteru wo sagashiteimasu",
+      "chinese": "我在找酒店",
+      "category": "travel"
+    },
+    {
+      "japanese": "予約していません",
+      "romaji": "yoyaku shiteimasen",
+      "chinese": "我没有预约",
+      "category": "travel"
+    },
+    {
+      "japanese": "空いている部屋はありますか",
+      "romaji": "aiteiru heya wa arimasu ka",
+      "chinese": "有空房吗？",
+      "category": "travel"
+    },
+    {
+      "japanese": "一泊幾らですか",
+      "romaji": "ippaku ikura desu ka",
+      "chinese": "住一晚多少钱？",
+      "category": "travel"
+    },
+    {
+      "japanese": "二泊したいです",
+      "romaji": "nihaku shitai desu",
+      "chinese": "我想住两晚",
+      "category": "travel"
+    },
+    {
+      "japanese": "チェックインをお願いします",
+      "romaji": "chekkuin wo onegai shimasu",
+      "chinese": "我要办理入住",
+      "category": "travel"
+    },
+    {
+      "japanese": "チェックアウトをお願いします",
+      "romaji": "chekkuauto wo onegai shimasu",
+      "chinese": "我要退房",
+      "category": "travel"
+    },
+    {
+      "japanese": "鍵を下さい",
+      "romaji": "kagi wo kudasai",
+      "chinese": "请给我钥匙",
+      "category": "travel"
+    },
+    {
+      "japanese": "部屋を掃除して下さい",
+      "romaji": "heya wo souji shite kudasai",
+      "chinese": "请打扫房间",
+      "category": "travel"
+    },
+    {
+      "japanese": "タオルを下さい",
+      "romaji": "taoru wo kudasai",
+      "chinese": "请给我毛巾",
+      "category": "travel"
+    },
+    {
+      "japanese": "朝食は何時からですか",
+      "romaji": "choushoku wa nanji kara desu ka",
+      "chinese": "早餐几点开始？",
+      "category": "travel"
+    },
+    {
+      "japanese": "観光地を教えて下さい",
+      "romaji": "kankouchi wo oshiete kudasai",
+      "chinese": "请告诉我观光地",
+      "category": "travel"
+    },
+    {
+      "japanese": "入場料は幾らですか",
+      "romaji": "nyuujouryou wa ikura desu ka",
+      "chinese": "门票多少钱？",
+      "category": "travel"
+    },
+    {
+      "japanese": "写真を撮って下さい",
+      "romaji": "shashin wo totte kudasai",
+      "chinese": "请帮我拍照",
+      "category": "travel"
+    },
+    {
+      "japanese": "一緒に写真を撮りましょう",
+      "romaji": "issho ni shashin wo torimashou",
+      "chinese": "一起拍照吧",
+      "category": "travel"
+    },
+    {
+      "japanese": "お土産はどこで買えますか",
+      "romaji": "omiyage wa doko de kaemasu ka",
+      "chinese": "在哪里买纪念品？",
+      "category": "travel"
+    },
+    {
+      "japanese": "これは免税ですか",
+      "romaji": "kore wa menzei desu ka",
+      "chinese": "这个免税吗？",
+      "category": "travel"
+    },
+    {
+      "japanese": "パスポートを見せて下さい",
+      "romaji": "pasupooto wo misete kudasai",
+      "chinese": "请出示护照",
+      "category": "travel"
+    },
+    {
+      "japanese": "ビザが必要ですか",
+      "romaji": "biza ga hitsuyou desu ka",
+      "chinese": "需要签证吗？",
+      "category": "travel"
+    },
+    {
+      "japanese": "滞在期間は何日ですか",
+      "romaji": "taizai kikan wa nannichi desu ka",
+      "chinese": "停留几天？",
+      "category": "travel"
+    },
+    {
+      "japanese": "観光です",
+      "romaji": "kankou desu",
+      "chinese": "旅游",
+      "category": "travel"
+    },
+    {
+      "japanese": "出張です",
+      "romaji": "shucchou desu",
+      "chinese": "出差",
+      "category": "travel"
+    },
+    {
+      "japanese": "荷物を受け取りたいです",
+      "romaji": "nimotsu wo uketoritai desu",
+      "chinese": "我想取行李",
+      "category": "travel"
+    },
+    {
+      "japanese": "荷物が届きません",
+      "romaji": "nimotsu ga todokimasen",
+      "chinese": "行李没到",
+      "category": "travel"
+    },
+    {
+      "japanese": "遅延していますか",
+      "romaji": "chien shiteimasu ka",
+      "chinese": "延误了吗？",
+      "category": "travel"
+    },
+    {
+      "japanese": "搭乗券を見せて下さい",
+      "romaji": "toujourken wo misete kudasai",
+      "chinese": "请出示登机牌",
+      "category": "travel"
+    },
+    {
+      "japanese": "窓側の席をお願いします",
+      "romaji": "madogawa no seki wo onegai shimasu",
+      "chinese": "请给我靠窗座位",
+      "category": "travel"
+    }
+  ],
+  "dining": [
+    {
+      "japanese": "お腹が空きました",
+      "romaji": "onaka ga sukimashita",
+      "chinese": "我饿了",
+      "category": "dining"
+    },
+    {
+      "japanese": "レストランを探しています",
+      "romaji": "resutoran wo sagashiteimasu",
+      "chinese": "我在找餐厅",
+      "category": "dining"
+    },
+    {
+      "japanese": "予約していますか",
+      "romaji": "yoyaku shiteimasu ka",
+      "chinese": "有预约吗？",
+      "category": "dining"
+    },
+    {
+      "japanese": "二人です",
+      "romaji": "futari desu",
+      "chinese": "两个人",
+      "category": "dining"
+    },
+    {
+      "japanese": "禁煙席をお願いします",
+      "romaji": "kinen seki wo onegai shimasu",
+      "chinese": "请给我无烟区",
+      "category": "dining"
+    },
+    {
+      "japanese": "メニューを下さい",
+      "romaji": "menyuu wo kudasai",
+      "chinese": "请给我菜单",
+      "category": "dining"
+    },
+    {
+      "japanese": "お勧めは何ですか",
+      "romaji": "osusume wa nan desu ka",
+      "chinese": "推荐什么？",
+      "category": "dining"
+    },
+    {
+      "japanese": "これは何ですか",
+      "romaji": "kore wa nan desu ka",
+      "chinese": "这是什么？",
+      "category": "dining"
+    },
+    {
+      "japanese": "辛いですか",
+      "romaji": "karai desu ka",
+      "chinese": "辣吗？",
+      "category": "dining"
+    },
+    {
+      "japanese": "辛くないのをお願いします",
+      "romaji": "karakunai no wo onegai shimasu",
+      "chinese": "请给我不辣的",
+      "category": "dining"
+    },
+    {
+      "japanese": "ベジタリアンメニューはありますか",
+      "romaji": "bejitarian menyuu wa arimasu ka",
+      "chinese": "有素食菜单吗？",
+      "category": "dining"
+    },
+    {
+      "japanese": "アレルギーがあります",
+      "romaji": "arerugii ga arimasu",
+      "chinese": "我有过敏",
+      "category": "dining"
+    },
+    {
+      "japanese": "これを下さい",
+      "romaji": "kore wo kudasai",
+      "chinese": "请给我这个",
+      "category": "dining"
+    },
+    {
+      "japanese": "同じものを下さい",
+      "romaji": "onaji mono wo kudasai",
+      "chinese": "请给我同样的",
+      "category": "dining"
+    },
+    {
+      "japanese": "注文したいです",
+      "romaji": "chuumon shitai desu",
+      "chinese": "我想点餐",
+      "category": "dining"
+    },
+    {
+      "japanese": "まだ決めていません",
+      "romaji": "mada kimeteimasen",
+      "chinese": "还没决定",
+      "category": "dining"
+    },
+    {
+      "japanese": "少し待って下さい",
+      "romaji": "sukoshi matte kudasai",
+      "chinese": "请稍等一下",
+      "category": "dining"
+    },
+    {
+      "japanese": "これとこれを下さい",
+      "romaji": "kore to kore wo kudasai",
+      "chinese": "请给我这个和这个",
+      "category": "dining"
+    },
+    {
+      "japanese": "ご飯を大盛りにして下さい",
+      "romaji": "gohan wo oomori ni shite kudasai",
+      "chinese": "请给我大碗饭",
+      "category": "dining"
+    },
+    {
+      "japanese": "お水を下さい",
+      "romaji": "omizu wo kudasai",
+      "chinese": "请给我水",
+      "category": "dining"
+    },
+    {
+      "japanese": "お茶を下さい",
+      "romaji": "ocha wo kudasai",
+      "chinese": "请给我茶",
+      "category": "dining"
+    },
+    {
+      "japanese": "ビールを下さい",
+      "romaji": "biiru wo kudasai",
+      "chinese": "请给我啤酒",
+      "category": "dining"
+    },
+    {
+      "japanese": "コーヒーを下さい",
+      "romaji": "koohii wo kudasai",
+      "chinese": "请给我咖啡",
+      "category": "dining"
+    },
+    {
+      "japanese": "温かいのを下さい",
+      "romaji": "atatakai no wo kudasai",
+      "chinese": "请给我热的",
+      "category": "dining"
+    },
+    {
+      "japanese": "冷たいのを下さい",
+      "romaji": "tsumetai no wo kudasai",
+      "chinese": "请给我冷的",
+      "category": "dining"
+    },
+    {
+      "japanese": "お箸を下さい",
+      "romaji": "ohashi wo kudasai",
+      "chinese": "请给我筷子",
+      "category": "dining"
+    },
+    {
+      "japanese": "スプーンを下さい",
+      "romaji": "supuun wo kudasai",
+      "chinese": "请给我勺子",
+      "category": "dining"
+    },
+    {
+      "japanese": "フォークを下さい",
+      "romaji": "fooku wo kudasai",
+      "chinese": "请给我叉子",
+      "category": "dining"
+    },
+    {
+      "japanese": "ナイフを下さい",
+      "romaji": "naifu wo kudasai",
+      "chinese": "请给我刀",
+      "category": "dining"
+    },
+    {
+      "japanese": "お皿を下さい",
+      "romaji": "osara wo kudasai",
+      "chinese": "请给我盘子",
+      "category": "dining"
+    },
+    {
+      "japanese": "おしぼりを下さい",
+      "romaji": "oshibori wo kudasai",
+      "chinese": "请给我湿巾",
+      "category": "dining"
+    },
+    {
+      "japanese": "美味しいです",
+      "romaji": "oishii desu",
+      "chinese": "好吃",
+      "category": "dining"
+    },
+    {
+      "japanese": "とても美味しいです",
+      "romaji": "totemo oishii desu",
+      "chinese": "非常好吃",
+      "category": "dining"
+    },
+    {
+      "japanese": "お会計をお願いします",
+      "romaji": "okaikei wo onegai shimasu",
+      "chinese": "请结账",
+      "category": "dining"
+    },
+    {
+      "japanese": "別々に払います",
+      "romaji": "betsubetsu ni haraimasu",
+      "chinese": "分开付",
+      "category": "dining"
+    },
+    {
+      "japanese": "一緒に払います",
+      "romaji": "issho ni haraimasu",
+      "chinese": "一起付",
+      "category": "dining"
+    },
+    {
+      "japanese": "クーポンは使えますか",
+      "romaji": "kuupon wa tsukaemasu ka",
+      "chinese": "可以用优惠券吗？",
+      "category": "dining"
+    },
+    {
+      "japanese": "お釣りが違います",
+      "romaji": "otsuri ga chigaimasu",
+      "chinese": "找错钱了",
+      "category": "dining"
+    },
+    {
+      "japanese": "持ち帰りたいです",
+      "romaji": "mochikaeri tai desu",
+      "chinese": "我想打包",
+      "category": "dining"
+    },
+    {
+      "japanese": "テイクアウトできますか",
+      "romaji": "teikuauto dekimasu ka",
+      "chinese": "可以外带吗？",
+      "category": "dining"
+    }
+  ]
+}
