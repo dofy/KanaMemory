@@ -4,48 +4,64 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
+    --background: 44 100% 97%;
+    --foreground: 210 24% 16%;
+    --card: 0 100% 98%;
+    --card-foreground: 210 24% 16%;
+    --popover: 0 100% 100%;
+    --popover-foreground: 210 24% 16%;
+    --primary: 350 100% 75%;
+    --primary-foreground: 210 24% 16%;
+    --secondary: 141 35% 69%;
+    --secondary-foreground: 210 24% 16%;
+    --muted: 350 100% 95%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 141 35% 95%;
+    --accent-foreground: 210 24% 16%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
-    --radius: 0.5rem;
+    --border: 350 50% 90%;
+    --input: 350 50% 90%;
+    --ring: 350 100% 75%;
+    --radius: 0.75rem;
+    
+    --wafuu-pink: 350 100% 85%;
+    --wafuu-pink-dark: 350 100% 70%;
+    --wafuu-green: 141 35% 69%;
+    --wafuu-green-dark: 141 35% 54%;
+    --wafuu-cream: 44 100% 97%;
+    --wafuu-orange: 17 100% 74%;
+    --wafuu-indigo: 229 47% 63%;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
+    --background: 230 35% 12%;
+    --foreground: 350 100% 95%;
+    --card: 230 30% 15%;
+    --card-foreground: 350 100% 95%;
+    --popover: 230 30% 15%;
+    --popover-foreground: 350 100% 95%;
+    --primary: 350 85% 70%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 141 25% 45%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 230 25% 20%;
+    --muted-foreground: 350 50% 75%;
+    --accent: 230 25% 25%;
+    --accent-foreground: 350 100% 95%;
+    --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    --border: 230 25% 25%;
+    --input: 230 25% 25%;
+    --ring: 350 85% 70%;
+    
+    --wafuu-pink: 350 85% 70%;
+    --wafuu-pink-dark: 350 85% 55%;
+    --wafuu-green: 141 25% 45%;
+    --wafuu-green-dark: 141 25% 35%;
+    --wafuu-cream: 230 35% 12%;
+    --wafuu-orange: 17 85% 60%;
+    --wafuu-indigo: 229 40% 55%;
   }
 }
 
@@ -55,6 +71,70 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .washi-texture {
+    background-image: 
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 2px,
+        hsl(var(--background)) 2px,
+        hsl(var(--background)) 4px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        hsl(var(--background)) 2px,
+        hsl(var(--background)) 4px
+      );
+    background-size: 50px 50px;
+    opacity: 0.3;
+  }
+  
+  .sakura-shadow {
+    box-shadow: 0 4px 20px rgba(255, 183, 197, 0.3), 0 2px 8px rgba(255, 183, 197, 0.2);
+  }
+  
+  .wafuu-gradient {
+    background: linear-gradient(135deg, hsl(var(--wafuu-pink)) 0%, hsl(var(--wafuu-cream)) 100%);
+  }
+  
+  .wafuu-gradient-green {
+    background: linear-gradient(135deg, hsl(var(--wafuu-green)) 0%, hsl(var(--wafuu-cream)) 100%);
+  }
+  
+  .wafuu-gradient-orange {
+    background: linear-gradient(135deg, hsl(var(--wafuu-orange)) 0%, hsl(var(--wafuu-cream)) 100%);
+  }
+}
+
+@keyframes sakura-fall {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes wave-float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-10px) translateX(5px);
   }
 }
 

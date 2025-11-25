@@ -53,6 +53,15 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        wafuu: {
+          pink: "hsl(var(--wafuu-pink))",
+          "pink-dark": "hsl(var(--wafuu-pink-dark))",
+          green: "hsl(var(--wafuu-green))",
+          "green-dark": "hsl(var(--wafuu-green-dark))",
+          cream: "hsl(var(--wafuu-cream))",
+          orange: "hsl(var(--wafuu-orange))",
+          indigo: "hsl(var(--wafuu-indigo))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
