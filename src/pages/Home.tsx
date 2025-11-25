@@ -77,7 +77,7 @@ export default function Home() {
               height={32}
               className="rounded"
             />
-            <h1 className="text-xl font-bold">日語學習工具</h1>
+            <h1 className="text-xl font-bold">Kana Memory</h1>
           </div>
 
           <HeaderActions onHelpClick={() => setIsHelpOpen(true)} />
