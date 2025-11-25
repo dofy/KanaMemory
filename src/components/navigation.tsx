@@ -1,22 +1,7 @@
-import { useTheme } from "@/components/theme-provider-custom";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  ArrowLeft,
-  Github,
-  HelpCircle,
-  Monitor,
-  Moon,
-  Settings,
-  Sun,
-} from "lucide-react";
-import { useEffect, useState } from "react";
+import { ArrowLeft } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { HeaderActions } from "@/components/header-actions";
 
 interface NavigationProps {
   title?: string;
@@ -31,13 +16,7 @@ export function Navigation({
   onSettingsClick,
   onHelpClick,
 }: NavigationProps) {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const location = useLocation();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const getPageTitle = () => {
     if (title !== "日语学习工具") return title;
@@ -46,13 +25,6 @@ export function Navigation({
     if (location.pathname === "/words") return "單詞學習";
     if (location.pathname === "/phrases") return "句子學習";
     return title;
-  };
-
-  const getThemeIcon = () => {
-    if (!mounted) return <Monitor className="h-5 w-5" />;
-    if (theme === "light") return <Sun className="h-5 w-5" />;
-    if (theme === "dark") return <Moon className="h-5 w-5" />;
-    return <Monitor className="h-5 w-5" />;
   };
 
   return (
@@ -82,66 +54,11 @@ export function Navigation({
           </Link>
         </div>
 
-        <div className="flex items-center gap-2">
-          {onHelpClick && (
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onHelpClick}
-              title="幫助"
-            >
-              <HelpCircle className="h-5 w-5" />
-            </Button>
-          )}
-
-          {onSettingsClick && (
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onSettingsClick}
-              title="設置"
-            >
-              <Settings className="h-5 w-5" />
-            </Button>
-          )}
-
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" title="主题设置">
-                {getThemeIcon()}
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => setTheme("light")}>
-                <Sun className="mr-2 h-4 w-4" />
-                <span>亮色</span>
-                {theme === "light" && <span className="ml-auto">✓</span>}
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("dark")}>
-                <Moon className="mr-2 h-4 w-4" />
-                <span>暗色</span>
-                {theme === "dark" && <span className="ml-auto">✓</span>}
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("system")}>
-                <Monitor className="mr-2 h-4 w-4" />
-                <span>跟随系统</span>
-                {theme === "system" && <span className="ml-auto">✓</span>}
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <a
-            href="https://github.com/dofy/KanaSyllabaryMemory"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden sm:block"
-            title="GitHub"
-          >
-            <Button variant="ghost" size="icon">
-              <Github className="h-5 w-5" />
-            </Button>
-          </a>
-        </div>
+        <HeaderActions
+          onHelpClick={onHelpClick}
+          onSettingsClick={onSettingsClick}
+          hideGithubOnMobile
+        />
       </div>
     </header>
   );
