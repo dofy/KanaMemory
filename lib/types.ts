@@ -36,9 +36,8 @@ export interface MemoObject extends KanaItem {
 // Word data interface for JSON structure (pure data)
 export interface WordItem {
   hiragana: string        // 平假名 (纯假名，不含声调)
-  katakana: string        // 片假名 (纯假名，不含声调)
+  japanese: string        // 日文（含汉字，如：愛、油）
   romaji: string          // 罗马音
-  kanji: string           // 汉字
   chinese: string         // 中文释义
   pitch: string           // 声调标记 (①②③④⑤⑥⑦⑧⑨⓪或组合)
 }
@@ -51,9 +50,9 @@ export interface WordObject extends WordItem {
 // Phrase data interface for JSON structure (pure data)
 export interface PhraseItem {
   japanese: string        // 日语句子（原始形式，含汉字）
+  hiragana: string        // 纯假名形式（平假名）
   romaji: string          // 罗马音
   chinese: string         // 中文翻译
-  category: string        // 分类 (greeting, daily, travel, dining)
 }
 
 // Extended interface with UI state
@@ -78,5 +77,5 @@ export interface PhrasesData {
 export type DisplayMode = "mixed" | "hiragana" | "katakana" | "romaji" | "swap"
 
 // Unified display mode for words and phrases
-export type UnifiedDisplayMode = "mixed" | "kana" | "romaji"
+export type UnifiedDisplayMode = "mixed" | "kana" | "japanese"
 

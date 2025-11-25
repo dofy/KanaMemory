@@ -3,17 +3,15 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
+import { Switch } from "@/components/ui/switch";
 import { Navigation } from "@/components/navigation";
-import { ThemeSettings } from "@/components/theme-settings";
 import { KeyboardShortcuts } from "@/components/keyboard-shortcuts";
 import { DataLoader } from "@/lib/data-loader";
 import { LocalStorage } from "@/lib/local-storage";
@@ -27,13 +25,9 @@ import {
   BookOpen,
   Brain,
   Eye,
-  Filter,
   Lightbulb,
   Settings,
   Volume2,
-  CheckSquare,
-  Square,
-  Minimize2,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
@@ -50,7 +44,7 @@ export default function PhrasesPage() {
   const ttsServiceRef = useRef<TTSService | null>(null);
 
   const [allPhrases, setAllPhrases] = useState<Record<string, PhraseObject[]>>({});
-  const [selectedCategory, setSelectedCategory] = useState<string>("greeting");
+  const [selectedCategories, setSelectedCategories] = useState<Set<string>>(new Set(["greeting"]));
   const [displayPhrases, setDisplayPhrases] = useState<PhraseObject[]>([]);
   const [usedPhrases, setUsedPhrases] = useState<PhraseObject[]>([]);
 
@@ -71,8 +65,7 @@ export default function PhrasesPage() {
   );
   const [displayMode, setDisplayMode] = useState<UnifiedDisplayMode>("mixed");
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const [isSelectionOpen, setIsSelectionOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [autoPlaySound, setAutoPlaySound] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -87,28 +80,14 @@ export default function PhrasesPage() {
   const loadPhrasesData = async () => {
     try {
       const phrasesData = await DataLoader.loadPhrasesData();
-      const savedSelections = LocalStorage.load<Record<string, boolean>>("phrases_selections");
-      
-      // 应用保存的选择状态
-      if (savedSelections) {
-        for (const category in phrasesData) {
-          phrasesData[category].forEach(phrase => {
-            const key = `${phrase.japanese}_${phrase.romaji}`;
-            if (savedSelections[key] !== undefined) {
-              phrase.selected = savedSelections[key];
-            }
-          });
-        }
-      }
-      
       setAllPhrases(phrasesData);
       
-      const savedCategory = LocalStorage.load<string>("phrases_selectedCategory");
-      if (savedCategory && phrasesData[savedCategory]) {
-        setSelectedCategory(savedCategory);
-        updateDisplayPhrases(savedCategory, phrasesData);
+      const savedCategories = LocalStorage.load<string[]>("phrases_selectedCategories");
+      if (savedCategories && savedCategories.length > 0) {
+        setSelectedCategories(new Set(savedCategories));
+        updateDisplayPhrases(new Set(savedCategories), phrasesData);
       } else {
-        updateDisplayPhrases("greeting", phrasesData);
+        updateDisplayPhrases(new Set(["greeting"]), phrasesData);
       }
     } catch (error) {
       console.error("Failed to load phrases data:", error);
@@ -119,6 +98,7 @@ export default function PhrasesPage() {
   const loadSettings = () => {
     const savedPracticeMode = LocalStorage.load<PracticeMode>("phrases_practiceMode");
     const savedDisplayMode = LocalStorage.load<UnifiedDisplayMode>("phrases_displayMode");
+    const savedAutoPlaySound = LocalStorage.load<boolean>("phrases_autoPlaySound");
 
     if (savedPracticeMode) {
       setPracticeMode(savedPracticeMode);
@@ -126,62 +106,49 @@ export default function PhrasesPage() {
     if (savedDisplayMode) {
       setDisplayMode(savedDisplayMode);
     }
+    if (savedAutoPlaySound !== null) {
+      setAutoPlaySound(savedAutoPlaySound);
+    }
   };
 
-  // 更新显示的句子池（选中的句子 + 模糊匹配）
-  const updateDisplayPhrases = (category: string, phrases: Record<string, PhraseObject[]> = allPhrases) => {
-    const categoryPhrases = phrases[category] || [];
-    const selected = categoryPhrases.filter(p => p.selected);
+  // 更新显示的句子池：合并所有选中分类的句子
+  const updateDisplayPhrases = (categories: Set<string>, phrases: Record<string, PhraseObject[]> = allPhrases) => {
+    const allSelectedPhrases: PhraseObject[] = [];
     
-    // 提取关键词
-    const keywords = new Set<string>();
-    selected.forEach(phrase => {
-      phrase.japanese.split('').forEach(c => keywords.add(c));
-      phrase.chinese.split(/[，。、]/).forEach(w => w.trim() && keywords.add(w.trim()));
-    });
-    
-    // 模糊匹配：如果句子包含任一关键词，自动关联
-    const matched = categoryPhrases.filter(phrase => {
-      if (phrase.selected) return true;
-      
-      for (const kw of keywords) {
-        if (phrase.japanese.includes(kw) || phrase.chinese.includes(kw)) {
-          return true;
-        }
+    categories.forEach(category => {
+      if (phrases[category]) {
+        allSelectedPhrases.push(...phrases[category]);
       }
-      return false;
     });
     
-    setDisplayPhrases([...matched]);
+    setDisplayPhrases([...allSelectedPhrases]);
     setUsedPhrases([]);
   };
 
-  // 保存选择状态
-  const saveSelections = (phrases: Record<string, PhraseObject[]>) => {
-    const selections: Record<string, boolean> = {};
-    for (const category in phrases) {
-      phrases[category].forEach(phrase => {
-        const key = `${phrase.japanese}_${phrase.romaji}`;
-        selections[key] = phrase.selected;
-      });
+  const handleCategoryToggle = (category: string) => {
+    const updated = new Set(selectedCategories);
+    if (updated.has(category)) {
+      updated.delete(category);
+    } else {
+      updated.add(category);
     }
-    LocalStorage.save("phrases_selections", selections);
-  };
-
-  const handleCategoryChange = (category: string) => {
-    setSelectedCategory(category);
-    LocalStorage.save("phrases_selectedCategory", category);
-    updateDisplayPhrases(category);
-  };
-
-  const handleStart = () => {
-    const selectedPhrases = displayPhrases.filter(p => p.selected);
-    if (selectedPhrases.length === 0) {
-      toast.error("请至少选择一个句子");
+    
+    if (updated.size === 0) {
+      toast.error("至少需要选择一个场景分类");
       return;
     }
     
-    setDisplayPhrases(selectedPhrases);
+    setSelectedCategories(updated);
+    LocalStorage.save("phrases_selectedCategories", Array.from(updated));
+    updateDisplayPhrases(updated);
+  };
+
+  const handleStart = () => {
+    if (displayPhrases.length === 0) {
+      toast.error("请至少选择一个场景分类");
+      return;
+    }
+    
     setUsedPhrases([]);
     setIsStarted(true);
     getNextPhrase();
@@ -189,6 +156,11 @@ export default function PhrasesPage() {
 
   const getNextPhrase = () => {
     setShowHint(practiceMode === PracticeMode.learning);
+
+    // 混合模式：随机选择显示假名或日文
+    if (displayMode === "mixed") {
+      setMixedModeDisplay(Math.random() > 0.5 ? "kana" : "japanese");
+    }
 
     if (displayPhrases.length === 0) {
       if (usedPhrases.length > 0) {
@@ -214,21 +186,26 @@ export default function PhrasesPage() {
 
     setDisplayPhrases(prev => prev.filter((_, i) => i !== randomIndex));
     setUsedPhrases(prev => [...prev, selected]);
-
-    // 学习模式自动发音
-    if (practiceMode === PracticeMode.learning) {
-      setTimeout(() => handlePronounce(), 500);
-    }
   };
+
+  // 用于混合模式的随机选择
+  const [mixedModeDisplay, setMixedModeDisplay] = useState<"kana" | "japanese">("kana");
 
   const getDisplayText = (phrase: PhraseObject, mode: UnifiedDisplayMode): string => {
     switch (mode) {
       case "mixed":
-        return `${phrase.japanese}\n${phrase.romaji}\n${phrase.chinese}`;
+        // 混合模式：随机显示假名或日文
+        if (mixedModeDisplay === "kana") {
+          return phrase.hiragana;
+        } else {
+          return phrase.japanese;
+        }
       case "kana":
+        // 假名模式：显示假名
+        return phrase.hiragana;
+      case "japanese":
+        // 日文模式：显示日文
         return phrase.japanese;
-      case "romaji":
-        return phrase.romaji;
       default:
         return phrase.chinese;
     }
@@ -237,11 +214,18 @@ export default function PhrasesPage() {
   const getHintText = (phrase: PhraseObject, mode: UnifiedDisplayMode): string => {
     switch (mode) {
       case "mixed":
-        return "";  // 混合模式不需要提示
+        // 混合模式：提示显示其他信息
+        if (mixedModeDisplay === "kana") {
+          return `${phrase.japanese}\n${phrase.romaji}\n${phrase.chinese}`;
+        } else {
+          return `${phrase.hiragana}\n${phrase.romaji}\n${phrase.chinese}`;
+        }
       case "kana":
-        return `${phrase.romaji}\n${phrase.chinese}`;
-      case "romaji":
-        return `${phrase.japanese}\n${phrase.chinese}`;
+        // 假名模式：提示显示日文、罗马音、中文
+        return `${phrase.japanese}\n${phrase.romaji}\n${phrase.chinese}`;
+      case "japanese":
+        // 日文模式：提示显示假名、罗马音、中文
+        return `${phrase.hiragana}\n${phrase.romaji}\n${phrase.chinese}`;
       default:
         return "";
     }
@@ -254,7 +238,8 @@ export default function PhrasesPage() {
   const handlePronounce = async () => {
     if (currentPhrase.phrase && ttsServiceRef.current) {
       try {
-        await ttsServiceRef.current.speak(currentPhrase.phrase.japanese);
+        // 使用纯假名进行发音，更准确
+        await ttsServiceRef.current.speak(currentPhrase.phrase.hiragana);
       } catch (error) {
         console.error("TTS error:", error);
       }
@@ -271,60 +256,36 @@ export default function PhrasesPage() {
     LocalStorage.save("phrases_displayMode", mode);
   };
 
-  // 选择面板功能
-  const togglePhraseSelection = (index: number) => {
-    const updated = { ...allPhrases };
-    updated[selectedCategory][index].selected = !updated[selectedCategory][index].selected;
-    setAllPhrases(updated);
-    saveSelections(updated);
-    updateDisplayPhrases(selectedCategory, updated);
+  const handleAutoPlaySoundChange = (enabled: boolean) => {
+    setAutoPlaySound(enabled);
+    LocalStorage.save("phrases_autoPlaySound", enabled);
   };
 
-  const handleSelectAll = () => {
-    const updated = { ...allPhrases };
-    updated[selectedCategory] = updated[selectedCategory].map(p => ({ ...p, selected: true }));
-    setAllPhrases(updated);
-    saveSelections(updated);
-    updateDisplayPhrases(selectedCategory, updated);
-    toast.success(`已选择全部 ${updated[selectedCategory].length} 个句子`);
-  };
-
-  const handleDeselectAll = () => {
-    const updated = { ...allPhrases };
-    updated[selectedCategory] = updated[selectedCategory].map(p => ({ ...p, selected: false }));
-    setAllPhrases(updated);
-    saveSelections(updated);
-    updateDisplayPhrases(selectedCategory, updated);
-    toast.success("已取消选择所有句子");
-  };
-
-  const handleInvertSelection = () => {
-    const updated = { ...allPhrases };
-    updated[selectedCategory] = updated[selectedCategory].map(p => ({ ...p, selected: !p.selected }));
-    setAllPhrases(updated);
-    saveSelections(updated);
-    updateDisplayPhrases(selectedCategory, updated);
-    const selectedCount = updated[selectedCategory].filter(p => p.selected).length;
-    toast.success(`已反选，当前选择 ${selectedCount} 个句子`);
-  };
-
-  // 搜索过滤
-  const filteredPhrases = (allPhrases[selectedCategory] || []).filter(phrase => {
-    if (!searchQuery) return true;
-    const query = searchQuery.toLowerCase();
-    return (
-      phrase.japanese.includes(query) ||
-      phrase.romaji.toLowerCase().includes(query) ||
-      phrase.chinese.includes(query)
-    );
-  });
+  // 自动发音：当切换到新句子时自动发音
+  useEffect(() => {
+    if (
+      isStarted &&
+      practiceMode === PracticeMode.learning &&
+      autoPlaySound &&
+      currentPhrase.phrase?.hiragana
+    ) {
+      const timer = setTimeout(() => {
+        if (ttsServiceRef.current && currentPhrase.phrase) {
+          ttsServiceRef.current.speak(currentPhrase.phrase.hiragana).catch(() => {
+            // TTS failed silently
+          });
+        }
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [currentPhrase.phrase?.hiragana, isStarted, practiceMode, autoPlaySound]);
 
   // 键盘快捷键
   useEffect(() => {
-    if (!isStarted || isSettingsOpen || isSelectionOpen) return;
+    if (!isStarted || isSettingsOpen) return;
 
     const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key === " " || e.key === "Enter") {
+      if (e.key === " ") {
         e.preventDefault();
         getNextPhrase();
       } else if (e.key === "h" || e.key === "H") {
@@ -338,15 +299,14 @@ export default function PhrasesPage() {
 
     window.addEventListener("keydown", handleKeyPress);
     return () => window.removeEventListener("keydown", handleKeyPress);
-  }, [isStarted, isSettingsOpen, isSelectionOpen, currentPhrase]);
+  }, [isStarted, isSettingsOpen, currentPhrase]);
 
-  const currentCategoryPhrases = allPhrases[selectedCategory] || [];
-  const selectedCount = currentCategoryPhrases.filter(p => p.selected).length;
+  const totalPhraseCount = displayPhrases.length + usedPhrases.length;
 
   const keyboardShortcuts = [
-    { key: "Space/Enter", description: "下一个" },
+    { key: "Space", description: "下一個" },
     { key: "H", description: "提示" },
-    { key: "P", description: "发音" },
+    { key: "P", description: "發音" },
   ];
 
   if (!mounted) {
@@ -366,41 +326,47 @@ export default function PhrasesPage() {
             <Card>
               <CardContent className="pt-6">
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between">
+                  <div>
                     <h2 className="text-2xl font-bold">句子学习</h2>
-                    <Button
-                      variant="outline"
-                      onClick={() => setIsSelectionOpen(true)}
-                    >
-                      <Filter className="h-4 w-4 mr-2" />
-                      选择句子
-                    </Button>
                   </div>
 
-                  {/* 场景分类选择 */}
+                  {/* 场景分类选择（多选） */}
                   <div className="space-y-2">
-                    <Label>场景分类</Label>
+                    <Label>场景分类（可多选）</Label>
                     <div className="grid grid-cols-2 gap-2">
-                      {Object.entries(CATEGORY_NAMES).map(([key, name]) => (
-                        <Button
-                          key={key}
-                          variant={selectedCategory === key ? "default" : "outline"}
-                          onClick={() => handleCategoryChange(key)}
-                        >
-                          {name}
-                        </Button>
-                      ))}
+                      {Object.entries(CATEGORY_NAMES).map(([key, name]) => {
+                        const categoryPhrases = allPhrases[key] || [];
+                        const count = categoryPhrases.length;
+                        return (
+                          <div
+                            key={key}
+                            className="flex items-center space-x-2 p-3 border rounded-lg hover:bg-muted/50 cursor-pointer"
+                            onClick={() => handleCategoryToggle(key)}
+                          >
+                            <Checkbox
+                              checked={selectedCategories.has(key)}
+                              onCheckedChange={() => handleCategoryToggle(key)}
+                            />
+                            <Label className="cursor-pointer flex-1">
+                              <div className="font-medium">{name}</div>
+                              <div className="text-sm text-muted-foreground">
+                                {count} 个句子
+                              </div>
+                            </Label>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
 
                   <div className="grid grid-cols-2 gap-4 p-4 bg-muted rounded-lg">
                     <div>
-                      <p className="text-sm text-muted-foreground">已选择</p>
-                      <p className="text-2xl font-bold">{selectedCount}</p>
+                      <p className="text-sm text-muted-foreground">已选分类</p>
+                      <p className="text-2xl font-bold">{selectedCategories.size}</p>
                     </div>
                     <div>
-                      <p className="text-sm text-muted-foreground">含关联</p>
-                      <p className="text-2xl font-bold">{displayPhrases.length}</p>
+                      <p className="text-sm text-muted-foreground">总句子数</p>
+                      <p className="text-2xl font-bold">{totalPhraseCount}</p>
                     </div>
                   </div>
 
@@ -408,10 +374,10 @@ export default function PhrasesPage() {
                     onClick={handleStart}
                     className="w-full"
                     size="lg"
-                    disabled={selectedCount === 0}
+                    disabled={totalPhraseCount === 0}
                   >
                     <BookOpen className="h-5 w-5 mr-2" />
-                    开始学习
+                    开始学习 ({totalPhraseCount} 个句子)
                   </Button>
                 </div>
               </CardContent>
@@ -422,45 +388,52 @@ export default function PhrasesPage() {
             <Card className="min-h-[400px] flex items-center justify-center">
               <CardContent className="pt-6 w-full">
                 <div className="text-center space-y-6">
-                  <div className="text-4xl font-bold min-h-[200px] flex items-center justify-center whitespace-pre-line px-4">
+                  {/* 显示内容 - 主要内容区域 */}
+                  <div className="text-5xl sm:text-6xl font-bold min-h-[200px] flex items-center justify-center whitespace-pre-line text-foreground leading-relaxed px-4">
                     {currentPhrase.displayText}
                   </div>
 
+                  {/* 提示内容 - 明显的视觉区分 */}
                   {showHint && currentPhrase.hint && (
-                    <div className="text-2xl text-muted-foreground whitespace-pre-line px-4">
-                      {currentPhrase.hint}
+                    <div className="space-y-3 pt-4 border-t border-dashed border-muted-foreground/30 px-4">
+                      <div className="text-xs uppercase tracking-wider text-muted-foreground/70 font-medium">
+                        提示
+                      </div>
+                      <div className="text-xl sm:text-2xl text-muted-foreground whitespace-pre-line leading-relaxed">
+                        {currentPhrase.hint}
+                      </div>
                     </div>
                   )}
                 </div>
               </CardContent>
             </Card>
 
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Button onClick={getNextPhrase} size="lg">
-                <Brain className="h-5 w-5 mr-2" />
-                下一个 (Space)
-              </Button>
-
+            <div className="flex gap-2 items-center justify-center">
               {practiceMode === PracticeMode.memory && (
-                <>
-                  <Button onClick={handleShowHint} variant="outline" size="lg">
-                    <Lightbulb className="h-5 w-5 mr-2" />
-                    提示 (H)
-                  </Button>
-                  <Button onClick={handlePronounce} variant="outline" size="lg">
-                    <Volume2 className="h-5 w-5 mr-2" />
-                    发音 (P)
-                  </Button>
-                </>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="h-12 w-12 rounded-full flex-shrink-0"
+                  onClick={handleShowHint}
+                  title="顯示提示"
+                >
+                  <Lightbulb className="h-5 w-5" />
+                </Button>
               )}
-
-              <Button
-                onClick={() => setIsStarted(false)}
-                variant="secondary"
-                size="lg"
-              >
-                退出
+              <Button className="flex-1 max-w-xs" size="lg" onClick={getNextPhrase}>
+                下一個
               </Button>
+              {practiceMode === PracticeMode.memory && (
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="h-12 w-12 rounded-full flex-shrink-0"
+                  onClick={handlePronounce}
+                  title="發音"
+                >
+                  <Volume2 className="h-5 w-5" />
+                </Button>
+              )}
             </div>
           </div>
         )}
@@ -468,156 +441,135 @@ export default function PhrasesPage() {
 
       {/* 设置面板 */}
       <Sheet open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
-        <SheetContent className="overflow-y-auto">
-          <SheetHeader>
-            <SheetTitle>设置</SheetTitle>
+        <SheetContent className="w-full sm:max-w-md flex flex-col p-0">
+          <SheetHeader className="px-4 sm:px-6 pt-6 pb-4 border-b">
+            <SheetTitle className="text-lg sm:text-xl">設置</SheetTitle>
           </SheetHeader>
 
-          <div className="space-y-6 mt-6">
-            {/* 学习模式 */}
-            <div className="space-y-3">
-              <h3 className="font-semibold flex items-center gap-2">
-                <Brain className="h-4 w-4" />
-                学习模式
-              </h3>
-              <RadioGroup
-                value={practiceMode}
-                onValueChange={(v) => handlePracticeModeChange(v as PracticeMode)}
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value={PracticeMode.learning} id="learning" />
-                  <Label htmlFor="learning" className="cursor-pointer">
-                    学习模式（自动提示+发音）
-                  </Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value={PracticeMode.memory} id="memory" />
-                  <Label htmlFor="memory" className="cursor-pointer">
-                    记忆模式（手动控制）
-                  </Label>
-                </div>
-              </RadioGroup>
-            </div>
-
-            {/* 显示内容 */}
-            <div className="space-y-3">
-              <h3 className="font-semibold flex items-center gap-2">
-                <Eye className="h-4 w-4" />
-                显示内容
-              </h3>
-              <RadioGroup
-                value={displayMode}
-                onValueChange={(v) => handleDisplayModeChange(v as UnifiedDisplayMode)}
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="mixed" id="mixed" />
-                  <Label htmlFor="mixed" className="cursor-pointer">
-                    混合显示（全部信息）
-                  </Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="kana" id="kana" />
-                  <Label htmlFor="kana" className="cursor-pointer">
-                    假名显示（日语原文）
-                  </Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="romaji" id="romaji" />
-                  <Label htmlFor="romaji" className="cursor-pointer">
-                    罗马音显示
-                  </Label>
-                </div>
-              </RadioGroup>
-            </div>
-
-            {/* 主题设置 */}
-            <ThemeSettings />
-
-            {/* 键盘快捷键 */}
-            <KeyboardShortcuts shortcuts={keyboardShortcuts} />
-          </div>
-        </SheetContent>
-      </Sheet>
-
-      {/* 选择面板 */}
-      <Sheet open={isSelectionOpen} onOpenChange={setIsSelectionOpen}>
-        <SheetContent className="overflow-y-auto w-full sm:max-w-lg">
-          <SheetHeader>
-            <SheetTitle>选择句子 - {CATEGORY_NAMES[selectedCategory as keyof typeof CATEGORY_NAMES]}</SheetTitle>
-          </SheetHeader>
-
-          <div className="space-y-4 mt-6">
-            {/* 场景切换 */}
-            <div className="flex gap-2 flex-wrap">
-              {Object.entries(CATEGORY_NAMES).map(([key, name]) => (
-                <Button
-                  key={key}
-                  variant={selectedCategory === key ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => handleCategoryChange(key)}
-                >
-                  {name}
-                </Button>
-              ))}
-            </div>
-
-            {/* 搜索框 */}
-            <Input
-              placeholder="搜索句子..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-
-            {/* 批量操作 */}
-            <div className="flex gap-2">
-              <Button onClick={handleSelectAll} variant="outline" size="sm">
-                <CheckSquare className="h-4 w-4 mr-1" />
-                全选
-              </Button>
-              <Button onClick={handleDeselectAll} variant="outline" size="sm">
-                <Square className="h-4 w-4 mr-1" />
-                全不选
-              </Button>
-              <Button onClick={handleInvertSelection} variant="outline" size="sm">
-                <Minimize2 className="h-4 w-4 mr-1" />
-                反选
-              </Button>
-            </div>
-
-            {/* 统计 */}
-            <div className="p-3 bg-muted rounded-lg text-sm">
-              已选择: {selectedCount} / {currentCategoryPhrases.length}
-            </div>
-
-            {/* 句子列表 */}
-            <div className="space-y-2 max-h-[500px] overflow-y-auto">
-              {filteredPhrases.map((phrase, index) => {
-                const originalIndex = currentCategoryPhrases.indexOf(phrase);
-                return (
-                  <div
-                    key={originalIndex}
-                    className="flex items-start gap-2 p-2 hover:bg-muted rounded"
+          <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 sm:py-6 mb-4">
+            <div className="space-y-5 sm:space-y-6">
+              {/* 学习模式 */}
+              <div className="space-y-2 sm:space-y-3">
+                <h3 className="font-semibold text-sm sm:text-base flex items-center gap-2">
+                  <Brain className="h-4 w-4" />
+                  練習模式
+                </h3>
+                <div className="flex gap-2">
+                  <Button
+                    variant={practiceMode === PracticeMode.learning ? "default" : "outline"}
+                    onClick={() => handlePracticeModeChange(PracticeMode.learning)}
+                    className="flex-1 text-xs sm:text-sm h-auto py-2 sm:py-2.5"
                   >
-                    <Checkbox
-                      checked={phrase.selected}
-                      onCheckedChange={() => togglePhraseSelection(originalIndex)}
-                      className="mt-1"
-                    />
-                    <Label
-                      className="cursor-pointer flex-1 text-sm"
-                      onClick={() => togglePhraseSelection(originalIndex)}
-                    >
-                      <div className="font-medium">{phrase.japanese}</div>
-                      <div className="text-muted-foreground">
-                        {phrase.chinese}
+                    <BookOpen className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5" />
+                    學習模式
+                  </Button>
+                  <Button
+                    variant={practiceMode === PracticeMode.memory ? "default" : "outline"}
+                    onClick={() => handlePracticeModeChange(PracticeMode.memory)}
+                    className="flex-1 text-xs sm:text-sm h-auto py-2 sm:py-2.5"
+                  >
+                    <Brain className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5" />
+                    記憶模式
+                  </Button>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  {practiceMode === PracticeMode.learning
+                    ? "學習模式：自動顯示提示，適合初學者"
+                    : "記憶模式：手動控制提示和發音，適合複習鞏固"}
+                </p>
+
+                {/* Auto Play Sound - Sub-option for Learning Mode */}
+                {practiceMode === PracticeMode.learning && (
+                  <div className="ml-3 sm:ml-4 mt-3 pl-3 sm:pl-4 border-l-2 border-primary/30">
+                    <div className="flex items-center justify-between gap-3 p-2.5 sm:p-3 rounded-md bg-muted/50">
+                      <div className="flex items-center gap-2 flex-1 min-w-0">
+                        <Volume2 className="h-3.5 w-3.5 text-muted-foreground flex-shrink-0" />
+                        <div className="flex-1 min-w-0">
+                          <Label
+                            htmlFor="autoPlaySound"
+                            className="text-xs sm:text-sm font-medium cursor-pointer block"
+                          >
+                            自動發音
+                          </Label>
+                          <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5">
+                            切換句子時自動朗讀
+                          </p>
+                        </div>
                       </div>
-                      <div className="text-xs text-muted-foreground mt-1">
-                        {phrase.romaji}
-                      </div>
-                    </Label>
+                      <Switch
+                        id="autoPlaySound"
+                        checked={autoPlaySound}
+                        onCheckedChange={handleAutoPlaySoundChange}
+                        className="flex-shrink-0 scale-90"
+                      />
+                    </div>
                   </div>
-                );
-              })}
+                )}
+              </div>
+
+              {/* 显示内容 */}
+              <div className="space-y-2 sm:space-y-3">
+                <h3 className="font-semibold text-sm sm:text-base flex items-center gap-2">
+                  <Eye className="h-4 w-4" />
+                  顯示內容
+                </h3>
+                <div className="flex justify-between gap-2">
+                  {[
+                    { value: "mixed", label: "混合" },
+                    { value: "kana", label: "假名" },
+                    { value: "japanese", label: "日文" },
+                  ].map((mode) => (
+                    <Button
+                      key={mode.value}
+                      variant={
+                        displayMode === mode.value ? "default" : "outline"
+                      }
+                      onClick={() =>
+                        handleDisplayModeChange(mode.value as UnifiedDisplayMode)
+                      }
+                      className="flex-1 text-xs sm:text-sm h-auto py-2 sm:py-2.5"
+                    >
+                      {mode.label}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+
+              {/* 场景分类选择 */}
+              <div className="space-y-2 sm:space-y-3">
+                <h3 className="font-semibold text-sm sm:text-base flex items-center gap-2">
+                  <Settings className="h-4 w-4" />
+                  場景分類
+                </h3>
+                <div className="space-y-2">
+                  {Object.entries(CATEGORY_NAMES).map(([key, name]) => {
+                    const categoryPhrases = allPhrases[key] || [];
+                    const count = categoryPhrases.length;
+                    return (
+                      <div
+                        key={key}
+                        className="flex items-center space-x-2 p-2 sm:p-3 border rounded hover:bg-muted/50 cursor-pointer"
+                        onClick={() => handleCategoryToggle(key)}
+                      >
+                        <Checkbox
+                          checked={selectedCategories.has(key)}
+                          onCheckedChange={() => handleCategoryToggle(key)}
+                          className="h-4 w-4"
+                        />
+                        <Label className="cursor-pointer flex-1 text-sm sm:text-base">
+                          <div className="font-medium">{name}</div>
+                          <div className="text-xs text-muted-foreground">
+                            {count} 個句子
+                          </div>
+                        </Label>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* 键盘快捷键 */}
+              <KeyboardShortcuts shortcuts={keyboardShortcuts} />
             </div>
           </div>
         </SheetContent>

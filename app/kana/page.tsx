@@ -28,7 +28,6 @@ import {
   Square,
   Volume2,
 } from "lucide-react";
-import { ThemeSettings } from "@/components/theme-settings";
 import { KeyboardShortcuts } from "@/components/keyboard-shortcuts";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -342,8 +341,6 @@ export default function KanaPage() {
 
               <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 sm:py-6 mb-4">
                 <div className="space-y-5 sm:space-y-6">
-                  {/* Theme Settings */}
-                  <ThemeSettings />
 
                   {/* Learning Mode */}
                   <div className="space-y-2 sm:space-y-3">

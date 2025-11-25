@@ -1,11 +1,18 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Moon, Sun, Github, Settings, ArrowLeft } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Moon, Sun, Monitor, Github, Settings, ArrowLeft } from "lucide-react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface NavigationProps {
   title?: string;
@@ -19,7 +26,12 @@ export function Navigation({
   onSettingsClick,
 }: NavigationProps) {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const getPageTitle = () => {
     if (title !== "日语学习工具") return title;
@@ -28,6 +40,20 @@ export function Navigation({
     if (pathname === "/words") return "单词学习";
     if (pathname === "/phrases") return "句子学习";
     return title;
+  };
+
+  const getThemeIcon = () => {
+    if (!mounted) return <Monitor className="h-5 w-5" />;
+    if (theme === "light") return <Sun className="h-5 w-5" />;
+    if (theme === "dark") return <Moon className="h-5 w-5" />;
+    return <Monitor className="h-5 w-5" />;
+  };
+
+  const getThemeLabel = () => {
+    if (!mounted) return "系统";
+    if (theme === "light") return "亮色";
+    if (theme === "dark") return "暗色";
+    return "系统";
   };
 
   return (
@@ -61,17 +87,30 @@ export function Navigation({
             </Button>
           )}
 
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          >
-            {theme === "dark" ? (
-              <Sun className="h-5 w-5" />
-            ) : (
-              <Moon className="h-5 w-5" />
-            )}
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" title="主题设置">
+                {getThemeIcon()}
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={() => setTheme("light")}>
+                <Sun className="mr-2 h-4 w-4" />
+                <span>亮色</span>
+                {theme === "light" && <span className="ml-auto">✓</span>}
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("dark")}>
+                <Moon className="mr-2 h-4 w-4" />
+                <span>暗色</span>
+                {theme === "dark" && <span className="ml-auto">✓</span>}
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("system")}>
+                <Monitor className="mr-2 h-4 w-4" />
+                <span>跟随系统</span>
+                {theme === "system" && <span className="ml-auto">✓</span>}
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
 
           <a
             href="https://github.com"

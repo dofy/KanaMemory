@@ -1,8 +1,28 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { BookOpen, Brain, MessageSquare, Github, Moon, Sun } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  BookOpen,
+  Brain,
+  MessageSquare,
+  Github,
+  Moon,
+  Sun,
+  Monitor,
+} from "lucide-react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,6 +36,13 @@ export default function Home() {
     setMounted(true);
   }, []);
 
+  const getThemeIcon = () => {
+    if (!mounted) return <Monitor className="h-5 w-5" />;
+    if (theme === "light") return <Sun className="h-5 w-5" />;
+    if (theme === "dark") return <Moon className="h-5 w-5" />;
+    return <Monitor className="h-5 w-5" />;
+  };
+
   if (!mounted) {
     return null;
   }
@@ -23,7 +50,7 @@ export default function Home() {
   const learningModes = [
     {
       title: "假名学习",
-      description: "学习和记忆日语假名（平假名、片假名）",
+      description: "学习和记忆日语假名",
       icon: BookOpen,
       href: "/kana",
       color: "text-blue-500",
@@ -37,11 +64,10 @@ export default function Home() {
     },
     {
       title: "句子学习",
-      description: "学习常用日语句子（开发中）",
+      description: "学习常用日语句子",
       icon: MessageSquare,
       href: "/phrases",
       color: "text-purple-500",
-      disabled: true,
     },
   ];
 
@@ -62,17 +88,30 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            >
-              {theme === "dark" ? (
-                <Sun className="h-5 w-5" />
-              ) : (
-                <Moon className="h-5 w-5" />
-              )}
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" title="主题设置">
+                  {getThemeIcon()}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => setTheme("light")}>
+                  <Sun className="mr-2 h-4 w-4" />
+                  <span>亮色</span>
+                  {theme === "light" && <span className="ml-auto">✓</span>}
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("dark")}>
+                  <Moon className="mr-2 h-4 w-4" />
+                  <span>暗色</span>
+                  {theme === "dark" && <span className="ml-auto">✓</span>}
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("system")}>
+                  <Monitor className="mr-2 h-4 w-4" />
+                  <span>跟随系统</span>
+                  {theme === "system" && <span className="ml-auto">✓</span>}
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
 
             <a
               href="https://github.com"
@@ -100,11 +139,7 @@ export default function Home() {
             const Icon = mode.icon;
             const CardComponent = (
               <Card
-                className={`transition-all hover:shadow-lg ${
-                  mode.disabled
-                    ? "opacity-50 cursor-not-allowed"
-                    : "cursor-pointer hover:scale-105"
-                }`}
+                className={`transition-all hover:shadow-lg cursor-pointer hover:scale-105`}
               >
                 <CardHeader>
                   <div className="flex items-center gap-3 mb-2">
@@ -114,20 +149,10 @@ export default function Home() {
                   <CardDescription>{mode.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Button
-                    className="w-full"
-                    disabled={mode.disabled}
-                    variant={mode.disabled ? "outline" : "default"}
-                  >
-                    {mode.disabled ? "开发中" : "开始学习"}
-                  </Button>
+                  <Button className="w-full">开始学习</Button>
                 </CardContent>
               </Card>
             );
-
-            if (mode.disabled) {
-              return <div key={mode.title}>{CardComponent}</div>;
-            }
 
             return (
               <Link key={mode.title} href={mode.href}>
