@@ -13,7 +13,7 @@ interface NavigationProps {
 }
 
 export function Navigation({
-  title = "日语学习工具",
+  title = "日語學習工具",
   customTitle,
   showBackButton = false,
   backPath = "/",
@@ -24,15 +24,15 @@ export function Navigation({
 
   const getPageTitle = () => {
     if (customTitle) return customTitle;
-    if (title !== "日语学习工具") return title;
+    if (title !== "日語學習工具") return title;
 
     if (location.pathname === "/kana") return "假名學習";
     if (location.pathname === "/words") return "單詞學習";
     if (location.pathname === "/phrases") return "句子學習";
-    if (location.pathname === "/study-plans") return "学习方案";
-    if (location.pathname === "/badges") return "成就勋章";
+    if (location.pathname === "/study-plans") return "學習方案";
+    if (location.pathname === "/badges") return "成就勳章";
     if (location.pathname.includes("/study-plans/") && location.pathname.includes("/learn")) {
-      return "方案学习";
+      return "方案學習";
     }
     return title;
   };

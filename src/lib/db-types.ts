@@ -49,9 +49,9 @@ export interface BadgeCondition {
 }
 
 export interface BadgeGuide {
-  text: string;      // 提示文本
-  action: string;    // 按钮文本
-  link: string;      // 跳转链接
+  text: string;      // Hint text
+  action: string;    // Button text
+  link: string;      // Navigation link
 }
 
 export interface BadgeDefinition {

@@ -29,8 +29,8 @@ interface LearnItem {
 }
 
 interface ProgressStats {
-  learned: number;  // 学习过的（有记录）
-  mastered: number; // 完全掌握的（熟练度 >= 要求）
+  learned: number;
+  mastered: number;
 }
 
 export default function PlanLearnPage() {
@@ -60,7 +60,7 @@ export default function PlanLearnPage() {
 
     const planData = await db.studyPlans.get(planId);
     if (!planData) {
-      toast.error("未找到学习方案");
+      toast.error("未找到學習方案");
       navigate("/study-plans");
       return;
     }
@@ -112,7 +112,6 @@ export default function PlanLearnPage() {
     setCurrentIndex(0);
     setShowAnswer(false);
 
-    // Calculate progress stats
     await updateProgressStats(stage, learnItems);
   };
 
@@ -137,10 +136,8 @@ export default function PlanLearnPage() {
     const currentItem = items[currentIndex];
     await ProgressService.recordPractice(currentStage.type, currentItem.id, correct);
 
-    // Track learned count for check-in
     learnedCountRef.current += 1;
 
-    // Trigger check-in every 5 items learned
     if (learnedCountRef.current >= 5) {
       await checkIn({
         kanaCount: currentStage.type === "kana" ? learnedCountRef.current : 0,
@@ -151,19 +148,15 @@ export default function PlanLearnPage() {
       learnedCountRef.current = 0;
     }
 
-    // Update progress stats
     await updateProgressStats(currentStage, items);
 
-    // Move to next
     if (currentIndex < items.length - 1) {
       setCurrentIndex(currentIndex + 1);
       setShowAnswer(false);
     } else {
-      // Check if stage completed (all items learned at least once)
       if (progressStats.learned + 1 >= items.length && plan) {
         await ProgressService.updatePlanProgress(plan.id, plan.currentStage, true);
         
-        // Check-in when completing a stage
         await checkIn({
           kanaCount: currentStage.type === "kana" ? items.length : 0,
           wordCount: currentStage.type === "word" ? items.length : 0,
@@ -171,10 +164,10 @@ export default function PlanLearnPage() {
           totalTime: 0,
         });
         
-        toast.success(`🎉 阶段「${currentStage.name}」已完成！`);
-        await loadPlan(); // Reload to get next stage
+        toast.success(`🎉 階段「${currentStage.name}」已完成！`);
+        await loadPlan();
       } else {
-        toast.info("已完成一轮，继续练习以提高熟练度");
+        toast.info("已完成一輪，繼續練習以提高熟練度");
         setCurrentIndex(0);
         setShowAnswer(false);
       }
@@ -207,7 +200,7 @@ export default function PlanLearnPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-pulse text-muted-foreground">加载中...</div>
+        <div className="animate-pulse text-muted-foreground">載入中...</div>
       </div>
     );
   }
@@ -219,7 +212,7 @@ export default function PlanLearnPage() {
         <main className="flex-1 container mx-auto px-4 py-8 text-center">
           <p className="text-muted-foreground">方案已完成或不存在</p>
           <Button className="mt-4" onClick={() => navigate("/study-plans")}>
-            返回学习方案
+            返回學習方案
           </Button>
         </main>
         <Footer />
@@ -247,7 +240,7 @@ export default function PlanLearnPage() {
         <div className="mb-6">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-muted-foreground">
-              方案进度：阶段 {plan.currentStage + 1} / {plan.stages.length}
+              方案進度：階段 {plan.currentStage + 1} / {plan.stages.length}
             </span>
             <span className="text-sm font-medium">{overallProgress}%</span>
           </div>
@@ -267,7 +260,7 @@ export default function PlanLearnPage() {
           <CardContent>
             <div className="flex items-center justify-between text-sm mb-2">
               <span>
-                已学习：{progressStats.learned} / {items.length}
+                已學習：{progressStats.learned} / {items.length}
               </span>
               <span className="text-muted-foreground">
                 已掌握：{progressStats.mastered}
@@ -317,7 +310,7 @@ export default function PlanLearnPage() {
                     onClick={() => setShowAnswer(true)}
                     className="mt-4"
                   >
-                    显示答案
+                    顯示答案
                   </Button>
                 )}
               </div>
@@ -334,7 +327,7 @@ export default function PlanLearnPage() {
               onClick={() => handleAnswer(false)}
             >
               <RotateCcw className="h-4 w-4 mr-2" />
-              还不会
+              還不會
             </Button>
             <Button
               className="flex-1 bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
@@ -354,14 +347,14 @@ export default function PlanLearnPage() {
             disabled={currentIndex === 0}
           >
             <ChevronLeft className="h-4 w-4 mr-1" />
-            上一个
+            上一個
           </Button>
           <Button
             variant="ghost"
             onClick={handleNext}
             disabled={currentIndex === items.length - 1}
           >
-            下一个
+            下一個
             <ChevronRight className="h-4 w-4 ml-1" />
           </Button>
         </div>
@@ -377,4 +370,3 @@ export default function PlanLearnPage() {
     </div>
   );
 }
-

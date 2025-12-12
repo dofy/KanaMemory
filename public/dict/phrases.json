@@ -27,49 +27,49 @@
     {
       "japanese": "有難うございます",
       "romaji": "arigatou gozaimasu",
-      "chinese": "非常感谢",
+      "chinese": "非常感謝",
       "hiragana": "ありがとうございます"
     },
     {
       "japanese": "どういたしまして",
       "romaji": "douitashimashite",
-      "chinese": "不客气",
+      "chinese": "不客氣",
       "hiragana": "どういたしまして"
     },
     {
       "japanese": "すみません",
       "romaji": "sumimasen",
-      "chinese": "对不起 / 打扰了",
+      "chinese": "對不起 / 打擾了",
       "hiragana": "すみません"
     },
     {
       "japanese": "御免なさい",
       "romaji": "gomennasai",
-      "chinese": "对不起",
+      "chinese": "對不起",
       "hiragana": "ごめんなさい"
     },
     {
       "japanese": "失礼します",
       "romaji": "shitsurei shimasu",
-      "chinese": "打扰了 / 告辞",
+      "chinese": "打擾了 / 告辭",
       "hiragana": "しつれいします"
     },
     {
       "japanese": "初めまして",
       "romaji": "hajimemashite",
-      "chinese": "初次见面",
+      "chinese": "初次見面",
       "hiragana": "はじめまして"
     },
     {
       "japanese": "よろしくお願いします",
       "romaji": "yoroshiku onegai shimasu",
-      "chinese": "请多关照",
+      "chinese": "請多關照",
       "hiragana": "よろしくおねがいします"
     },
     {
       "japanese": "お元気ですか",
       "romaji": "ogenki desu ka",
-      "chinese": "你好吗？",
+      "chinese": "你好嗎？",
       "hiragana": "おげんきですか"
     },
     {
@@ -81,13 +81,13 @@
     {
       "japanese": "お久しぶりです",
       "romaji": "ohisashiburi desu",
-      "chinese": "好久不见",
+      "chinese": "好久不見",
       "hiragana": "おひさしぶりです"
     },
     {
       "japanese": "また会いましょう",
       "romaji": "mata aimashou",
-      "chinese": "再见面吧",
+      "chinese": "再見面吧",
       "hiragana": "またあいましょう"
     },
     {
@@ -105,25 +105,25 @@
     {
       "japanese": "ただいま",
       "romaji": "tadaima",
-      "chinese": "我回来了",
+      "chinese": "我回來了",
       "hiragana": "ただいま"
     },
     {
       "japanese": "お帰りなさい",
       "romaji": "okaerinasai",
-      "chinese": "欢迎回来",
+      "chinese": "歡迎回來",
       "hiragana": "おかえりなさい"
     },
     {
       "japanese": "いただきます",
       "romaji": "itadakimasu",
-      "chinese": "我开动了",
+      "chinese": "我開動了",
       "hiragana": "いただきます"
     },
     {
       "japanese": "御馳走様でした",
       "romaji": "gochisousama deshita",
-      "chinese": "多谢款待",
+      "chinese": "多謝款待",
       "hiragana": "ごちそうさまでした"
     },
     {
@@ -147,13 +147,13 @@
     {
       "japanese": "お気をつけて",
       "romaji": "oki wo tsukete",
-      "chinese": "请小心",
+      "chinese": "請小心",
       "hiragana": "おきをつけて"
     },
     {
       "japanese": "お願いします",
       "romaji": "onegai shimasu",
-      "chinese": "拜托了 / 请",
+      "chinese": "拜託了 / 請",
       "hiragana": "おねがいします"
     },
     {
@@ -171,13 +171,13 @@
     {
       "japanese": "大丈夫です",
       "romaji": "daijoubu desu",
-      "chinese": "没关系 / 没问题",
+      "chinese": "沒關係 / 沒問題",
       "hiragana": "だいじょうぶです"
     },
     {
       "japanese": "構いません",
       "romaji": "kamaimasen",
-      "chinese": "不要紧",
+      "chinese": "不要緊",
       "hiragana": "かまいません"
     },
     {
@@ -195,25 +195,25 @@
     {
       "japanese": "結構です",
       "romaji": "kekkou desu",
-      "chinese": "足够了 / 不用了",
+      "chinese": "足夠了 / 不用了",
       "hiragana": "けっこうです"
     },
     {
       "japanese": "少々お待ち下さい",
       "romaji": "shoushou omachi kudasai",
-      "chinese": "请稍等",
+      "chinese": "請稍等",
       "hiragana": "しょうしょうおまちください"
     },
     {
       "japanese": "仕方がないです",
       "romaji": "shikata ga nai desu",
-      "chinese": "没办法",
+      "chinese": "沒辦法",
       "hiragana": "しかたがないです"
     },
     {
       "japanese": "本当ですか",
       "romaji": "hontou desu ka",
-      "chinese": "真的吗？",
+      "chinese": "真的嗎？",
       "hiragana": "ほんとうですか"
     },
     {
@@ -225,13 +225,13 @@
     {
       "japanese": "違います",
       "romaji": "chigaimasu",
-      "chinese": "不对 / 不是",
+      "chinese": "不對 / 不是",
       "hiragana": "ちがいます"
     },
     {
       "japanese": "どうぞ",
       "romaji": "douzo",
-      "chinese": "请",
+      "chinese": "請",
       "hiragana": "どうぞ"
     },
     {
@@ -245,25 +245,25 @@
     {
       "japanese": "これは何ですか",
       "romaji": "kore wa nan desu ka",
-      "chinese": "这是什么？",
+      "chinese": "這是什麼？",
       "hiragana": "これはなんですか"
     },
     {
       "japanese": "それは何ですか",
       "romaji": "sore wa nan desu ka",
-      "chinese": "那是什么？",
+      "chinese": "那是什麼？",
       "hiragana": "それはなんですか"
     },
     {
       "japanese": "幾らですか",
       "romaji": "ikura desu ka",
-      "chinese": "多少钱？",
+      "chinese": "多少錢？",
       "hiragana": "いくらですか"
     },
     {
       "japanese": "高いです",
       "romaji": "takai desu",
-      "chinese": "太贵了",
+      "chinese": "太貴了",
       "hiragana": "たかいです"
     },
     {
@@ -275,133 +275,133 @@
     {
       "japanese": "何処ですか",
       "romaji": "doko desu ka",
-      "chinese": "在哪里？",
+      "chinese": "在哪裡？",
       "hiragana": "どこですか"
     },
     {
       "japanese": "誰ですか",
       "romaji": "dare desu ka",
-      "chinese": "谁？",
+      "chinese": "誰？",
       "hiragana": "だれですか"
     },
     {
       "japanese": "何時ですか",
       "romaji": "nanji desu ka",
-      "chinese": "几点？",
+      "chinese": "幾點？",
       "hiragana": "なんじですか"
     },
     {
       "japanese": "今何時ですか",
       "romaji": "ima nanji desu ka",
-      "chinese": "现在几点？",
+      "chinese": "現在幾點？",
       "hiragana": "いまなんじですか"
     },
     {
       "japanese": "いつですか",
       "romaji": "itsu desu ka",
-      "chinese": "什么时候？",
+      "chinese": "什麼時候？",
       "hiragana": "いつですか"
     },
     {
       "japanese": "どうしてですか",
       "romaji": "doushite desu ka",
-      "chinese": "为什么？",
+      "chinese": "為什麼？",
       "hiragana": "どうしてですか"
     },
     {
       "japanese": "どうやって行きますか",
       "romaji": "douyatte ikimasu ka",
-      "chinese": "怎么去？",
+      "chinese": "怎麼去？",
       "hiragana": "どうやっていきますか"
     },
     {
       "japanese": "電話番号は何番ですか",
       "romaji": "denwa bangou wa nanban desu ka",
-      "chinese": "电话号码是多少？",
+      "chinese": "電話號碼是多少？",
       "hiragana": "でんわばんごうはなんばんですか"
     },
     {
       "japanese": "名前は何ですか",
       "romaji": "namae wa nan desu ka",
-      "chinese": "名字是什么？",
+      "chinese": "名字是什麼？",
       "hiragana": "なまえはなんですか"
     },
     {
       "japanese": "お名前を教えて下さい",
       "romaji": "onamae wo oshiete kudasai",
-      "chinese": "请告诉我你的名字",
+      "chinese": "請告訴我你的名字",
       "hiragana": "おなまえをおしえてください"
     },
     {
       "japanese": "住所はどこですか",
       "romaji": "juusho wa doko desu ka",
-      "chinese": "地址在哪里？",
+      "chinese": "地址在哪裡？",
       "hiragana": "じゅうしょはどこですか"
     },
     {
       "japanese": "日本語が話せますか",
       "romaji": "nihongo ga hanasemasu ka",
-      "chinese": "会说日语吗？",
+      "chinese": "會說日語嗎？",
       "hiragana": "にほんごがはなせますか"
     },
     {
       "japanese": "英語が話せますか",
       "romaji": "eigo ga hanasemasu ka",
-      "chinese": "会说英语吗？",
+      "chinese": "會說英語嗎？",
       "hiragana": "えいごがはなせますか"
     },
     {
       "japanese": "中国語が話せます",
       "romaji": "chuugokugo ga hanasemasu",
-      "chinese": "我会说中文",
+      "chinese": "我會說中文",
       "hiragana": "ちゅうごくごがはなせます"
     },
     {
       "japanese": "ゆっくり話して下さい",
       "romaji": "yukkuri hanashite kudasai",
-      "chinese": "请说慢一点",
+      "chinese": "請說慢一點",
       "hiragana": "ゆっくりはなしてください"
     },
     {
       "japanese": "もう一度言って下さい",
       "romaji": "mou ichido itte kudasai",
-      "chinese": "请再说一遍",
+      "chinese": "請再說一遍",
       "hiragana": "もういちどいってください"
     },
     {
       "japanese": "書いて下さい",
       "romaji": "kaite kudasai",
-      "chinese": "请写下来",
+      "chinese": "請寫下來",
       "hiragana": "かいてください"
     },
     {
       "japanese": "これを下さい",
       "romaji": "kore wo kudasai",
-      "chinese": "请给我这个",
+      "chinese": "請給我這個",
       "hiragana": "これをください"
     },
     {
       "japanese": "見せて下さい",
       "romaji": "misete kudasai",
-      "chinese": "请给我看看",
+      "chinese": "請給我看看",
       "hiragana": "みせてください"
     },
     {
       "japanese": "写真を撮ってもいいですか",
       "romaji": "shashin wo tottemo ii desu ka",
-      "chinese": "可以拍照吗？",
+      "chinese": "可以拍照嗎？",
       "hiragana": "しゃしんをとってもいいですか"
     },
     {
       "japanese": "手伝って下さい",
       "romaji": "tetsudatte kudasai",
-      "chinese": "请帮帮我",
+      "chinese": "請幫幫我",
       "hiragana": "てつだってください"
     },
     {
       "japanese": "急いでいます",
       "romaji": "isoideimasu",
-      "chinese": "我赶时间",
+      "chinese": "我趕時間",
       "hiragana": "いそいでいます"
     },
     {
@@ -425,7 +425,7 @@
     {
       "japanese": "暑いです",
       "romaji": "atsui desu",
-      "chinese": "很热",
+      "chinese": "很熱",
       "hiragana": "あついです"
     },
     {
@@ -437,7 +437,7 @@
     {
       "japanese": "良い天気ですね",
       "romaji": "ii tenki desu ne",
-      "chinese": "天气真好啊",
+      "chinese": "天氣真好啊",
       "hiragana": "いいてんきですね"
     },
     {
@@ -467,19 +467,19 @@
     {
       "japanese": "楽しいです",
       "romaji": "tanoshii desu",
-      "chinese": "开心 / 快乐",
+      "chinese": "開心 / 快樂",
       "hiragana": "たのしいです"
     },
     {
       "japanese": "嬉しいです",
       "romaji": "ureshii desu",
-      "chinese": "高兴",
+      "chinese": "高興",
       "hiragana": "うれしいです"
     },
     {
       "japanese": "悲しいです",
       "romaji": "kanashii desu",
-      "chinese": "悲伤",
+      "chinese": "悲傷",
       "hiragana": "かなしいです"
     },
     {
@@ -497,7 +497,7 @@
     {
       "japanese": "お腹が空きました",
       "romaji": "onaka ga sukimashita",
-      "chinese": "我饿了",
+      "chinese": "我餓了",
       "hiragana": "おなかがすきました"
     },
     {
@@ -515,19 +515,19 @@
     {
       "japanese": "気分が悪いです",
       "romaji": "kibun ga warui desu",
-      "chinese": "感觉不舒服",
+      "chinese": "感覺不舒服",
       "hiragana": "きぶんがわるいです"
     },
     {
       "japanese": "頭が痛いです",
       "romaji": "atama ga itai desu",
-      "chinese": "头疼",
+      "chinese": "頭疼",
       "hiragana": "あたまがいたいです"
     },
     {
       "japanese": "熱があります",
       "romaji": "netsu ga arimasu",
-      "chinese": "发烧了",
+      "chinese": "發燒了",
       "hiragana": "ねつがあります"
     },
     {
@@ -539,43 +539,43 @@
     {
       "japanese": "病院はどこですか",
       "romaji": "byouin wa doko desu ka",
-      "chinese": "医院在哪里？",
+      "chinese": "醫院在哪裡？",
       "hiragana": "びょういんはどこですか"
     },
     {
       "japanese": "薬が欲しいです",
       "romaji": "kusuri ga hoshii desu",
-      "chinese": "我想要药",
+      "chinese": "我想要藥",
       "hiragana": "くすりがほしいです"
     },
     {
       "japanese": "水を下さい",
       "romaji": "mizu wo kudasai",
-      "chinese": "请给我水",
+      "chinese": "請給我水",
       "hiragana": "みずをください"
     },
     {
       "japanese": "トイレはどこですか",
       "romaji": "toire wa doko desu ka",
-      "chinese": "厕所在哪里？",
+      "chinese": "廁所在哪裡？",
       "hiragana": "トイレはどこですか"
     },
     {
       "japanese": "Wi-Fi はありますか",
       "romaji": "waifai wa arimasu ka",
-      "chinese": "有 WiFi 吗？",
+      "chinese": "有 WiFi 嗎？",
       "hiragana": "Wi-Fi はありますか"
     },
     {
       "japanese": "充電器はありますか",
       "romaji": "juudenki wa arimasu ka",
-      "chinese": "有充电器吗？",
+      "chinese": "有充電器嗎？",
       "hiragana": "じゅうでんきはありますか"
     },
     {
       "japanese": "地図を見せて下さい",
       "romaji": "chizu wo misete kudasai",
-      "chinese": "请给我看地图",
+      "chinese": "請給我看地圖",
       "hiragana": "ちずをみせてください"
     },
     {
@@ -587,73 +587,73 @@
     {
       "japanese": "携帯電話を失くしました",
       "romaji": "keitai denwa wo nakushimashita",
-      "chinese": "我手机丢了",
+      "chinese": "我手機丟了",
       "hiragana": "けいたいでんわをなくしました"
     },
     {
       "japanese": "警察を呼んで下さい",
       "romaji": "keisatsu wo yonde kudasai",
-      "chinese": "请叫警察",
+      "chinese": "請叫警察",
       "hiragana": "けいさつをよんでください"
     },
     {
       "japanese": "大使館はどこですか",
       "romaji": "taishikan wa doko desu ka",
-      "chinese": "大使馆在哪里？",
+      "chinese": "大使館在哪裡？",
       "hiragana": "たいしかんはどこですか"
     },
     {
       "japanese": "日本語が分かりません",
       "romaji": "nihongo ga wakarimasen",
-      "chinese": "我不懂日语",
+      "chinese": "我不懂日語",
       "hiragana": "にほんごがわかりません"
     },
     {
       "japanese": "英語のメニューはありますか",
       "romaji": "eigo no menyuu wa arimasu ka",
-      "chinese": "有英文菜单吗？",
+      "chinese": "有英文選單嗎？",
       "hiragana": "えいごのメニューはありますか"
     },
     {
       "japanese": "領収書を下さい",
       "romaji": "ryoushuusho wo kudasai",
-      "chinese": "请给我收据",
+      "chinese": "請給我收據",
       "hiragana": "りょうしゅうしょをください"
     },
     {
       "japanese": "クレジットカードは使えますか",
       "romaji": "kurejitto kaado wa tsukaemasu ka",
-      "chinese": "能用信用卡吗？",
+      "chinese": "能用信用卡嗎？",
       "hiragana": "クレジットカードはつかえますか"
     },
     {
       "japanese": "現金だけですか",
       "romaji": "genkin dake desu ka",
-      "chinese": "只能用现金吗？",
+      "chinese": "只能用現金嗎？",
       "hiragana": "げんきんだけですか"
     },
     {
       "japanese": "ATM はどこですか",
       "romaji": "eetiiemu wa doko desu ka",
-      "chinese": "ATM 在哪里？",
+      "chinese": "ATM 在哪裡？",
       "hiragana": "ATM はどこですか"
     },
     {
       "japanese": "両替できますか",
       "romaji": "ryougae dekimasu ka",
-      "chinese": "可以换钱吗？",
+      "chinese": "可以換錢嗎？",
       "hiragana": "りょうがえできますか"
     },
     {
       "japanese": "日本円に両替して下さい",
       "romaji": "nihon en ni ryougae shite kudasai",
-      "chinese": "请换成日元",
+      "chinese": "請換成日元",
       "hiragana": "にほんえんにりょうがえしてください"
     },
     {
       "japanese": "予約したいです",
       "romaji": "yoyaku shitai desu",
-      "chinese": "我想预约",
+      "chinese": "我想預約",
       "hiragana": "よやくしたいです"
     },
     {
@@ -665,7 +665,7 @@
     {
       "japanese": "確認したいです",
       "romaji": "kakunin shitai desu",
-      "chinese": "我想确认",
+      "chinese": "我想確認",
       "hiragana": "かくにんしたいです"
     },
     {
@@ -683,25 +683,25 @@
     {
       "japanese": "袋を下さい",
       "romaji": "fukuro wo kudasai",
-      "chinese": "请给我袋子",
+      "chinese": "請給我袋子",
       "hiragana": "ふくろをください"
     },
     {
       "japanese": "包んで下さい",
       "romaji": "tsutsunde kudasai",
-      "chinese": "请包起来",
+      "chinese": "請包起來",
       "hiragana": "つつんでください"
     },
     {
       "japanese": "割引はありますか",
       "romaji": "waribiki wa arimasu ka",
-      "chinese": "有折扣吗？",
+      "chinese": "有折扣嗎？",
       "hiragana": "わりびきはありますか"
     },
     {
       "japanese": "試着できますか",
       "romaji": "shichaku dekimasu ka",
-      "chinese": "可以试穿吗？",
+      "chinese": "可以試穿嗎？",
       "hiragana": "しちゃくできますか"
     }
   ],
@@ -709,79 +709,79 @@
     {
       "japanese": "駅はどこですか",
       "romaji": "eki wa doko desu ka",
-      "chinese": "车站在哪里？",
+      "chinese": "車站在哪裡？",
       "hiragana": "えきはどこですか"
     },
     {
       "japanese": "空港へ行きたいです",
       "romaji": "kuukou e ikitai desu",
-      "chinese": "我想去机场",
+      "chinese": "我想去機場",
       "hiragana": "くうこうへいきたいです"
     },
     {
       "japanese": "タクシーを呼んで下さい",
       "romaji": "takushii wo yonde kudasai",
-      "chinese": "请叫出租车",
+      "chinese": "請叫計程車",
       "hiragana": "タクシーをよんでください"
     },
     {
       "japanese": "地下鉄の駅はどこですか",
       "romaji": "chikatetsu no eki wa doko desu ka",
-      "chinese": "地铁站在哪里？",
+      "chinese": "地鐵站在哪裡？",
       "hiragana": "ちかてつのえきはどこですか"
     },
     {
       "japanese": "バス停はどこですか",
       "romaji": "basutei wa doko desu ka",
-      "chinese": "公交站在哪里？",
+      "chinese": "公交站在哪裡？",
       "hiragana": "バスていはどこですか"
     },
     {
       "japanese": "切符はどこで買いますか",
       "romaji": "kippu wa doko de kaimasu ka",
-      "chinese": "在哪里买票？",
+      "chinese": "在哪裡買票？",
       "hiragana": "きっぷはどこでかいますか"
     },
     {
       "japanese": "一枚下さい",
       "romaji": "ichimai kudasai",
-      "chinese": "请给我一张",
+      "chinese": "請給我一張",
       "hiragana": "いちまいください"
     },
     {
       "japanese": "東京駅まで幾らですか",
       "romaji": "toukyou eki made ikura desu ka",
-      "chinese": "到东京站多少钱？",
+      "chinese": "到東京站多少錢？",
       "hiragana": "とうきょうえきまでいくらですか"
     },
     {
       "japanese": "この電車は新宿へ行きますか",
       "romaji": "kono densha wa shinjuku e ikimasu ka",
-      "chinese": "这趟电车去新宿吗？",
+      "chinese": "這趟電車去新宿嗎？",
       "hiragana": "このでんしゃはしんじゅくへいきますか"
     },
     {
       "japanese": "何番線ですか",
       "romaji": "nanban sen desu ka",
-      "chinese": "几号线？",
+      "chinese": "幾號線？",
       "hiragana": "なんばんせんですか"
     },
     {
       "japanese": "次の駅は何ですか",
       "romaji": "tsugi no eki wa nan desu ka",
-      "chinese": "下一站是什么？",
+      "chinese": "下一站是什麼？",
       "hiragana": "つぎのえきはなんですか"
     },
     {
       "japanese": "ここで降ります",
       "romaji": "koko de orimasu",
-      "chinese": "我在这里下车",
+      "chinese": "我在這裡下車",
       "hiragana": "ここでおります"
     },
     {
       "japanese": "乗り換えはどこですか",
       "romaji": "norikae wa doko desu ka",
-      "chinese": "在哪里换乘？",
+      "chinese": "在哪裡換乘？",
       "hiragana": "のりかえはどこですか"
     },
     {
@@ -793,31 +793,31 @@
     {
       "japanese": "予約していません",
       "romaji": "yoyaku shiteimasen",
-      "chinese": "我没有预约",
+      "chinese": "我沒有預約",
       "hiragana": "よやくしていません"
     },
     {
       "japanese": "空いている部屋はありますか",
       "romaji": "aiteiru heya wa arimasu ka",
-      "chinese": "有空房吗？",
+      "chinese": "有空房嗎？",
       "hiragana": "あいているへやはありますか"
     },
     {
       "japanese": "一泊幾らですか",
       "romaji": "ippaku ikura desu ka",
-      "chinese": "住一晚多少钱？",
+      "chinese": "住一晚多少錢？",
       "hiragana": "いっぱくいくらですか"
     },
     {
       "japanese": "二泊したいです",
       "romaji": "nihaku shitai desu",
-      "chinese": "我想住两晚",
+      "chinese": "我想住兩晚",
       "hiragana": "にはくしたいです"
     },
     {
       "japanese": "チェックインをお願いします",
       "romaji": "chekkuin wo onegai shimasu",
-      "chinese": "我要办理入住",
+      "chinese": "我要辦理入住",
       "hiragana": "チェックインをおねがいします"
     },
     {
@@ -829,43 +829,43 @@
     {
       "japanese": "鍵を下さい",
       "romaji": "kagi wo kudasai",
-      "chinese": "请给我钥匙",
+      "chinese": "請給我鑰匙",
       "hiragana": "かぎをください"
     },
     {
       "japanese": "部屋を掃除して下さい",
       "romaji": "heya wo souji shite kudasai",
-      "chinese": "请打扫房间",
+      "chinese": "請打掃房間",
       "hiragana": "へやをそうじしてください"
     },
     {
       "japanese": "タオルを下さい",
       "romaji": "taoru wo kudasai",
-      "chinese": "请给我毛巾",
+      "chinese": "請給我毛巾",
       "hiragana": "タオルをください"
     },
     {
       "japanese": "朝食は何時からですか",
       "romaji": "choushoku wa nanji kara desu ka",
-      "chinese": "早餐几点开始？",
+      "chinese": "早餐幾點開始？",
       "hiragana": "ちょうしょくはなんじからですか"
     },
     {
       "japanese": "観光地を教えて下さい",
       "romaji": "kankouchi wo oshiete kudasai",
-      "chinese": "请告诉我观光地",
+      "chinese": "請告訴我觀光地",
       "hiragana": "かんこうちをおしえてください"
     },
     {
       "japanese": "入場料は幾らですか",
       "romaji": "nyuujouryou wa ikura desu ka",
-      "chinese": "门票多少钱？",
+      "chinese": "門票多少錢？",
       "hiragana": "にゅうじょうりょうはいくらですか"
     },
     {
       "japanese": "写真を撮って下さい",
       "romaji": "shashin wo totte kudasai",
-      "chinese": "请帮我拍照",
+      "chinese": "請幫我拍照",
       "hiragana": "しゃしんをとってください"
     },
     {
@@ -877,37 +877,37 @@
     {
       "japanese": "お土産はどこで買えますか",
       "romaji": "omiyage wa doko de kaemasu ka",
-      "chinese": "在哪里买纪念品？",
+      "chinese": "在哪裡買紀念品？",
       "hiragana": "おみやげはどこでかえますか"
     },
     {
       "japanese": "これは免税ですか",
       "romaji": "kore wa menzei desu ka",
-      "chinese": "这个免税吗？",
+      "chinese": "這個免稅嗎？",
       "hiragana": "これはめんぜいですか"
     },
     {
       "japanese": "パスポートを見せて下さい",
       "romaji": "pasupooto wo misete kudasai",
-      "chinese": "请出示护照",
+      "chinese": "請出示護照",
       "hiragana": "パスポートをみせてください"
     },
     {
       "japanese": "ビザが必要ですか",
       "romaji": "biza ga hitsuyou desu ka",
-      "chinese": "需要签证吗？",
+      "chinese": "需要簽證嗎？",
       "hiragana": "ビザがひつようですか"
     },
     {
       "japanese": "滞在期間は何日ですか",
       "romaji": "taizai kikan wa nannichi desu ka",
-      "chinese": "停留几天？",
+      "chinese": "停留幾天？",
       "hiragana": "たいざいきかんはなんにちですか"
     },
     {
       "japanese": "観光です",
       "romaji": "kankou desu",
-      "chinese": "旅游",
+      "chinese": "旅遊",
       "hiragana": "かんこうです"
     },
     {
@@ -925,25 +925,25 @@
     {
       "japanese": "荷物が届きません",
       "romaji": "nimotsu ga todokimasen",
-      "chinese": "行李没到",
+      "chinese": "行李沒到",
       "hiragana": "にもつがとどきません"
     },
     {
       "japanese": "遅延していますか",
       "romaji": "chien shiteimasu ka",
-      "chinese": "延误了吗？",
+      "chinese": "延誤了嗎？",
       "hiragana": "ちえんしていますか"
     },
     {
       "japanese": "搭乗券を見せて下さい",
       "romaji": "toujourken wo misete kudasai",
-      "chinese": "请出示登机牌",
+      "chinese": "請出示登機牌",
       "hiragana": "とうじょうけんをみせてください"
     },
     {
       "japanese": "窓側の席をお願いします",
       "romaji": "madogawa no seki wo onegai shimasu",
-      "chinese": "请给我靠窗座位",
+      "chinese": "請給我靠窗座位",
       "hiragana": "まどがわのせきをおねがいします"
     }
   ],
@@ -951,187 +951,187 @@
     {
       "japanese": "お腹が空きました",
       "romaji": "onaka ga sukimashita",
-      "chinese": "我饿了",
+      "chinese": "我餓了",
       "hiragana": "おなかがすきました"
     },
     {
       "japanese": "レストランを探しています",
       "romaji": "resutoran wo sagashiteimasu",
-      "chinese": "我在找餐厅",
+      "chinese": "我在找餐廳",
       "hiragana": "レストランをさがしています"
     },
     {
       "japanese": "予約していますか",
       "romaji": "yoyaku shiteimasu ka",
-      "chinese": "有预约吗？",
+      "chinese": "有預約嗎？",
       "hiragana": "よやくしていますか"
     },
     {
       "japanese": "二人です",
       "romaji": "futari desu",
-      "chinese": "两个人",
+      "chinese": "兩個人",
       "hiragana": "ふたりです"
     },
     {
       "japanese": "禁煙席をお願いします",
       "romaji": "kinen seki wo onegai shimasu",
-      "chinese": "请给我无烟区",
+      "chinese": "請給我無煙區",
       "hiragana": "きんえんせきをおねがいします"
     },
     {
       "japanese": "メニューを下さい",
       "romaji": "menyuu wo kudasai",
-      "chinese": "请给我菜单",
+      "chinese": "請給我選單",
       "hiragana": "メニューをください"
     },
     {
       "japanese": "お勧めは何ですか",
       "romaji": "osusume wa nan desu ka",
-      "chinese": "推荐什么？",
+      "chinese": "推薦什麼？",
       "hiragana": "おすすめはなんですか"
     },
     {
       "japanese": "これは何ですか",
       "romaji": "kore wa nan desu ka",
-      "chinese": "这是什么？",
+      "chinese": "這是什麼？",
       "hiragana": "これはなんですか"
     },
     {
       "japanese": "辛いですか",
       "romaji": "karai desu ka",
-      "chinese": "辣吗？",
+      "chinese": "辣嗎？",
       "hiragana": "からいですか"
     },
     {
       "japanese": "辛くないのをお願いします",
       "romaji": "karakunai no wo onegai shimasu",
-      "chinese": "请给我不辣的",
+      "chinese": "請給我不辣的",
       "hiragana": "からくないのをおねがいします"
     },
     {
       "japanese": "ベジタリアンメニューはありますか",
       "romaji": "bejitarian menyuu wa arimasu ka",
-      "chinese": "有素食菜单吗？",
+      "chinese": "有素食選單嗎？",
       "hiragana": "ベジタリアンメニューはありますか"
     },
     {
       "japanese": "アレルギーがあります",
       "romaji": "arerugii ga arimasu",
-      "chinese": "我有过敏",
+      "chinese": "我有過敏",
       "hiragana": "アレルギーがあります"
     },
     {
       "japanese": "これを下さい",
       "romaji": "kore wo kudasai",
-      "chinese": "请给我这个",
+      "chinese": "請給我這個",
       "hiragana": "これをください"
     },
     {
       "japanese": "同じものを下さい",
       "romaji": "onaji mono wo kudasai",
-      "chinese": "请给我同样的",
+      "chinese": "請給我同樣的",
       "hiragana": "おなじものをください"
     },
     {
       "japanese": "注文したいです",
       "romaji": "chuumon shitai desu",
-      "chinese": "我想点餐",
+      "chinese": "我想點餐",
       "hiragana": "ちゅうもんしたいです"
     },
     {
       "japanese": "まだ決めていません",
       "romaji": "mada kimeteimasen",
-      "chinese": "还没决定",
+      "chinese": "還沒決定",
       "hiragana": "まだきめていません"
     },
     {
       "japanese": "少し待って下さい",
       "romaji": "sukoshi matte kudasai",
-      "chinese": "请稍等一下",
+      "chinese": "請稍等一下",
       "hiragana": "すこしまってください"
     },
     {
       "japanese": "これとこれを下さい",
       "romaji": "kore to kore wo kudasai",
-      "chinese": "请给我这个和这个",
+      "chinese": "請給我這個和這個",
       "hiragana": "これとこれをください"
     },
     {
       "japanese": "ご飯を大盛りにして下さい",
       "romaji": "gohan wo oomori ni shite kudasai",
-      "chinese": "请给我大碗饭",
+      "chinese": "請給我大碗飯",
       "hiragana": "ごはんをおおもりにしてください"
     },
     {
       "japanese": "お水を下さい",
       "romaji": "omizu wo kudasai",
-      "chinese": "请给我水",
+      "chinese": "請給我水",
       "hiragana": "おみずをください"
     },
     {
       "japanese": "お茶を下さい",
       "romaji": "ocha wo kudasai",
-      "chinese": "请给我茶",
+      "chinese": "請給我茶",
       "hiragana": "おちゃをください"
     },
     {
       "japanese": "ビールを下さい",
       "romaji": "biiru wo kudasai",
-      "chinese": "请给我啤酒",
+      "chinese": "請給我啤酒",
       "hiragana": "ビールをください"
     },
     {
       "japanese": "コーヒーを下さい",
       "romaji": "koohii wo kudasai",
-      "chinese": "请给我咖啡",
+      "chinese": "請給我咖啡",
       "hiragana": "コーヒーをください"
     },
     {
       "japanese": "温かいのを下さい",
       "romaji": "atatakai no wo kudasai",
-      "chinese": "请给我热的",
+      "chinese": "請給我熱的",
       "hiragana": "あたたかいのをください"
     },
     {
       "japanese": "冷たいのを下さい",
       "romaji": "tsumetai no wo kudasai",
-      "chinese": "请给我冷的",
+      "chinese": "請給我冷的",
       "hiragana": "つめたいのをください"
     },
     {
       "japanese": "お箸を下さい",
       "romaji": "ohashi wo kudasai",
-      "chinese": "请给我筷子",
+      "chinese": "請給我筷子",
       "hiragana": "おはしをください"
     },
     {
       "japanese": "スプーンを下さい",
       "romaji": "supuun wo kudasai",
-      "chinese": "请给我勺子",
+      "chinese": "請給我勺子",
       "hiragana": "スプーンをください"
     },
     {
       "japanese": "フォークを下さい",
       "romaji": "fooku wo kudasai",
-      "chinese": "请给我叉子",
+      "chinese": "請給我叉子",
       "hiragana": "フォークをください"
     },
     {
       "japanese": "ナイフを下さい",
       "romaji": "naifu wo kudasai",
-      "chinese": "请给我刀",
+      "chinese": "請給我刀",
       "hiragana": "ナイフをください"
     },
     {
       "japanese": "お皿を下さい",
       "romaji": "osara wo kudasai",
-      "chinese": "请给我盘子",
+      "chinese": "請給我盤子",
       "hiragana": "おさらをください"
     },
     {
       "japanese": "おしぼりを下さい",
       "romaji": "oshibori wo kudasai",
-      "chinese": "请给我湿巾",
+      "chinese": "請給我溼巾",
       "hiragana": "おしぼりをください"
     },
     {
@@ -1149,13 +1149,13 @@
     {
       "japanese": "お会計をお願いします",
       "romaji": "okaikei wo onegai shimasu",
-      "chinese": "请结账",
+      "chinese": "請結賬",
       "hiragana": "おかいけいをおねがいします"
     },
     {
       "japanese": "別々に払います",
       "romaji": "betsubetsu ni haraimasu",
-      "chinese": "分开付",
+      "chinese": "分開付",
       "hiragana": "べつべつにはらいます"
     },
     {
@@ -1167,13 +1167,13 @@
     {
       "japanese": "クーポンは使えますか",
       "romaji": "kuupon wa tsukaemasu ka",
-      "chinese": "可以用优惠券吗？",
+      "chinese": "可以用優惠券嗎？",
       "hiragana": "クーポンはつかえますか"
     },
     {
       "japanese": "お釣りが違います",
       "romaji": "otsuri ga chigaimasu",
-      "chinese": "找错钱了",
+      "chinese": "找錯錢了",
       "hiragana": "おつりがちがいます"
     },
     {
@@ -1185,7 +1185,7 @@
     {
       "japanese": "テイクアウトできますか",
       "romaji": "teikuauto dekimasu ka",
-      "chinese": "可以外带吗？",
+      "chinese": "可以外帶嗎？",
       "hiragana": "テイクアウトできますか"
     }
   ]

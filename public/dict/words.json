@@ -10,28 +10,28 @@
     "hiragana": "あい",
     "japanese": "愛",
     "romaji": "ai",
-    "chinese": "爱，爱情",
+    "chinese": "愛，愛情",
     "pitch": "①"
   },
   {
     "hiragana": "あいて",
     "japanese": "相手",
     "romaji": "aite",
-    "chinese": "对方",
+    "chinese": "對方",
     "pitch": "③"
   },
   {
     "hiragana": "あじあ",
     "japanese": "アジア",
     "romaji": "ajia",
-    "chinese": "亚洲",
+    "chinese": "亞洲",
     "pitch": "①"
   },
   {
     "hiragana": "あかい",
     "japanese": "赤い",
     "romaji": "akai",
-    "chinese": "红，红色",
+    "chinese": "紅，紅色",
     "pitch": "⓪"
   },
   {
@@ -66,7 +66,7 @@
     "hiragana": "あおい",
     "japanese": "青い",
     "romaji": "aoi",
-    "chinese": "蓝，蓝色",
+    "chinese": "藍，藍色",
     "pitch": "②"
   },
   {
@@ -94,7 +94,7 @@
     "hiragana": "あし",
     "japanese": "足",
     "romaji": "ashi",
-    "chinese": "脚",
+    "chinese": "腳",
     "pitch": "②"
   },
   {
@@ -115,21 +115,21 @@
     "hiragana": "あたま",
     "japanese": "頭",
     "romaji": "atama",
-    "chinese": "头",
+    "chinese": "頭",
     "pitch": "③"
   },
   {
     "hiragana": "あつい",
     "japanese": "暑い",
     "romaji": "atsui",
-    "chinese": "热",
+    "chinese": "熱",
     "pitch": "②"
   },
   {
     "hiragana": "あう",
     "japanese": "会う",
     "romaji": "au",
-    "chinese": "见面；碰见",
+    "chinese": "見面；碰見",
     "pitch": "①"
   },
   {
@@ -143,14 +143,14 @@
     "hiragana": "バス",
     "japanese": "バス",
     "romaji": "basu",
-    "chinese": "公交车",
+    "chinese": "公交車",
     "pitch": "①"
   },
   {
     "hiragana": "びざ",
     "japanese": "ビザ",
     "romaji": "biza",
-    "chinese": "签证",
+    "chinese": "簽證",
     "pitch": "①"
   },
   {
@@ -164,14 +164,14 @@
     "hiragana": "ぶん",
     "japanese": "分",
     "romaji": "bun",
-    "chinese": "分钟",
+    "chinese": "分鐘",
     "pitch": "①"
   },
   {
     "hiragana": "ぶた",
     "japanese": "豚",
     "romaji": "buta",
-    "chinese": "猪",
+    "chinese": "豬",
     "pitch": "②"
   },
   {
@@ -185,7 +185,7 @@
     "hiragana": "びょういん",
     "japanese": "病院",
     "romaji": "byouin",
-    "chinese": "医院",
+    "chinese": "醫院",
     "pitch": "⓪"
   },
   {
@@ -199,14 +199,14 @@
     "hiragana": "ちち",
     "japanese": "父",
     "romaji": "chichi",
-    "chinese": "父亲",
+    "chinese": "父親",
     "pitch": "②"
   },
   {
     "hiragana": "ちぢむ",
     "japanese": "縮む",
     "romaji": "chijimu",
-    "chinese": "缩小",
+    "chinese": "縮小",
     "pitch": "⓪"
   },
   {
@@ -220,7 +220,7 @@
     "hiragana": "ちかてつ",
     "japanese": "地下鉄",
     "romaji": "chikatetsu",
-    "chinese": "地铁",
+    "chinese": "地鐵",
     "pitch": "⓪"
   },
   {
@@ -234,49 +234,49 @@
     "hiragana": "できる",
     "japanese": "出来る",
     "romaji": "dekiru",
-    "chinese": "能，会",
+    "chinese": "能，會",
     "pitch": "②"
   },
   {
     "hiragana": "でんしゃ",
     "japanese": "電車",
     "romaji": "densha",
-    "chinese": "电车",
+    "chinese": "電車",
     "pitch": "①"
   },
   {
     "hiragana": "でんわ",
     "japanese": "電話",
     "romaji": "denwa",
-    "chinese": "电话",
+    "chinese": "電話",
     "pitch": "①"
   },
   {
     "hiragana": "ドア",
     "japanese": "ドア",
     "romaji": "doa",
-    "chinese": "门",
+    "chinese": "門",
     "pitch": "①"
   },
   {
     "hiragana": "どうぶつ",
     "japanese": "動物",
     "romaji": "doubutsu",
-    "chinese": "动物",
+    "chinese": "動物",
     "pitch": "①"
   },
   {
     "hiragana": "えあ",
     "japanese": "エア",
     "romaji": "ea",
-    "chinese": "空气",
+    "chinese": "空氣",
     "pitch": "①"
   },
   {
     "hiragana": "えき",
     "japanese": "駅",
     "romaji": "eki",
-    "chinese": "车站，地铁站",
+    "chinese": "車站，地鐵站",
     "pitch": "①"
   },
   {
@@ -290,35 +290,35 @@
     "hiragana": "ふたつ",
     "japanese": "二つ",
     "romaji": "futatsu",
-    "chinese": "两个",
+    "chinese": "兩個",
     "pitch": "③"
   },
   {
     "hiragana": "がいこくご",
     "japanese": "外国語",
     "romaji": "gaikokugo",
-    "chinese": "外语",
+    "chinese": "外語",
     "pitch": "⓪"
   },
   {
     "hiragana": "がっこう",
     "japanese": "学校",
     "romaji": "gakkou",
-    "chinese": "学校",
+    "chinese": "學校",
     "pitch": "⓪"
   },
   {
     "hiragana": "げき",
     "japanese": "劇",
     "romaji": "geki",
-    "chinese": "戏剧",
+    "chinese": "戲劇",
     "pitch": "①"
   },
   {
     "hiragana": "ぎんこう",
     "japanese": "銀行",
     "romaji": "ginkou",
-    "chinese": "银行",
+    "chinese": "銀行",
     "pitch": "⓪"
   },
   {
@@ -339,14 +339,14 @@
     "hiragana": "ごはん",
     "japanese": "ご飯",
     "romaji": "gohan",
-    "chinese": "米饭，饭",
+    "chinese": "米飯，飯",
     "pitch": "①"
   },
   {
     "hiragana": "ぐあい",
     "japanese": "具合",
     "romaji": "guai",
-    "chinese": "情况，状况",
+    "chinese": "情況，狀況",
     "pitch": "⓪"
   },
   {
@@ -360,7 +360,7 @@
     "hiragana": "は",
     "japanese": "歯",
     "romaji": "ha",
-    "chinese": "牙齿",
+    "chinese": "牙齒",
     "pitch": "②"
   },
   {
@@ -374,7 +374,7 @@
     "hiragana": "はは",
     "japanese": "母",
     "romaji": "haha",
-    "chinese": "妈妈，母亲",
+    "chinese": "媽媽，母親",
     "pitch": "①"
   },
   {
@@ -416,7 +416,7 @@
     "hiragana": "はし",
     "japanese": "橋",
     "romaji": "hashi",
-    "chinese": "桥",
+    "chinese": "橋",
     "pitch": "②"
   },
   {
@@ -430,7 +430,7 @@
     "hiragana": "へちま",
     "japanese": "へちま",
     "romaji": "hechima",
-    "chinese": "丝瓜",
+    "chinese": "絲瓜",
     "pitch": "⓪"
   },
   {
@@ -444,28 +444,28 @@
     "hiragana": "へや",
     "japanese": "部屋",
     "romaji": "heya",
-    "chinese": "房间",
+    "chinese": "房間",
     "pitch": "②"
   },
   {
     "hiragana": "ひ",
     "japanese": "日",
     "romaji": "hi",
-    "chinese": "日，太阳",
+    "chinese": "日，太陽",
     "pitch": "①"
   },
   {
     "hiragana": "ひげ",
     "japanese": "髭",
     "romaji": "hige",
-    "chinese": "胡须",
+    "chinese": "鬍鬚",
     "pitch": "⓪"
   },
   {
     "hiragana": "ひこうき",
     "japanese": "飛行機",
     "romaji": "hikouki",
-    "chinese": "飞机",
+    "chinese": "飛機",
     "pitch": "②"
   },
   {
@@ -479,21 +479,21 @@
     "hiragana": "ひとつ",
     "japanese": "一つ",
     "romaji": "hitotsu",
-    "chinese": "一个",
+    "chinese": "一個",
     "pitch": "②"
   },
   {
     "hiragana": "ひざ",
     "japanese": "膝",
     "romaji": "hiza",
-    "chinese": "膝盖",
+    "chinese": "膝蓋",
     "pitch": "⓪"
   },
   {
     "hiragana": "ほん",
     "japanese": "本",
     "romaji": "hon",
-    "chinese": "书",
+    "chinese": "書",
     "pitch": "①"
   },
   {
@@ -563,7 +563,7 @@
     "hiragana": "いま",
     "japanese": "今",
     "romaji": "ima",
-    "chinese": "现在",
+    "chinese": "現在",
     "pitch": "①"
   },
   {
@@ -577,7 +577,7 @@
     "hiragana": "いなか",
     "japanese": "田舎",
     "romaji": "inaka",
-    "chinese": "乡下",
+    "chinese": "鄉下",
     "pitch": "⓪"
   },
   {
@@ -598,21 +598,21 @@
     "hiragana": "いろ",
     "japanese": "色",
     "romaji": "iro",
-    "chinese": "颜色",
+    "chinese": "顏色",
     "pitch": "②"
   },
   {
     "hiragana": "いろいろ",
     "japanese": "色々",
     "romaji": "iroiro",
-    "chinese": "各种各样",
+    "chinese": "各種各樣",
     "pitch": "⓪"
   },
   {
     "hiragana": "いし",
     "japanese": "石",
     "romaji": "ishi",
-    "chinese": "石头",
+    "chinese": "石頭",
     "pitch": "②"
   },
   {
@@ -626,28 +626,28 @@
     "hiragana": "いう",
     "japanese": "言う",
     "romaji": "iu",
-    "chinese": "说，讲",
+    "chinese": "說，講",
     "pitch": "⓪"
   },
   {
     "hiragana": "いや",
     "japanese": "嫌",
     "romaji": "iya",
-    "chinese": "不愿意，讨厌",
+    "chinese": "不願意，討厭",
     "pitch": "②"
   },
   {
     "hiragana": "じかん",
     "japanese": "時間",
     "romaji": "jikan",
-    "chinese": "时间",
+    "chinese": "時間",
     "pitch": "②"
   },
   {
     "hiragana": "じてんしゃ",
     "japanese": "自転車",
     "romaji": "jitensha",
-    "chinese": "自行车",
+    "chinese": "腳踏車",
     "pitch": "②"
   },
   {
@@ -675,70 +675,70 @@
     "hiragana": "かべ",
     "japanese": "壁",
     "romaji": "kabe",
-    "chinese": "墙，墙壁",
+    "chinese": "牆，牆壁",
     "pitch": "⓪"
   },
   {
     "hiragana": "かぎ",
     "japanese": "鍵",
     "romaji": "kagi",
-    "chinese": "钥匙，锁",
+    "chinese": "鑰匙，鎖",
     "pitch": "②"
   },
   {
     "hiragana": "かいぎ",
     "japanese": "会議",
     "romaji": "kaigi",
-    "chinese": "会议",
+    "chinese": "會議",
     "pitch": "①"
   },
   {
     "hiragana": "かいわ",
     "japanese": "会話",
     "romaji": "kaiwa",
-    "chinese": "会话",
+    "chinese": "會話",
     "pitch": "⓪"
   },
   {
     "hiragana": "かく",
     "japanese": "書く",
     "romaji": "kaku",
-    "chinese": "写",
+    "chinese": "寫",
     "pitch": "①"
   },
   {
     "hiragana": "カメラ",
     "japanese": "カメラ",
     "romaji": "kamera",
-    "chinese": "相机",
+    "chinese": "相機",
     "pitch": "①"
   },
   {
     "hiragana": "かみ",
     "japanese": "髪",
     "romaji": "kami",
-    "chinese": "头发",
+    "chinese": "頭髮",
     "pitch": "②"
   },
   {
     "hiragana": "かみ",
     "japanese": "紙",
     "romaji": "kami",
-    "chinese": "纸",
+    "chinese": "紙",
     "pitch": "②"
   },
   {
     "hiragana": "かお",
     "japanese": "顔",
     "romaji": "kao",
-    "chinese": "脸；表情",
+    "chinese": "臉；表情",
     "pitch": "⓪"
   },
   {
     "hiragana": "からだ",
     "japanese": "体",
     "romaji": "karada",
-    "chinese": "身体",
+    "chinese": "身體",
     "pitch": "⓪"
   },
   {
@@ -759,7 +759,7 @@
     "hiragana": "かさ",
     "japanese": "傘",
     "romaji": "kasa",
-    "chinese": "伞",
+    "chinese": "傘",
     "pitch": "①"
   },
   {
@@ -780,21 +780,21 @@
     "hiragana": "かゆい",
     "japanese": "痒い",
     "romaji": "kayui",
-    "chinese": "痒",
+    "chinese": "癢",
     "pitch": "②"
   },
   {
     "hiragana": "かぜ",
     "japanese": "風",
     "romaji": "kaze",
-    "chinese": "风",
+    "chinese": "風",
     "pitch": "⓪"
   },
   {
     "hiragana": "かぞえる",
     "japanese": "数える",
     "romaji": "kazoeru",
-    "chinese": "数，计算",
+    "chinese": "數，計算",
     "pitch": "③"
   },
   {
@@ -808,7 +808,7 @@
     "hiragana": "けあ",
     "japanese": "ケア",
     "romaji": "kea",
-    "chinese": "看护，护理",
+    "chinese": "看護，護理",
     "pitch": "①"
   },
   {
@@ -822,35 +822,35 @@
     "hiragana": "き",
     "japanese": "木",
     "romaji": "ki",
-    "chinese": "树",
+    "chinese": "樹",
     "pitch": "①"
   },
   {
     "hiragana": "きいろい",
     "japanese": "黄色い",
     "romaji": "kiiroi",
-    "chinese": "黄色",
+    "chinese": "黃色",
     "pitch": "③"
   },
   {
     "hiragana": "きかい",
     "japanese": "機会",
     "romaji": "kikai",
-    "chinese": "机会",
+    "chinese": "機會",
     "pitch": "②⓪"
   },
   {
     "hiragana": "きこく",
     "japanese": "帰国",
     "romaji": "kikoku",
-    "chinese": "回国",
+    "chinese": "回國",
     "pitch": "⓪"
   },
   {
     "hiragana": "きく",
     "japanese": "聞く",
     "romaji": "kiku",
-    "chinese": "听",
+    "chinese": "聽",
     "pitch": "⓪"
   },
   {
@@ -871,7 +871,7 @@
     "hiragana": "こえ",
     "japanese": "声",
     "romaji": "koe",
-    "chinese": "（人或动物的）声音",
+    "chinese": "（人或動物的）聲音",
     "pitch": "①"
   },
   {
@@ -892,14 +892,14 @@
     "hiragana": "ことば",
     "japanese": "言葉",
     "romaji": "kotoba",
-    "chinese": "语言；词汇",
+    "chinese": "語言；詞彙",
     "pitch": "③"
   },
   {
     "hiragana": "こうえん",
     "japanese": "公園",
     "romaji": "kouen",
-    "chinese": "公园",
+    "chinese": "公園",
     "pitch": "⓪"
   },
   {
@@ -913,7 +913,7 @@
     "hiragana": "こづかい",
     "japanese": "小遣い",
     "romaji": "kozukai",
-    "chinese": "零花钱，零用钱",
+    "chinese": "零花錢，零用錢",
     "pitch": "①"
   },
   {
@@ -941,21 +941,21 @@
     "hiragana": "くも",
     "japanese": "雲",
     "romaji": "kumo",
-    "chinese": "云",
+    "chinese": "雲",
     "pitch": "②"
   },
   {
     "hiragana": "くもり",
     "japanese": "曇り",
     "romaji": "kumori",
-    "chinese": "多云",
+    "chinese": "多雲",
     "pitch": "③"
   },
   {
     "hiragana": "くに",
     "japanese": "国",
     "romaji": "kuni",
-    "chinese": "国家",
+    "chinese": "國家",
     "pitch": "②"
   },
   {
@@ -969,14 +969,14 @@
     "hiragana": "くるま",
     "japanese": "車",
     "romaji": "kuruma",
-    "chinese": "车",
+    "chinese": "車",
     "pitch": "⓪"
   },
   {
     "hiragana": "くうこう",
     "japanese": "空港",
     "romaji": "kuukou",
-    "chinese": "机场",
+    "chinese": "機場",
     "pitch": "⓪"
   },
   {
@@ -997,7 +997,7 @@
     "hiragana": "まど",
     "japanese": "窓",
     "romaji": "mado",
-    "chinese": "窗，窗户",
+    "chinese": "窗，窗戶",
     "pitch": "①"
   },
   {
@@ -1018,7 +1018,7 @@
     "hiragana": "めがね",
     "japanese": "眼鏡",
     "romaji": "megane",
-    "chinese": "眼镜",
+    "chinese": "眼鏡",
     "pitch": "①"
   },
   {
@@ -1032,7 +1032,7 @@
     "hiragana": "みどり",
     "japanese": "緑",
     "romaji": "midori",
-    "chinese": "绿色",
+    "chinese": "綠色",
     "pitch": "③"
   },
   {
@@ -1060,7 +1060,7 @@
     "hiragana": "もも",
     "japanese": "桃",
     "romaji": "momo",
-    "chinese": "桃树，桃子",
+    "chinese": "桃樹，桃子",
     "pitch": "⓪"
   },
   {
@@ -1074,7 +1074,7 @@
     "hiragana": "もの",
     "japanese": "物",
     "romaji": "mono",
-    "chinese": "东西，物品",
+    "chinese": "東西，物品",
     "pitch": "①"
   },
   {
@@ -1088,7 +1088,7 @@
     "hiragana": "もしもし",
     "japanese": "もしもし",
     "romaji": "moshimoshi",
-    "chinese": "喂（打电话时）",
+    "chinese": "喂（打電話時）",
     "pitch": "①"
   },
   {
@@ -1102,7 +1102,7 @@
     "hiragana": "むし",
     "japanese": "虫",
     "romaji": "mushi",
-    "chinese": "虫子",
+    "chinese": "蟲子",
     "pitch": "②"
   },
   {
@@ -1123,7 +1123,7 @@
     "hiragana": "ねこ",
     "japanese": "猫",
     "romaji": "neko",
-    "chinese": "猫",
+    "chinese": "貓",
     "pitch": "①"
   },
   {
@@ -1172,7 +1172,7 @@
     "hiragana": "のみもの",
     "japanese": "飲み物",
     "romaji": "nomimono",
-    "chinese": "饮料",
+    "chinese": "飲料",
     "pitch": "②"
   },
   {
@@ -1221,7 +1221,7 @@
     "hiragana": "オートバイ",
     "japanese": "オートバイ",
     "romaji": "ootobai",
-    "chinese": "摩托车",
+    "chinese": "摩托車",
     "pitch": "③"
   },
   {
@@ -1235,7 +1235,7 @@
     "hiragana": "おと",
     "japanese": "音",
     "romaji": "oto",
-    "chinese": "声音",
+    "chinese": "聲音",
     "pitch": "②"
   },
   {
@@ -1263,14 +1263,14 @@
     "hiragana": "パン",
     "japanese": "パン",
     "romaji": "pan",
-    "chinese": "面包",
+    "chinese": "麵包",
     "pitch": "①"
   },
   {
     "hiragana": "パンダ",
     "japanese": "パンダ",
     "romaji": "panda",
-    "chinese": "熊猫",
+    "chinese": "熊貓",
     "pitch": "①"
   },
   {
@@ -1284,21 +1284,21 @@
     "hiragana": "ぱす",
     "japanese": "パス",
     "romaji": "pasu",
-    "chinese": "通过，合格",
+    "chinese": "透過，合格",
     "pitch": "①"
   },
   {
     "hiragana": "ぺあ",
     "japanese": "ペア",
     "romaji": "pea",
-    "chinese": "一双，一对",
+    "chinese": "一雙，一對",
     "pitch": "①"
   },
   {
     "hiragana": "ペン",
     "japanese": "ペン",
     "romaji": "pen",
-    "chinese": "笔",
+    "chinese": "筆",
     "pitch": "①"
   },
   {
@@ -1312,56 +1312,56 @@
     "hiragana": "ぴあの",
     "japanese": "ピアノ",
     "romaji": "piano",
-    "chinese": "钢琴",
+    "chinese": "鋼琴",
     "pitch": "⓪"
   },
   {
     "hiragana": "ぴざ",
     "japanese": "ピザ",
     "romaji": "piza",
-    "chinese": "比萨",
+    "chinese": "比薩",
     "pitch": "①"
   },
   {
     "hiragana": "ぽすと",
     "japanese": "ポスト",
     "romaji": "posuto",
-    "chinese": "邮筒，信箱",
+    "chinese": "郵筒，信箱",
     "pitch": "①"
   },
   {
     "hiragana": "ぽてと",
     "japanese": "ポテト",
     "romaji": "poteto",
-    "chinese": "土豆，马铃薯",
+    "chinese": "土豆，馬鈴薯",
     "pitch": "①"
   },
   {
     "hiragana": "ぷろぐらむ",
     "japanese": "プログラム",
     "romaji": "puroguramu",
-    "chinese": "节目单；日程安排",
+    "chinese": "節目單；日程安排",
     "pitch": "③"
   },
   {
     "hiragana": "ライオン",
     "japanese": "ライオン",
     "romaji": "raion",
-    "chinese": "狮子",
+    "chinese": "獅子",
     "pitch": "①"
   },
   {
     "hiragana": "れきし",
     "japanese": "歴史",
     "romaji": "rekishi",
-    "chinese": "历史",
+    "chinese": "歷史",
     "pitch": "⓪"
   },
   {
     "hiragana": "レストラン",
     "japanese": "レストラン",
     "romaji": "resutoran",
-    "chinese": "餐厅",
+    "chinese": "餐廳",
     "pitch": "②"
   },
   {
@@ -1375,7 +1375,7 @@
     "hiragana": "りんご",
     "japanese": "林檎",
     "romaji": "ringo",
-    "chinese": "苹果",
+    "chinese": "蘋果",
     "pitch": "①"
   },
   {
@@ -1389,14 +1389,14 @@
     "hiragana": "りょうしん",
     "japanese": "両親",
     "romaji": "ryoushin",
-    "chinese": "父母，双亲",
+    "chinese": "父母，雙親",
     "pitch": "①"
   },
   {
     "hiragana": "さいふ",
     "japanese": "財布",
     "romaji": "saifu",
-    "chinese": "钱包",
+    "chinese": "錢包",
     "pitch": "⓪"
   },
   {
@@ -1410,14 +1410,14 @@
     "hiragana": "さかな",
     "japanese": "魚",
     "romaji": "sakana",
-    "chinese": "鱼",
+    "chinese": "魚",
     "pitch": "⓪"
   },
   {
     "hiragana": "さくら",
     "japanese": "桜",
     "romaji": "sakura",
-    "chinese": "樱花",
+    "chinese": "櫻花",
     "pitch": "⓪"
   },
   {
@@ -1473,7 +1473,7 @@
     "hiragana": "しんかんせん",
     "japanese": "新幹線",
     "romaji": "shinkansen",
-    "chinese": "新干线",
+    "chinese": "新幹線",
     "pitch": "③"
   },
   {
@@ -1487,7 +1487,7 @@
     "hiragana": "しお",
     "japanese": "塩",
     "romaji": "shio",
-    "chinese": "盐",
+    "chinese": "鹽",
     "pitch": "②"
   },
   {
@@ -1501,7 +1501,7 @@
     "hiragana": "しずか",
     "japanese": "静か",
     "romaji": "shizuka",
-    "chinese": "安静，寂静",
+    "chinese": "安靜，寂靜",
     "pitch": "①"
   },
   {
@@ -1529,7 +1529,7 @@
     "hiragana": "そこ",
     "japanese": "そこ",
     "romaji": "soko",
-    "chinese": "那里，那边",
+    "chinese": "那裡，那邊",
     "pitch": "⓪"
   },
   {
@@ -1557,14 +1557,14 @@
     "hiragana": "すし",
     "japanese": "寿司",
     "romaji": "sushi",
-    "chinese": "寿司",
+    "chinese": "壽司",
     "pitch": "②①"
   },
   {
     "hiragana": "たばこ",
     "japanese": "タバコ",
     "romaji": "tabako",
-    "chinese": "香烟",
+    "chinese": "香菸",
     "pitch": "⓪"
   },
   {
@@ -1592,28 +1592,28 @@
     "hiragana": "たいぷ",
     "japanese": "タイプ",
     "romaji": "taipu",
-    "chinese": "类型",
+    "chinese": "型別",
     "pitch": "①"
   },
   {
     "hiragana": "たかい",
     "japanese": "高い",
     "romaji": "takai",
-    "chinese": "高；贵",
+    "chinese": "高；貴",
     "pitch": "②"
   },
   {
     "hiragana": "タクシー",
     "japanese": "タクシー",
     "romaji": "takushii",
-    "chinese": "出租车",
+    "chinese": "計程車",
     "pitch": "①"
   },
   {
     "hiragana": "たまご",
     "japanese": "卵",
     "romaji": "tamago",
-    "chinese": "鸡蛋",
+    "chinese": "雞蛋",
     "pitch": "②"
   },
   {
@@ -1627,42 +1627,42 @@
     "hiragana": "てがみ",
     "japanese": "手紙",
     "romaji": "tegami",
-    "chinese": "信，书信",
+    "chinese": "信，書信",
     "pitch": "⓪"
   },
   {
     "hiragana": "てんき",
     "japanese": "天気",
     "romaji": "tenki",
-    "chinese": "天气",
+    "chinese": "天氣",
     "pitch": "①"
   },
   {
     "hiragana": "テレビ",
     "japanese": "テレビ",
     "romaji": "terebi",
-    "chinese": "电视",
+    "chinese": "電視",
     "pitch": "①"
   },
   {
     "hiragana": "トイレ",
     "japanese": "トイレ",
     "romaji": "toire",
-    "chinese": "厕所",
+    "chinese": "廁所",
     "pitch": "①"
   },
   {
     "hiragana": "とけい",
     "japanese": "時計",
     "romaji": "tokei",
-    "chinese": "钟表",
+    "chinese": "鐘錶",
     "pitch": "⓪"
   },
   {
     "hiragana": "とき",
     "japanese": "時",
     "romaji": "toki",
-    "chinese": "时候",
+    "chinese": "時候",
     "pitch": "②"
   },
   {
@@ -1676,21 +1676,21 @@
     "hiragana": "トラック",
     "japanese": "トラック",
     "romaji": "torakku",
-    "chinese": "卡车",
+    "chinese": "卡車",
     "pitch": "②"
   },
   {
     "hiragana": "とり",
     "japanese": "鳥",
     "romaji": "tori",
-    "chinese": "鸟，小鸟",
+    "chinese": "鳥，小鳥",
     "pitch": "⓪"
   },
   {
     "hiragana": "としょかん",
     "japanese": "図書館",
     "romaji": "toshokan",
-    "chinese": "图书馆",
+    "chinese": "圖書館",
     "pitch": "②"
   },
   {
@@ -1704,21 +1704,21 @@
     "hiragana": "つくえ",
     "japanese": "机",
     "romaji": "tsukue",
-    "chinese": "桌子，书桌",
+    "chinese": "桌子，書桌",
     "pitch": "⓪"
   },
   {
     "hiragana": "つめたい",
     "japanese": "冷たい",
     "romaji": "tsumetai",
-    "chinese": "凉",
+    "chinese": "涼",
     "pitch": "⓪"
   },
   {
     "hiragana": "つづく",
     "japanese": "続く",
     "romaji": "tsuzuku",
-    "chinese": "继续，持续",
+    "chinese": "繼續，持續",
     "pitch": "⓪"
   },
   {
@@ -1739,7 +1739,7 @@
     "hiragana": "うま",
     "japanese": "馬",
     "romaji": "uma",
-    "chinese": "马",
+    "chinese": "馬",
     "pitch": "②"
   },
   {
@@ -1753,7 +1753,7 @@
     "hiragana": "うお",
     "japanese": "魚",
     "romaji": "uo",
-    "chinese": "鱼",
+    "chinese": "魚",
     "pitch": "⓪"
   },
   {
@@ -1767,7 +1767,7 @@
     "hiragana": "わしつ",
     "japanese": "和室",
     "romaji": "washitsu",
-    "chinese": "日式房间",
+    "chinese": "日式房間",
     "pitch": "⓪"
   },
   {
@@ -1788,7 +1788,7 @@
     "hiragana": "よむ",
     "japanese": "読む",
     "romaji": "yomu",
-    "chinese": "读",
+    "chinese": "讀",
     "pitch": "①"
   },
   {
@@ -1837,14 +1837,14 @@
     "hiragana": "ぜひ",
     "japanese": "是非",
     "romaji": "zehi",
-    "chinese": "务必，一定",
+    "chinese": "務必，一定",
     "pitch": "①"
   },
   {
     "hiragana": "ぞくぞく",
     "japanese": "続々",
     "romaji": "zokuzoku",
-    "chinese": "连续，陆续",
+    "chinese": "連續，陸續",
     "pitch": "⓪①"
   },
   {
@@ -1858,14 +1858,14 @@
     "hiragana": "きゃく",
     "japanese": "客",
     "romaji": "kyaku",
-    "chinese": "客人，顾客",
+    "chinese": "客人，顧客",
     "pitch": "①"
   },
   {
     "hiragana": "きゅうきゅうしゃ",
     "japanese": "救急車",
     "romaji": "kyuukyuusha",
-    "chinese": "救护车",
+    "chinese": "救護車",
     "pitch": "③"
   },
   {
@@ -1893,21 +1893,21 @@
     "hiragana": "しゅくだい",
     "japanese": "宿題",
     "romaji": "shukudai",
-    "chinese": "作业",
+    "chinese": "作業",
     "pitch": "⓪"
   },
   {
     "hiragana": "しょうかい",
     "japanese": "紹介",
     "romaji": "shoukai",
-    "chinese": "介绍",
+    "chinese": "介紹",
     "pitch": "⓪"
   },
   {
     "hiragana": "しょうゆ",
     "japanese": "醤油",
     "romaji": "shouyu",
-    "chinese": "酱油",
+    "chinese": "醬油",
     "pitch": "⓪"
   },
   {
@@ -1928,21 +1928,21 @@
     "hiragana": "ちゅうしゃ",
     "japanese": "駐車",
     "romaji": "chuusha",
-    "chinese": "停车",
+    "chinese": "停車",
     "pitch": "⓪"
   },
   {
     "hiragana": "ちゅうがく",
     "japanese": "中学",
     "romaji": "chuugaku",
-    "chinese": "中学",
+    "chinese": "中學",
     "pitch": "⓪"
   },
   {
     "hiragana": "ちょっと",
     "japanese": "ちょっと",
     "romaji": "chotto",
-    "chinese": "一点，稍微",
+    "chinese": "一點，稍微",
     "pitch": "③"
   },
   {
@@ -1956,7 +1956,7 @@
     "hiragana": "にゅうがく",
     "japanese": "入学",
     "romaji": "nyuugaku",
-    "chinese": "入学",
+    "chinese": "入學",
     "pitch": "⓪"
   },
   {
@@ -1970,7 +1970,7 @@
     "hiragana": "ひょう",
     "japanese": "表",
     "romaji": "hyou",
-    "chinese": "表，图表",
+    "chinese": "表，圖表",
     "pitch": "①"
   },
   {
@@ -1984,14 +1984,14 @@
     "hiragana": "りゅうがく",
     "japanese": "留学",
     "romaji": "ryuugaku",
-    "chinese": "留学",
+    "chinese": "留學",
     "pitch": "⓪"
   },
   {
     "hiragana": "りょうり",
     "japanese": "料理",
     "romaji": "ryouri",
-    "chinese": "料理，烹饪",
+    "chinese": "料理，烹飪",
     "pitch": "①"
   },
   {
@@ -2012,21 +2012,21 @@
     "hiragana": "ぎょうじ",
     "japanese": "行事",
     "romaji": "gyouji",
-    "chinese": "活动，仪式",
+    "chinese": "活動，儀式",
     "pitch": "①"
   },
   {
     "hiragana": "じゅぎょう",
     "japanese": "授業",
     "romaji": "jugyou",
-    "chinese": "上课，授课",
+    "chinese": "上課，授課",
     "pitch": "①"
   },
   {
     "hiragana": "じょうず",
     "japanese": "上手",
     "romaji": "jouzu",
-    "chinese": "擅长，高明",
+    "chinese": "擅長，高明",
     "pitch": "③"
   },
   {
@@ -2040,14 +2040,14 @@
     "hiragana": "じしょ",
     "japanese": "辞書",
     "romaji": "jisho",
-    "chinese": "词典，字典",
+    "chinese": "詞典，字典",
     "pitch": "①"
   },
   {
     "hiragana": "じゃあ",
     "japanese": "じゃあ",
     "romaji": "jaa",
-    "chinese": "那么",
+    "chinese": "那麼",
     "pitch": "①"
   },
   {
@@ -2061,14 +2061,14 @@
     "hiragana": "きゅうりょう",
     "japanese": "給料",
     "romaji": "kyuuryou",
-    "chinese": "工资",
+    "chinese": "工資",
     "pitch": "①"
   },
   {
     "hiragana": "しゃかい",
     "japanese": "社会",
     "romaji": "shakai",
-    "chinese": "社会",
+    "chinese": "社會",
     "pitch": "①"
   },
   {
@@ -2082,14 +2082,14 @@
     "hiragana": "しょくじ",
     "japanese": "食事",
     "romaji": "shokuji",
-    "chinese": "用餐，饭",
+    "chinese": "用餐，飯",
     "pitch": "①"
   },
   {
     "hiragana": "ちゅうもん",
     "japanese": "注文",
     "romaji": "chuumon",
-    "chinese": "点菜，订购",
+    "chinese": "點菜，訂購",
     "pitch": "⓪"
   },
   {
@@ -2103,21 +2103,21 @@
     "hiragana": "にゅうす",
     "japanese": "ニュース",
     "romaji": "nyuusu",
-    "chinese": "新闻",
+    "chinese": "新聞",
     "pitch": "①"
   },
   {
     "hiragana": "ひゃっかてん",
     "japanese": "百貨店",
     "romaji": "hyakkaten",
-    "chinese": "百货商店",
+    "chinese": "百貨商店",
     "pitch": "③"
   },
   {
     "hiragana": "りょうほう",
     "japanese": "両方",
     "romaji": "ryouhou",
-    "chinese": "双方，两个",
+    "chinese": "雙方，兩個",
     "pitch": "①"
   },
   {
@@ -2131,14 +2131,14 @@
     "hiragana": "ぎゅうどん",
     "japanese": "牛丼",
     "romaji": "gyuudon",
-    "chinese": "牛肉盖饭",
+    "chinese": "牛肉蓋飯",
     "pitch": "②"
   },
   {
     "hiragana": "ぎょうざ",
     "japanese": "餃子",
     "romaji": "gyouza",
-    "chinese": "饺子",
+    "chinese": "餃子",
     "pitch": "⓪"
   },
   {
@@ -2152,7 +2152,7 @@
     "hiragana": "じょうほう",
     "japanese": "情報",
     "romaji": "jouhou",
-    "chinese": "信息",
+    "chinese": "資訊",
     "pitch": "⓪"
   },
   {
@@ -2180,21 +2180,21 @@
     "hiragana": "ぴゃあ",
     "japanese": "ピアノ",
     "romaji": "piano",
-    "chinese": "钢琴",
+    "chinese": "鋼琴",
     "pitch": "⓪"
   },
   {
     "hiragana": "しゅうまつ",
     "japanese": "週末",
     "romaji": "shuumatsu",
-    "chinese": "周末",
+    "chinese": "週末",
     "pitch": "⓪"
   },
   {
     "hiragana": "ちゅうごく",
     "japanese": "中国",
     "romaji": "chuugoku",
-    "chinese": "中国",
+    "chinese": "中國",
     "pitch": "①"
   },
   {

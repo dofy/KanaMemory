@@ -1,26 +1,26 @@
 export enum FYType {
-  seion = 0,   // 清音 (Seion)
-  dakuon = 1,  // 浊音 (Dakuon)
-  yoon = 2,    // 拗音 (Yoon)
+  seion = 0,   // Seion (清音)
+  dakuon = 1,  // Dakuon (濁音)
+  yoon = 2,    // Yoon (拗音)
 }
 
 export enum LearningType {
-  kana = "kana",       // 假名学习
-  word = "word",       // 单词学习
-  phrase = "phrase",   // 句子学习
+  kana = "kana",       // Kana learning
+  word = "word",       // Word learning
+  phrase = "phrase",   // Phrase learning
 }
 
 // Learning mode for practice
 export enum PracticeMode {
-  learning = "learning",   // 学习模式：自动显示提示和发音
-  memory = "memory",       // 记忆模式：手动控制提示和发音
+  learning = "learning",   // Learning mode: auto show hints and pronunciation
+  memory = "memory",       // Memory mode: manual control hints and pronunciation
 }
 
 // Kana data interface for JSON structure (pure data)
 export interface KanaItem {
-  hiragana: string         // 平假名 (Hiragana)
-  katakana: string         // 片假名 (Katakana)
-  romaji: string           // 罗马音 (Romaji)
+  hiragana: string         // Hiragana (平假名)
+  katakana: string         // Katakana (片假名)
+  romaji: string           // Romaji
 }
 
 // Extended interface with UI state (used in components)
@@ -35,11 +35,11 @@ export interface MemoObject extends KanaItem {
 
 // Word data interface for JSON structure (pure data)
 export interface WordItem {
-  hiragana: string        // 平假名 (纯假名，不含声调)
-  japanese: string        // 日文（含汉字，如：愛、油）
-  romaji: string          // 罗马音
-  chinese: string         // 中文释义
-  pitch: string           // 声调标记 (①②③④⑤⑥⑦⑧⑨⓪或组合)
+  hiragana: string        // Hiragana (without pitch)
+  japanese: string        // Japanese (with kanji)
+  romaji: string          // Romaji
+  chinese: string         // Chinese translation
+  pitch: string           // Pitch accent mark
 }
 
 // Extended interface with UI state
@@ -49,10 +49,10 @@ export interface WordObject extends WordItem {
 
 // Phrase data interface for JSON structure (pure data)
 export interface PhraseItem {
-  japanese: string        // 日语句子（原始形式，含汉字）
-  hiragana: string        // 纯假名形式（平假名）
-  romaji: string          // 罗马音
-  chinese: string         // 中文翻译
+  japanese: string        // Japanese sentence (with kanji)
+  hiragana: string        // Hiragana form
+  romaji: string          // Romaji
+  chinese: string         // Chinese translation
 }
 
 // Extended interface with UI state
@@ -78,4 +78,3 @@ export type DisplayMode = "mixed" | "hiragana" | "katakana" | "romaji" | "swap"
 
 // Unified display mode for words and phrases
 export type UnifiedDisplayMode = "mixed" | "kana" | "japanese"
-

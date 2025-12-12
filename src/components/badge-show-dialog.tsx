@@ -26,7 +26,6 @@ export function BadgeShowDialog({
 
   useEffect(() => {
     if (open && badge) {
-      // Trigger confetti animation
       const duration = 2000;
       const end = Date.now() + duration;
 
@@ -53,7 +52,6 @@ export function BadgeShowDialog({
 
       frame();
 
-      // Show content with delay for animation
       setTimeout(() => setShowContent(true), 200);
     } else {
       setShowContent(false);
@@ -96,7 +94,7 @@ export function BadgeShowDialog({
           
           {unlockDate && (
             <p className="text-sm text-green-600 mb-6">
-              ✓ 于 {unlockDate} 获得
+              ✓ 於 {unlockDate} 獲得
             </p>
           )}
 
@@ -111,4 +109,3 @@ export function BadgeShowDialog({
     </Dialog>
   );
 }
-

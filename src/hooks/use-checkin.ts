@@ -64,7 +64,7 @@ export function useCheckIn(): UseCheckInReturn {
     // Show toast only for first check-in of the day
     if (!alreadyCheckedIn) {
       toast.success("✅ 今日打卡成功！", {
-        description: `学习了 ${stats.kanaCount + stats.wordCount + stats.phraseCount} 个项目`,
+        description: `學習了 ${stats.kanaCount + stats.wordCount + stats.phraseCount} 個項目`,
       });
       setIsCheckedInToday(true);
     }

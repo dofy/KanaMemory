@@ -82,7 +82,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted">
       {/* Header */}
-      <header className="border-b">
+      <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <img
@@ -139,10 +139,10 @@ export default function Home() {
               <CardHeader>
                 <div className="flex items-center gap-3">
                   <Map className="h-6 w-6 text-orange-500" />
-                  <CardTitle className="text-lg">学习方案</CardTitle>
+                  <CardTitle className="text-lg">學習方案</CardTitle>
                 </div>
                 <CardDescription>
-                  系统化的学习计划，帮助你有序地掌握日语
+                  系統化的學習計劃，幫助你有序地掌握日語
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -158,25 +158,25 @@ export default function Home() {
               <CardHeader>
                 <div className="flex items-center gap-3">
                   <Award className="h-6 w-6 text-yellow-500" />
-                  <CardTitle className="text-lg">成就勋章</CardTitle>
+                  <CardTitle className="text-lg">成就勳章</CardTitle>
                   {stats && stats.badges > 0 && (
                     <span className="ml-auto text-sm text-muted-foreground">
-                      已获得 {stats.badges} 个
+                      已獲得 {stats.badges} 個
                     </span>
                   )}
                 </div>
                 <CardDescription>
-                  完成学习目标，解锁成就勋章
+                  完成學習目標，解鎖成就勳章
                   {stats && stats.streak > 0 && (
                     <span className="block mt-1 text-orange-500">
-                      🔥 当前连续打卡 {stats.streak} 天
+                      🔥 當前連續打卡 {stats.streak} 天
                     </span>
                   )}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <Button variant="outline" className="w-full">
-                  查看勋章
+                  查看勳章
                 </Button>
               </CardContent>
             </Card>
@@ -184,14 +184,14 @@ export default function Home() {
         </div>
 
         <div className="mt-16 text-center text-muted-foreground">
-          <p className="mb-2">功能特点</p>
+          <p className="mb-2">功能特點</p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
             <span>✓ 多種學習模式</span>
-            <span>✓ 语音朗读</span>
-            <span>✓ 快捷键支持</span>
+            <span>✓ 語音朗讀</span>
+            <span>✓ 快捷鍵支持</span>
             <span>✓ 深色模式</span>
-            <span>✓ 学习进度追踪</span>
-            <span>✓ 成就勋章系统</span>
+            <span>✓ 學習進度追蹤</span>
+            <span>✓ 成就勳章系統</span>
           </div>
         </div>
       </main>

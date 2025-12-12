@@ -26,7 +26,6 @@ export function BadgeUnlockDialog({
 
   useEffect(() => {
     if (open && badge) {
-      // Trigger confetti animation
       const duration = 2000;
       const end = Date.now() + duration;
 
@@ -53,7 +52,6 @@ export function BadgeUnlockDialog({
 
       frame();
 
-      // Show content with delay for animation
       setTimeout(() => setShowContent(true), 200);
     } else {
       setShowContent(false);
@@ -67,7 +65,7 @@ export function BadgeUnlockDialog({
       <DialogContent className="sm:max-w-md text-center">
         <DialogHeader>
           <DialogTitle className="text-center text-xl">
-            🎉 恭喜获得新勋章！
+            🎉 恭喜獲得新勳章！
           </DialogTitle>
         </DialogHeader>
 
@@ -97,7 +95,7 @@ export function BadgeUnlockDialog({
           {/* Actions */}
           <div className="flex gap-3 justify-center">
             <Button variant="outline" onClick={onClose}>
-              继续学习
+              繼續學習
             </Button>
             <Button
               onClick={() => {
@@ -105,7 +103,7 @@ export function BadgeUnlockDialog({
                 navigate("/badges");
               }}
             >
-              查看所有勋章
+              查看所有勳章
             </Button>
           </div>
         </div>
@@ -113,4 +111,3 @@ export function BadgeUnlockDialog({
     </Dialog>
   );
 }
-

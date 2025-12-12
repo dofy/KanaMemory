@@ -60,7 +60,7 @@ export default function BadgesPage() {
   const getUnlockDate = (badgeId: string) => {
     const badge = unlockedBadges.find((b) => b.id === badgeId);
     if (!badge) return null;
-    return new Date(badge.unlockedAt).toLocaleDateString("zh-CN");
+    return new Date(badge.unlockedAt).toLocaleDateString("zh-TW");
   };
 
   const handleBadgeClick = (def: BadgeDefinition) => {
@@ -91,7 +91,6 @@ export default function BadgesPage() {
         }
         return 0;
       case "plan_complete":
-        // For plan complete, we don't have exact count in stats
         return 0;
       default:
         return 0;
@@ -105,15 +104,15 @@ export default function BadgesPage() {
       case "total_check_in":
         return `${stats.checkIns} / ${def.condition.value} 天`;
       case "check_in_streak":
-        return `${stats.streak} / ${def.condition.value} 天连续`;
+        return `${stats.streak} / ${def.condition.value} 天連續`;
       case "mastery_count":
         if (def.condition.itemType === "kana") {
-          return `${stats.kana.mastered} / ${def.condition.value} 个`;
+          return `${stats.kana.mastered} / ${def.condition.value} 個`;
         }
         return "";
       case "item_count":
         if (def.condition.itemType === "word") {
-          return `${stats.words.total} / ${def.condition.value} 个`;
+          return `${stats.words.total} / ${def.condition.value} 個`;
         }
         return "";
       default:
@@ -135,9 +134,9 @@ export default function BadgesPage() {
           <div className="flex justify-center mb-4">
             <Award className="h-16 w-16 text-yellow-500" />
           </div>
-          <h2 className="text-3xl font-bold mb-2">成就勋章</h2>
+          <h2 className="text-3xl font-bold mb-2">成就勳章</h2>
           <p className="text-muted-foreground">
-            已解锁 {unlockedCount} / {totalCount} 个勋章
+            已解鎖 {unlockedCount} / {totalCount} 個勳章
           </p>
           <div className="max-w-xs mx-auto mt-4">
             <Progress value={totalCount > 0 ? (unlockedCount / totalCount) * 100 : 0} />
@@ -147,28 +146,28 @@ export default function BadgesPage() {
         {/* Stats Overview */}
         {stats && (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 max-w-3xl mx-auto">
-            <Card>
+            <Card className="transition-all hover:shadow-lg">
               <CardContent className="pt-4 text-center">
                 <p className="text-2xl font-bold">{stats.streak}</p>
-                <p className="text-sm text-muted-foreground">连续打卡</p>
+                <p className="text-sm text-muted-foreground">連續打卡</p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="transition-all hover:shadow-lg">
               <CardContent className="pt-4 text-center">
                 <p className="text-2xl font-bold">{stats.checkIns}</p>
-                <p className="text-sm text-muted-foreground">总打卡天数</p>
+                <p className="text-sm text-muted-foreground">總打卡天數</p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="transition-all hover:shadow-lg">
               <CardContent className="pt-4 text-center">
                 <p className="text-2xl font-bold">{stats.kana.mastered}</p>
                 <p className="text-sm text-muted-foreground">掌握假名</p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="transition-all hover:shadow-lg">
               <CardContent className="pt-4 text-center">
                 <p className="text-2xl font-bold">{stats.words.total}</p>
-                <p className="text-sm text-muted-foreground">学习单词</p>
+                <p className="text-sm text-muted-foreground">學習單詞</p>
               </CardContent>
             </Card>
           </div>
@@ -222,14 +221,14 @@ export default function BadgesPage() {
 
                   {unlocked ? (
                     <p className="text-xs text-green-600">
-                      ✓ 于 {unlockDate} 解锁 · 点击查看
+                      ✓ 於 {unlockDate} 解鎖 · 點擊查看
                     </p>
                   ) : (
                     <div className="space-y-3">
                       {/* Progress */}
                       <div>
                         <div className="flex justify-between text-xs mb-1">
-                          <span>进度</span>
+                          <span>進度</span>
                           <span>{progressText || `${Math.round(progress)}%`}</span>
                         </div>
                         <Progress value={progress} className="h-2" />

@@ -31,9 +31,9 @@ const DIFFICULTY_COLORS = {
 };
 
 const DIFFICULTY_NAMES = {
-  beginner: "入门",
-  intermediate: "进阶",
-  advanced: "高级",
+  beginner: "入門",
+  intermediate: "進階",
+  advanced: "高級",
 };
 
 export default function StudyPlansPage() {
@@ -62,12 +62,12 @@ export default function StudyPlansPage() {
   const handleStartPlan = async (definition: StudyPlanDefinition) => {
     const existingActive = activePlans.find((p) => p.planId === definition.id);
     if (existingActive) {
-      toast.info("该方案已在进行中");
+      toast.info("該方案已在進行中");
       return;
     }
 
     await ProgressService.startPlan(definition);
-    toast.success(`已开始「${definition.name}」学习方案`);
+    toast.success(`已開始「${definition.name}」學習方案`);
     await loadData();
   };
 
@@ -92,9 +92,9 @@ export default function StudyPlansPage() {
 
       <main className="flex-1 container mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold mb-2">学习方案</h2>
+          <h2 className="text-3xl font-bold mb-2">學習方案</h2>
           <p className="text-muted-foreground">
-            选择适合你的学习计划，系统化地提升日语能力
+            選擇適合你的學習計劃，系統化地提升日語能力
           </p>
         </div>
 
@@ -103,16 +103,16 @@ export default function StudyPlansPage() {
           <div className="mb-8">
             <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
               <Play className="h-5 w-5" />
-              进行中的方案
+              進行中的方案
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {activePlans.map((plan) => (
-                <Card key={plan.id} className="border-primary/50">
+                <Card key={plan.id} className="border-primary/50 transition-all hover:shadow-lg">
                   <CardHeader className="pb-2">
                     <div className="flex items-center justify-between">
                       <CardTitle className="text-lg">{plan.name}</CardTitle>
                       <Badge variant="outline" className="text-primary">
-                        进行中
+                        進行中
                       </Badge>
                     </div>
                   </CardHeader>
@@ -121,20 +121,20 @@ export default function StudyPlansPage() {
                       <div>
                         <div className="flex justify-between text-sm mb-1">
                           <span>
-                            阶段 {plan.currentStage + 1} / {plan.stages.length}
+                            階段 {plan.currentStage + 1} / {plan.stages.length}
                           </span>
                           <span>{calculateProgress(plan)}%</span>
                         </div>
                         <Progress value={calculateProgress(plan)} />
                       </div>
                       <p className="text-sm text-muted-foreground">
-                        当前：{plan.stages[plan.currentStage]?.name || "已完成"}
+                        當前：{plan.stages[plan.currentStage]?.name || "已完成"}
                       </p>
                       <Button
                         className="w-full"
                         onClick={() => navigate(`/study-plans/${plan.id}/learn`)}
                       >
-                        继续学习
+                        繼續學習
                       </Button>
                     </div>
                   </CardContent>
@@ -148,7 +148,7 @@ export default function StudyPlansPage() {
         <div>
           <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
             <BookOpen className="h-5 w-5" />
-            可选方案
+            可選方案
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {planDefinitions.map((definition) => {
@@ -156,7 +156,7 @@ export default function StudyPlansPage() {
               const completedCount = getCompletedCount(definition.id);
 
               return (
-                <Card key={definition.id} className="flex flex-col">
+                <Card key={definition.id} className="flex flex-col transition-all hover:shadow-lg">
                   <CardHeader>
                     <div className="flex items-center justify-between mb-2">
                       <Badge
@@ -175,7 +175,7 @@ export default function StudyPlansPage() {
                   <CardContent className="flex-1 flex flex-col">
                     <div className="flex-1">
                       <p className="text-sm text-muted-foreground mb-2">
-                        共 {definition.stages.length} 个阶段
+                        共 {definition.stages.length} 個階段
                       </p>
                       <ul className="text-sm space-y-1 mb-4">
                         {definition.stages.slice(0, 3).map((stage) => (
@@ -186,7 +186,7 @@ export default function StudyPlansPage() {
                         ))}
                         {definition.stages.length > 3 && (
                           <li className="text-muted-foreground">
-                            ...还有 {definition.stages.length - 3} 个阶段
+                            ...還有 {definition.stages.length - 3} 個階段
                           </li>
                         )}
                       </ul>
@@ -202,7 +202,7 @@ export default function StudyPlansPage() {
                     {activePlan ? (
                       <Button variant="outline" className="w-full" disabled>
                         <RotateCcw className="h-4 w-4 mr-2" />
-                        已在进行中
+                        已在進行中
                       </Button>
                     ) : (
                       <Button
@@ -210,7 +210,7 @@ export default function StudyPlansPage() {
                         onClick={() => handleStartPlan(definition)}
                       >
                         <Play className="h-4 w-4 mr-2" />
-                        开始方案
+                        開始方案
                       </Button>
                     )}
                   </CardContent>
@@ -225,4 +225,3 @@ export default function StudyPlansPage() {
     </div>
   );
 }
-
