@@ -20,7 +20,7 @@ import {
 import { usePracticeState } from "@/hooks/use-practice-state";
 import { useTTS } from "@/hooks/use-tts";
 import { DataLoader } from "@/lib/data-loader";
-import { LocalStorage } from "@/lib/local-storage";
+import { Storage } from "@/lib/storage";
 import { FYType, PracticeMode, type DisplayMode, type MemoObject } from "@/lib/types";
 import {
   BookOpen,
@@ -79,16 +79,7 @@ export default function KanaPage() {
   }, []);
 
   const loadKanaData = async () => {
-    const savedData = LocalStorage.load<MemoObject[]>("kana_selectedData");
-
-    // Migrate old learningMode to practiceMode
-    const oldLearningMode = LocalStorage.load<boolean>("kana_learningMode");
-    if (oldLearningMode !== null) {
-      const newPracticeMode = oldLearningMode ? PracticeMode.learning : PracticeMode.memory;
-      LocalStorage.save("kana_practiceMode", newPracticeMode);
-      LocalStorage.remove("kana_learningMode");
-    }
-
+    const savedData = await Storage.load<MemoObject[]>("kana_selectedData");
     const data = await DataLoader.loadKanaData();
 
     if (savedData && savedData.length > 0) {
@@ -222,7 +213,7 @@ export default function KanaPage() {
 
   const handleKanaSelectionChange = (updatedList: MemoObject[]) => {
     setKanaList(updatedList);
-    LocalStorage.save("kana_selectedData", updatedList);
+    Storage.save("kana_selectedData", updatedList);
   };
 
   const getKanaType = (text: string): string => {

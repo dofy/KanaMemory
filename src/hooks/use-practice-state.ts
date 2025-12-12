@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { LocalStorage } from "@/lib/local-storage";
+import { useState, useEffect, useCallback } from "react";
+import { Storage } from "@/lib/storage";
 import { PracticeMode } from "@/lib/types";
 
 interface UsePracticeStateConfig<T = string> {
@@ -13,58 +13,70 @@ export function usePracticeState<T = string>({
   defaultPracticeMode = PracticeMode.memory,
   defaultDisplayMode,
 }: UsePracticeStateConfig<T>) {
-  const [practiceMode, setPracticeMode] = useState<PracticeMode>(defaultPracticeMode);
-  const [displayMode, setDisplayMode] = useState<T | undefined>(defaultDisplayMode);
-  const [autoPlaySound, setAutoPlaySound] = useState(false);
+  const [practiceMode, setPracticeModeState] =
+    useState<PracticeMode>(defaultPracticeMode);
+  const [displayMode, setDisplayModeState] = useState<T | undefined>(
+    defaultDisplayMode
+  );
+  const [autoPlaySound, setAutoPlaySoundState] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // Load saved practice mode
-    const savedPracticeMode = LocalStorage.load<PracticeMode>(
-      `${storagePrefix}_practiceMode`
-    );
-    if (savedPracticeMode) {
-      setPracticeMode(savedPracticeMode);
-    }
+    const loadSettings = async () => {
+      const [savedPracticeMode, savedDisplayMode, savedAutoPlaySound] =
+        await Promise.all([
+          Storage.load<PracticeMode>(`${storagePrefix}_practiceMode`),
+          Storage.load<T>(`${storagePrefix}_displayMode`),
+          Storage.load<boolean>(`${storagePrefix}_autoPlaySound`),
+        ]);
 
-    // Load saved display mode
-    const savedDisplayMode = LocalStorage.load<T>(
-      `${storagePrefix}_displayMode`
-    );
-    if (savedDisplayMode) {
-      setDisplayMode(savedDisplayMode);
-    }
+      if (savedPracticeMode !== null) {
+        setPracticeModeState(savedPracticeMode);
+      }
+      if (savedDisplayMode !== null) {
+        setDisplayModeState(savedDisplayMode);
+      }
+      if (savedAutoPlaySound !== null) {
+        setAutoPlaySoundState(savedAutoPlaySound);
+      }
 
-    // Load saved auto play sound
-    const savedAutoPlaySound = LocalStorage.load<boolean>(
-      `${storagePrefix}_autoPlaySound`
-    );
-    if (savedAutoPlaySound !== null) {
-      setAutoPlaySound(savedAutoPlaySound);
-    }
+      setIsLoaded(true);
+    };
+
+    loadSettings();
   }, [storagePrefix]);
 
-  const handlePracticeModeChange = (mode: PracticeMode) => {
-    setPracticeMode(mode);
-    LocalStorage.save(`${storagePrefix}_practiceMode`, mode);
-  };
+  const setPracticeMode = useCallback(
+    (mode: PracticeMode) => {
+      setPracticeModeState(mode);
+      Storage.save(`${storagePrefix}_practiceMode`, mode);
+    },
+    [storagePrefix]
+  );
 
-  const handleDisplayModeChange = (mode: T) => {
-    setDisplayMode(mode);
-    LocalStorage.save(`${storagePrefix}_displayMode`, mode);
-  };
+  const setDisplayMode = useCallback(
+    (mode: T) => {
+      setDisplayModeState(mode);
+      Storage.save(`${storagePrefix}_displayMode`, mode);
+    },
+    [storagePrefix]
+  );
 
-  const handleAutoPlaySoundChange = (enabled: boolean) => {
-    setAutoPlaySound(enabled);
-    LocalStorage.save(`${storagePrefix}_autoPlaySound`, enabled);
-  };
+  const setAutoPlaySound = useCallback(
+    (enabled: boolean) => {
+      setAutoPlaySoundState(enabled);
+      Storage.save(`${storagePrefix}_autoPlaySound`, enabled);
+    },
+    [storagePrefix]
+  );
 
   return {
     practiceMode,
     displayMode,
     autoPlaySound,
-    setPracticeMode: handlePracticeModeChange,
-    setDisplayMode: handleDisplayModeChange,
-    setAutoPlaySound: handleAutoPlaySoundChange,
+    isLoaded,
+    setPracticeMode,
+    setDisplayMode,
+    setAutoPlaySound,
   };
 }
-

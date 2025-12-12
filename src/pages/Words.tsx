@@ -20,7 +20,7 @@ import {
 import { usePracticeState } from "@/hooks/use-practice-state";
 import { useTTS } from "@/hooks/use-tts";
 import { DataLoader } from "@/lib/data-loader";
-import { LocalStorage } from "@/lib/local-storage";
+import { Storage } from "@/lib/storage";
 import {
   PracticeMode,
   type MemoObject,
@@ -96,7 +96,7 @@ export default function WordsPage() {
       setAllWords(wordsData);
 
       const kanaData = await DataLoader.loadKanaData();
-      const savedKanaSelections = LocalStorage.load<string[]>(
+      const savedKanaSelections = await Storage.load<string[]>(
         "words_kana_selections"
       );
 
@@ -149,7 +149,7 @@ export default function WordsPage() {
     const selectedRomaji = updatedKanaList
       .filter((k) => k.selected)
       .map((k) => k.romaji);
-    LocalStorage.save("words_kana_selections", selectedRomaji);
+    Storage.save("words_kana_selections", selectedRomaji);
   };
 
   const handleStart = () => {
