@@ -5,25 +5,35 @@ import { HeaderActions } from "@/components/header-actions";
 
 interface NavigationProps {
   title?: string;
+  customTitle?: string;
   showBackButton?: boolean;
+  backPath?: string;
   onSettingsClick?: () => void;
   onHelpClick?: () => void;
 }
 
 export function Navigation({
   title = "日语学习工具",
+  customTitle,
   showBackButton = false,
+  backPath = "/",
   onSettingsClick,
   onHelpClick,
 }: NavigationProps) {
   const location = useLocation();
 
   const getPageTitle = () => {
+    if (customTitle) return customTitle;
     if (title !== "日语学习工具") return title;
 
     if (location.pathname === "/kana") return "假名學習";
     if (location.pathname === "/words") return "單詞學習";
     if (location.pathname === "/phrases") return "句子學習";
+    if (location.pathname === "/study-plans") return "学习方案";
+    if (location.pathname === "/badges") return "成就勋章";
+    if (location.pathname.includes("/study-plans/") && location.pathname.includes("/learn")) {
+      return "方案学习";
+    }
     return title;
   };
 
@@ -32,7 +42,7 @@ export function Navigation({
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
           {showBackButton && (
-            <Link to="/">
+            <Link to={backPath}>
               <Button variant="ghost" size="icon">
                 <ArrowLeft className="h-5 w-5" />
               </Button>

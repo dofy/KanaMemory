@@ -5,6 +5,7 @@ import type {
   CheckInRecord,
   Badge,
   TestRecord,
+  StudyPlan,
   DictKanaItem,
   DictWordItem,
   DictPhraseItem,
@@ -21,6 +22,7 @@ class KanaMemoryDB extends Dexie {
   checkIn!: Table<CheckInRecord, string>;
   badges!: Table<Badge, string>;
   testRecords!: Table<TestRecord, string>;
+  studyPlans!: Table<StudyPlan, string>;
 
   // Dictionary data
   kana!: Table<DictKanaItem, string>;
@@ -38,19 +40,13 @@ class KanaMemoryDB extends Dexie {
       checkIn: "date, timestamp",
       badges: "id, type, unlockedAt",
       testRecords: "id, type, timestamp",
+      studyPlans: "id, planId, startedAt, completedAt",
       // Dictionary data stores
       kana: "hiragana, type, romaji",
       words: "id, hiragana",
       phrases: "id, category",
       dataVersions: "key",
     });
-
-    // Future version upgrade example:
-    // this.version(2).stores({
-    //   // Add new indexes or stores here
-    // }).upgrade(tx => {
-    //   // Migration logic
-    // });
   }
 }
 
@@ -60,7 +56,7 @@ export async function initDatabase(): Promise<void> {
   await db.open();
 }
 
-// Data version constants - update these when JSON files change
+// Data version constants
 export const DATA_VERSIONS = {
   kana: "1.0.0",
   words: "1.0.0",
@@ -96,6 +92,7 @@ export {
   type CheckInRecord,
   type Badge,
   type TestRecord,
+  type StudyPlan,
   type DictKanaItem,
   type DictWordItem,
   type DictPhraseItem,

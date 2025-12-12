@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { BookText, Languages, MessageCircle } from "lucide-react";
+import { BookText, Languages, MessageCircle, Award, Map } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { HelpDialog } from "@/components/help-dialog";
@@ -16,15 +16,31 @@ import {
   useKeyboardShortcuts,
 } from "@/hooks/use-keyboard-shortcuts";
 import { HeaderActions } from "@/components/header-actions";
+import { BadgeService } from "@/lib/badge-service";
+import { ProgressService } from "@/lib/progress-service";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
   const [isHelpOpen, setIsHelpOpen] = useState(false);
+  const [stats, setStats] = useState<{
+    streak: number;
+    badges: number;
+  } | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     setMounted(true);
+    loadStats();
   }, []);
+
+  const loadStats = async () => {
+    try {
+      const data = await ProgressService.getStats();
+      setStats({ streak: data.streak, badges: data.badges });
+    } catch {
+      // Ignore errors on initial load
+    }
+  };
 
   useKeyboardShortcuts({
     onGoHome: () => navigate("/"),
@@ -117,6 +133,57 @@ export default function Home() {
           })}
         </div>
 
+        {/* Study Plans & Badges Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto mt-8">
+          <Link to="/study-plans">
+            <Card className="transition-all hover:shadow-lg cursor-pointer hover:scale-105 h-full">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <Map className="h-6 w-6 text-orange-500" />
+                  <CardTitle className="text-lg">学习方案</CardTitle>
+                </div>
+                <CardDescription>
+                  系统化的学习计划，帮助你有序地掌握日语
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button variant="outline" className="w-full">
+                  查看方案
+                </Button>
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link to="/badges">
+            <Card className="transition-all hover:shadow-lg cursor-pointer hover:scale-105 h-full">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <Award className="h-6 w-6 text-yellow-500" />
+                  <CardTitle className="text-lg">成就勋章</CardTitle>
+                  {stats && stats.badges > 0 && (
+                    <span className="ml-auto text-sm text-muted-foreground">
+                      已获得 {stats.badges} 个
+                    </span>
+                  )}
+                </div>
+                <CardDescription>
+                  完成学习目标，解锁成就勋章
+                  {stats && stats.streak > 0 && (
+                    <span className="block mt-1 text-orange-500">
+                      🔥 当前连续打卡 {stats.streak} 天
+                    </span>
+                  )}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button variant="outline" className="w-full">
+                  查看勋章
+                </Button>
+              </CardContent>
+            </Card>
+          </Link>
+        </div>
+
         <div className="mt-16 text-center text-muted-foreground">
           <p className="mb-2">功能特点</p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
@@ -124,7 +191,8 @@ export default function Home() {
             <span>✓ 语音朗读</span>
             <span>✓ 快捷键支持</span>
             <span>✓ 深色模式</span>
-            <span>✓ 本地存储进度</span>
+            <span>✓ 学习进度追踪</span>
+            <span>✓ 成就勋章系统</span>
           </div>
         </div>
       </main>

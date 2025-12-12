@@ -5,6 +5,9 @@ import HomePage from "@/pages/Home";
 import KanaPage from "@/pages/Kana";
 import PhrasesPage from "@/pages/Phrases";
 import WordsPage from "@/pages/Words";
+import StudyPlansPage from "@/pages/StudyPlans";
+import BadgesPage from "@/pages/Badges";
+import PlanLearnPage from "@/pages/PlanLearn";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -29,6 +32,9 @@ function App() {
         <Route path="/kana" element={<KanaPage />} />
         <Route path="/words" element={<WordsPage />} />
         <Route path="/phrases" element={<PhrasesPage />} />
+        <Route path="/study-plans" element={<StudyPlansPage />} />
+        <Route path="/study-plans/:planId/learn" element={<PlanLearnPage />} />
+        <Route path="/badges" element={<BadgesPage />} />
       </Routes>
       <Toaster />
     </ThemeProvider>

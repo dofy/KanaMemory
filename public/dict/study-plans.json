@@ -1,0 +1,126 @@
+[
+  {
+    "id": "plan_kana_7days",
+    "name": "五十音速成",
+    "description": "7天掌握全部假名，每天学习约15个",
+    "difficulty": "beginner",
+    "estimatedDays": 7,
+    "stages": [
+      {
+        "id": "stage_1",
+        "name": "清音 あ-こ行",
+        "type": "kana",
+        "targetItems": ["あ", "い", "う", "え", "お", "か", "き", "く", "け", "こ"],
+        "requiredMastery": 3
+      },
+      {
+        "id": "stage_2",
+        "name": "清音 さ-と行",
+        "type": "kana",
+        "targetItems": ["さ", "し", "す", "せ", "そ", "た", "ち", "つ", "て", "と"],
+        "requiredMastery": 3
+      },
+      {
+        "id": "stage_3",
+        "name": "清音 な-ほ行",
+        "type": "kana",
+        "targetItems": ["な", "に", "ぬ", "ね", "の", "は", "ひ", "ふ", "へ", "ほ"],
+        "requiredMastery": 3
+      },
+      {
+        "id": "stage_4",
+        "name": "清音 ま-ん",
+        "type": "kana",
+        "targetItems": ["ま", "み", "む", "め", "も", "や", "ゆ", "よ", "ら", "り", "る", "れ", "ろ", "わ", "を", "ん"],
+        "requiredMastery": 3
+      },
+      {
+        "id": "stage_5",
+        "name": "浊音全部",
+        "type": "kana",
+        "targetItems": ["が", "ぎ", "ぐ", "げ", "ご", "ざ", "じ", "ず", "ぜ", "ぞ", "だ", "ぢ", "づ", "で", "ど", "ば", "び", "ぶ", "べ", "ぼ", "ぱ", "ぴ", "ぷ", "ぺ", "ぽ"],
+        "requiredMastery": 3
+      },
+      {
+        "id": "stage_6",
+        "name": "拗音（上）",
+        "type": "kana",
+        "targetItems": ["きゃ", "きゅ", "きょ", "しゃ", "しゅ", "しょ", "ちゃ", "ちゅ", "ちょ", "にゃ", "にゅ", "にょ", "ひゃ", "ひゅ", "ひょ", "みゃ", "みゅ", "みょ"],
+        "requiredMastery": 3
+      },
+      {
+        "id": "stage_7",
+        "name": "拗音（下）",
+        "type": "kana",
+        "targetItems": ["りゃ", "りゅ", "りょ", "ぎゃ", "ぎゅ", "ぎょ", "じゃ", "じゅ", "じょ", "びゃ", "びゅ", "びょ", "ぴゃ", "ぴゅ", "ぴょ"],
+        "requiredMastery": 3
+      }
+    ]
+  },
+  {
+    "id": "plan_daily_14days",
+    "name": "日常会话入门",
+    "description": "14天学习基础日常用语，含问候、购物、餐饮场景",
+    "difficulty": "intermediate",
+    "estimatedDays": 14,
+    "stages": [
+      {
+        "id": "stage_1",
+        "name": "基础问候（上）",
+        "type": "phrase",
+        "category": "greeting",
+        "targetCount": 10,
+        "requiredMastery": 3
+      },
+      {
+        "id": "stage_2",
+        "name": "基础问候（下）",
+        "type": "phrase",
+        "category": "greeting",
+        "targetCount": 20,
+        "requiredMastery": 3
+      },
+      {
+        "id": "stage_3",
+        "name": "日常用语（一）",
+        "type": "phrase",
+        "category": "daily",
+        "targetCount": 20,
+        "requiredMastery": 3
+      },
+      {
+        "id": "stage_4",
+        "name": "日常用语（二）",
+        "type": "phrase",
+        "category": "daily",
+        "targetCount": 40,
+        "requiredMastery": 3
+      },
+      {
+        "id": "stage_5",
+        "name": "餐饮用语",
+        "type": "phrase",
+        "category": "dining",
+        "targetCount": 20,
+        "requiredMastery": 3
+      },
+      {
+        "id": "stage_6",
+        "name": "旅行用语",
+        "type": "phrase",
+        "category": "travel",
+        "targetCount": 20,
+        "requiredMastery": 3
+      },
+      {
+        "id": "stage_7",
+        "name": "综合复习",
+        "type": "phrase",
+        "category": "daily",
+        "targetCount": 30,
+        "requiredMastery": 4
+      }
+    ]
+  }
+]
+

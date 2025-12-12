@@ -28,9 +28,11 @@ import {
   Lightbulb,
   Volume2,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { useCheckIn } from "@/hooks/use-checkin";
+import { BadgeUnlockDialog } from "@/components/badge-unlock-dialog";
 
 const DISPLAY_MODES = [
   { value: "mixed" as const, label: "混合" },
@@ -43,6 +45,13 @@ const DISPLAY_MODES = [
 export default function KanaPage() {
   const [mounted, setMounted] = useState(false);
   const { speak } = useTTS();
+  const learnedCountRef = useRef(0);
+  const {
+    checkIn,
+    unlockedBadge,
+    showBadgeDialog,
+    closeBadgeDialog,
+  } = useCheckIn();
 
   const {
     practiceMode,
@@ -184,9 +193,22 @@ export default function KanaPage() {
     } else if (displayKanaList.length > 1) {
       getRandomKana();
     } else {
+      // Completed one round - trigger check-in
+      const totalLearned = usedKanaList.length + 1;
+      if (totalLearned >= 5) {
+        checkIn({
+          kanaCount: totalLearned,
+          wordCount: 0,
+          phraseCount: 0,
+          totalTime: 0,
+        });
+      }
       setDisplayKanaList([...displayKanaList, ...usedKanaList]);
       setUsedKanaList([]);
     }
+    
+    // Track learned count
+    learnedCountRef.current += 1;
   };
 
   const handleStart = () => {
@@ -438,6 +460,12 @@ export default function KanaPage() {
       <div className="hidden sm:block">
         <Footer />
       </div>
+
+      <BadgeUnlockDialog
+        badge={unlockedBadge}
+        open={showBadgeDialog}
+        onClose={closeBadgeDialog}
+      />
     </div>
   );
 }

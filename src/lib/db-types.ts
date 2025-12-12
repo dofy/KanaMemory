@@ -1,22 +1,25 @@
 // Database-related type definitions
 
+// ========== User Settings ==========
 export interface UserSettings {
   key: string;
   value: unknown;
   updatedAt: number;
 }
 
+// ========== Learning Progress ==========
 export interface LearningProgress {
   id: string; // `${type}_${itemId}`
   type: "kana" | "word" | "phrase";
-  itemId: string; // romaji for kana, unique identifier for words/phrases
+  itemId: string;
   correctCount: number;
   wrongCount: number;
   masteryLevel: number; // 0-5 proficiency level
-  lastPracticed: number; // timestamp
-  createdAt: number; // timestamp
+  lastPracticed: number;
+  createdAt: number;
 }
 
+// ========== Check-in ==========
 export interface CheckInRecord {
   date: string; // YYYY-MM-DD
   timestamp: number;
@@ -24,11 +27,43 @@ export interface CheckInRecord {
     kanaCount: number;
     wordCount: number;
     phraseCount: number;
-    totalTime: number; // learning duration in seconds
+    totalTime: number; // seconds
   };
 }
 
-export type BadgeType = "streak" | "mastery" | "milestone";
+// ========== Badges ==========
+export type BadgeType = "streak" | "mastery" | "milestone" | "special";
+
+export type BadgeConditionType =
+  | "check_in_streak"
+  | "total_check_in"
+  | "mastery_count"
+  | "plan_complete"
+  | "item_count"
+  | "perfect_test";
+
+export interface BadgeCondition {
+  type: BadgeConditionType;
+  value: number;
+  itemType?: "kana" | "word" | "phrase";
+}
+
+export interface BadgeGuide {
+  text: string;      // 提示文本
+  action: string;    // 按钮文本
+  link: string;      // 跳转链接
+}
+
+export interface BadgeDefinition {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  type: BadgeType;
+  condition: BadgeCondition;
+  guide?: BadgeGuide;
+  secret?: boolean;
+}
 
 export interface Badge {
   id: string;
@@ -37,6 +72,7 @@ export interface Badge {
   metadata: Record<string, unknown>;
 }
 
+// ========== Test Records ==========
 export interface TestRecordDetail {
   itemId: string;
   correct: boolean;
@@ -49,20 +85,51 @@ export interface TestRecord {
   score: number;
   totalQuestions: number;
   timestamp: number;
-  duration: number; // test duration in seconds
+  duration: number;
   details: TestRecordDetail[];
 }
 
-// Dictionary data types for IndexedDB storage
+// ========== Study Plans ==========
+export interface StudyStage {
+  id: string;
+  name: string;
+  type: "kana" | "word" | "phrase";
+  targetItems?: string[]; // Item IDs for kana
+  category?: string; // Category for phrases
+  targetCount?: number; // Target count for words/phrases
+  requiredMastery: number; // 1-5
+  completed: boolean;
+}
+
+export interface StudyPlanDefinition {
+  id: string;
+  name: string;
+  description: string;
+  difficulty: "beginner" | "intermediate" | "advanced";
+  estimatedDays: number;
+  stages: Omit<StudyStage, "completed">[];
+}
+
+export interface StudyPlan {
+  id: string;
+  planId: string; // Reference to StudyPlanDefinition
+  name: string;
+  currentStage: number;
+  stages: StudyStage[];
+  startedAt: number;
+  completedAt?: number;
+}
+
+// ========== Dictionary Data ==========
 export interface DictKanaItem {
-  hiragana: string; // Primary key (unique for each kana)
+  hiragana: string;
   katakana: string;
   romaji: string;
   type: "seion" | "dakuon" | "yoon";
 }
 
 export interface DictWordItem {
-  id: string; // Primary key (generated from index)
+  id: string;
   hiragana: string;
   japanese: string;
   romaji: string;
@@ -71,7 +138,7 @@ export interface DictWordItem {
 }
 
 export interface DictPhraseItem {
-  id: string; // Primary key (generated from category + index)
+  id: string;
   category: string;
   japanese: string;
   hiragana: string;
@@ -79,9 +146,8 @@ export interface DictPhraseItem {
   chinese: string;
 }
 
-// Data version metadata
 export interface DataVersion {
-  key: string; // 'kana' | 'words' | 'phrases'
+  key: string;
   version: string;
   updatedAt: number;
 }
