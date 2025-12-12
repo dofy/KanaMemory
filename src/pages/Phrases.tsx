@@ -10,14 +10,11 @@ import {
 } from "@/components/ui/sheet";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
-import { HelpDialog } from "@/components/help-dialog";
 import { PracticeModeSelector } from "@/components/practice-mode-selector";
 import { DisplayModeSelector } from "@/components/display-mode-selector";
 import { PracticeDisplay } from "@/components/practice-display";
-import {
-  useKeyboardShortcuts,
-  STANDARD_SHORTCUTS,
-} from "@/hooks/use-keyboard-shortcuts";
+import { useKeyboardShortcuts } from "@/hooks/use-keyboard-shortcuts";
+import { useGlobalShortcuts } from "@/components/global-shortcuts-provider";
 import { usePracticeState } from "@/hooks/use-practice-state";
 import { useTTS } from "@/hooks/use-tts";
 import { DataLoader } from "@/lib/data-loader";
@@ -30,7 +27,6 @@ import {
 import { BookOpen, Lightbulb, Volume2, Layers } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
 
 const CATEGORY_NAMES = {
   greeting: "問候語",
@@ -84,11 +80,10 @@ export default function PhrasesPage() {
   const [isStarted, setIsStarted] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const [isHelpOpen, setIsHelpOpen] = useState(false);
+  const { isHelpOpen, toggleHelp } = useGlobalShortcuts();
   const [mixedModeDisplay, setMixedModeDisplay] = useState<"kana" | "japanese">(
     "kana"
   );
-  const navigate = useNavigate();
 
   useEffect(() => {
     setMounted(true);
@@ -288,15 +283,10 @@ export default function PhrasesPage() {
     onToggleHint: handleToggleHint,
     onPlaySound: handlePronounce,
     onStart: handleStart,
-    onGoHome: () => navigate("/"),
-    onGoKana: () => navigate("/kana"),
-    onGoWords: () => navigate("/words"),
-    onGoPhrases: () => navigate("/phrases"),
     onToggleSettings: () => setIsSettingsOpen((prev) => !prev),
-    onToggleHelp: () => setIsHelpOpen((prev) => !prev),
     isStarted,
     isSettingsOpen,
-    isHelpOpen,
+    isDialogOpen: isHelpOpen,
   });
 
   const totalPhraseCount = displayPhrases.length + usedPhrases.length;
@@ -310,7 +300,7 @@ export default function PhrasesPage() {
       <Navigation
         showBackButton
         onSettingsClick={() => setIsSettingsOpen(true)}
-        onHelpClick={() => setIsHelpOpen(true)}
+        onHelpClick={toggleHelp}
       />
 
       <main className="flex-1 flex flex-col items-center justify-center p-0 sm:p-6 md:p-8">
@@ -517,13 +507,6 @@ export default function PhrasesPage() {
           </div>
         </SheetContent>
       </Sheet>
-
-      {/* Help Dialog */}
-      <HelpDialog
-        open={isHelpOpen}
-        onOpenChange={setIsHelpOpen}
-        shortcuts={STANDARD_SHORTCUTS}
-      />
     </div>
   );
 }

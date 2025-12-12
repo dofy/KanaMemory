@@ -1,4 +1,3 @@
-import { HelpDialog } from "@/components/help-dialog";
 import { KanaSelector } from "@/components/kana-selector";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
@@ -13,10 +12,8 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import {
-  STANDARD_SHORTCUTS,
-  useKeyboardShortcuts,
-} from "@/hooks/use-keyboard-shortcuts";
+import { useKeyboardShortcuts } from "@/hooks/use-keyboard-shortcuts";
+import { useGlobalShortcuts } from "@/components/global-shortcuts-provider";
 import { usePracticeState } from "@/hooks/use-practice-state";
 import { useTTS } from "@/hooks/use-tts";
 import { DataLoader } from "@/lib/data-loader";
@@ -30,7 +27,6 @@ import {
 } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
 import { useCheckIn } from "@/hooks/use-checkin";
 import { BadgeUnlockDialog } from "@/components/badge-unlock-dialog";
 
@@ -79,8 +75,7 @@ export default function KanaPage() {
   const [isStarted, setIsStarted] = useState(false);
   const [showRemind, setShowRemind] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const [isHelpOpen, setIsHelpOpen] = useState(false);
-  const navigate = useNavigate();
+  const { isHelpOpen, toggleHelp } = useGlobalShortcuts();
 
   useEffect(() => {
     setMounted(true);
@@ -222,15 +217,10 @@ export default function KanaPage() {
     onToggleHint: () => setShowRemind((prev) => !prev),
     onPlaySound: () => currentKana.displayText && speak(currentKana.displayText),
     onStart: handleStart,
-    onGoHome: () => navigate("/"),
-    onGoKana: () => navigate("/kana"),
-    onGoWords: () => navigate("/words"),
-    onGoPhrases: () => navigate("/phrases"),
     onToggleSettings: () => setIsSettingsOpen((prev) => !prev),
-    onToggleHelp: () => setIsHelpOpen((prev) => !prev),
     isStarted,
     isSettingsOpen,
-    isHelpOpen,
+    isDialogOpen: isHelpOpen,
   });
 
   const handleKanaSelectionChange = (updatedList: MemoObject[]) => {
@@ -292,7 +282,7 @@ export default function KanaPage() {
       <Navigation
         showBackButton={true}
         onSettingsClick={() => setIsSettingsOpen(true)}
-        onHelpClick={() => setIsHelpOpen(true)}
+        onHelpClick={toggleHelp}
       />
 
       <main className="flex-1 flex flex-col items-center justify-center p-0 sm:p-6 md:p-8">
@@ -340,13 +330,6 @@ export default function KanaPage() {
               </div>
             </SheetContent>
           </Sheet>
-
-          {/* Help Dialog */}
-          <HelpDialog
-            open={isHelpOpen}
-            onOpenChange={setIsHelpOpen}
-            shortcuts={STANDARD_SHORTCUTS}
-          />
 
           {/* Main Card */}
           <Card className="flex-1 flex flex-col !border-0 rounded-none sm:rounded-lg overflow-hidden shadow-none bg-transparent sm:bg-card">

@@ -126,7 +126,7 @@ export default function BadgesPage() {
   const totalCount = badgeDefinitions.length;
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted">
       <Navigation showBackButton />
 
       <main className="flex-1 container mx-auto px-4 py-8">

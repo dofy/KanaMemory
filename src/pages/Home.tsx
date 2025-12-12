@@ -9,23 +9,18 @@ import {
 } from "@/components/ui/card";
 import { BookText, Languages, MessageCircle, Award, Map } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { HelpDialog } from "@/components/help-dialog";
-import {
-  STANDARD_SHORTCUTS,
-  useKeyboardShortcuts,
-} from "@/hooks/use-keyboard-shortcuts";
+import { Link } from "react-router-dom";
 import { HeaderActions } from "@/components/header-actions";
 import { ProgressService } from "@/lib/progress-service";
+import { useGlobalShortcuts } from "@/components/global-shortcuts-provider";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
-  const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [stats, setStats] = useState<{
     streak: number;
     badges: number;
   } | null>(null);
-  const navigate = useNavigate();
+  const { toggleHelp } = useGlobalShortcuts();
 
   useEffect(() => {
     setMounted(true);
@@ -40,16 +35,6 @@ export default function Home() {
       // Ignore errors on initial load
     }
   };
-
-  useKeyboardShortcuts({
-    onGoHome: () => navigate("/"),
-    onGoKana: () => navigate("/kana"),
-    onGoWords: () => navigate("/words"),
-    onGoPhrases: () => navigate("/phrases"),
-    onToggleHelp: () => setIsHelpOpen((prev) => !prev),
-    isHelpOpen,
-    enabled: mounted,
-  });
 
   if (!mounted) {
     return null;
@@ -95,7 +80,7 @@ export default function Home() {
             <h1 className="text-xl font-bold">Kana Memory</h1>
           </div>
 
-          <HeaderActions onHelpClick={() => setIsHelpOpen(true)} />
+          <HeaderActions onHelpClick={toggleHelp} />
         </div>
       </header>
 
@@ -197,12 +182,6 @@ export default function Home() {
       </main>
 
       <Footer />
-
-      <HelpDialog
-        open={isHelpOpen}
-        onOpenChange={setIsHelpOpen}
-        shortcuts={STANDARD_SHORTCUTS}
-      />
     </div>
   );
 }

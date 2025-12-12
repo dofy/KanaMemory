@@ -1,5 +1,6 @@
 import { ThemeProvider } from "@/components/theme-provider-custom";
 import { Toaster } from "@/components/ui/sonner";
+import { GlobalShortcutsProvider } from "@/components/global-shortcuts-provider";
 import { useDB } from "@/hooks/use-db";
 import HomePage from "@/pages/Home";
 import KanaPage from "@/pages/Kana";
@@ -27,16 +28,21 @@ function App() {
 
   return (
     <ThemeProvider defaultTheme="system" storageKey="kana-theme">
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/kana" element={<KanaPage />} />
-        <Route path="/words" element={<WordsPage />} />
-        <Route path="/phrases" element={<PhrasesPage />} />
-        <Route path="/study-plans" element={<StudyPlansPage />} />
-        <Route path="/study-plans/:planId/learn" element={<PlanLearnPage />} />
-        <Route path="/badges" element={<BadgesPage />} />
-      </Routes>
-      <Toaster />
+      <GlobalShortcutsProvider>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/kana" element={<KanaPage />} />
+          <Route path="/words" element={<WordsPage />} />
+          <Route path="/phrases" element={<PhrasesPage />} />
+          <Route path="/study-plans" element={<StudyPlansPage />} />
+          <Route
+            path="/study-plans/:planId/learn"
+            element={<PlanLearnPage />}
+          />
+          <Route path="/badges" element={<BadgesPage />} />
+        </Routes>
+        <Toaster />
+      </GlobalShortcutsProvider>
     </ThemeProvider>
   );
 }

@@ -1,19 +1,15 @@
 import { useEffect } from "react";
 
+// Page-level keyboard shortcuts config
 interface KeyboardShortcutsConfig {
   onNext?: () => void;
   onToggleHint?: () => void;
   onPlaySound?: () => void;
   onStart?: () => void;
-  onGoHome?: () => void;
-  onGoKana?: () => void;
-  onGoWords?: () => void;
-  onGoPhrases?: () => void;
   onToggleSettings?: () => void;
-  onToggleHelp?: () => void;
   isStarted?: boolean;
   isSettingsOpen?: boolean;
-  isHelpOpen?: boolean;
+  isDialogOpen?: boolean; // Any dialog open (help, badge, etc.)
   enabled?: boolean;
 }
 
@@ -22,30 +18,14 @@ export function useKeyboardShortcuts({
   onToggleHint,
   onPlaySound,
   onStart,
-  onGoHome,
-  onGoKana,
-  onGoWords,
-  onGoPhrases,
   onToggleSettings,
-  onToggleHelp,
   isStarted = false,
   isSettingsOpen = false,
-  isHelpOpen = false,
+  isDialogOpen = false,
   enabled = true,
 }: KeyboardShortcutsConfig) {
   useEffect(() => {
     if (!enabled) return;
-
-    let awaitingGoto = false;
-    let gotoTimer: number | undefined;
-
-    const resetGoto = () => {
-      awaitingGoto = false;
-      if (gotoTimer) {
-        clearTimeout(gotoTimer);
-        gotoTimer = undefined;
-      }
-    };
 
     const handleKeyPress = (e: KeyboardEvent) => {
       // Ignore if typing in input fields
@@ -58,65 +38,15 @@ export function useKeyboardShortcuts({
 
       const key = e.key.toLowerCase();
 
-      // Gmail style navigation: g + key combos
-      if (awaitingGoto) {
-        switch (key) {
-          case "h":
-            if (onGoHome) {
-              e.preventDefault();
-              onGoHome();
-            }
-            break;
-          case "k":
-            if (onGoKana) {
-              e.preventDefault();
-              onGoKana();
-            }
-            break;
-          case "w":
-            if (onGoWords) {
-              e.preventDefault();
-              onGoWords();
-            }
-            break;
-          case "p":
-            if (onGoPhrases) {
-              e.preventDefault();
-              onGoPhrases();
-            }
-            break;
-          default:
-            break;
-        }
-        resetGoto();
-        return;
-      }
-
-      if (key === "g") {
-        awaitingGoto = true;
-        gotoTimer = window.setTimeout(resetGoto, 800);
-        return;
-      }
-
-      // Global shortcuts (work even when not started)
-      if (key === "s") {
-        if (!isHelpOpen && onToggleSettings) {
-          e.preventDefault();
-          onToggleSettings();
-        }
-        return;
-      }
-
-      if (key === "?") {
-        if (!isSettingsOpen && onToggleHelp) {
-          e.preventDefault();
-          onToggleHelp();
-        }
+      // Settings shortcut
+      if (key === "s" && !isDialogOpen && onToggleSettings) {
+        e.preventDefault();
+        onToggleSettings();
         return;
       }
 
       // Start session (when available)
-      if (!isStarted && !isSettingsOpen && !isHelpOpen) {
+      if (!isStarted && !isSettingsOpen && !isDialogOpen) {
         if (key === "enter" && onStart) {
           e.preventDefault();
           onStart();
@@ -125,7 +55,7 @@ export function useKeyboardShortcuts({
       }
 
       // Practice shortcuts (only work when started and no dialogs open)
-      if (isStarted && !isSettingsOpen && !isHelpOpen) {
+      if (isStarted && !isSettingsOpen && !isDialogOpen) {
         switch (key) {
           case " ":
           case "arrowright":
@@ -156,7 +86,6 @@ export function useKeyboardShortcuts({
 
     window.addEventListener("keydown", handleKeyPress);
     return () => {
-      resetGoto();
       window.removeEventListener("keydown", handleKeyPress);
     };
   }, [
@@ -164,27 +93,24 @@ export function useKeyboardShortcuts({
     onToggleHint,
     onPlaySound,
     onStart,
-    onGoHome,
-    onGoKana,
-    onGoWords,
-    onGoPhrases,
     onToggleSettings,
-    onToggleHelp,
     isStarted,
     isSettingsOpen,
-    isHelpOpen,
+    isDialogOpen,
     enabled,
   ]);
 }
 
-// Standard shortcuts list for all learning pages
+// Standard shortcuts list for help dialog
 export const STANDARD_SHORTCUTS = [
-  { key: "S", description: "開關設置" },
+  { key: "S", description: "開關設定" },
   { key: "?", description: "開關幫助" },
   { key: "G H", description: "回到首頁" },
   { key: "G K", description: "前往假名學習" },
   { key: "G W", description: "前往單詞學習" },
   { key: "G P", description: "前往句子學習" },
+  { key: "G S", description: "前往學習方案" },
+  { key: "G B", description: "前往成就勳章" },
   { key: "Enter", description: "開始學習" },
   { key: "Space / N / →", description: "下一個" },
   { key: "H", description: "顯示/隱藏提示" },

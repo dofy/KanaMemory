@@ -1,4 +1,3 @@
-import { HelpDialog } from "@/components/help-dialog";
 import { KanaSelector } from "@/components/kana-selector";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
@@ -13,10 +12,8 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import {
-  STANDARD_SHORTCUTS,
-  useKeyboardShortcuts,
-} from "@/hooks/use-keyboard-shortcuts";
+import { useKeyboardShortcuts } from "@/hooks/use-keyboard-shortcuts";
+import { useGlobalShortcuts } from "@/components/global-shortcuts-provider";
 import { usePracticeState } from "@/hooks/use-practice-state";
 import { useTTS } from "@/hooks/use-tts";
 import { DataLoader } from "@/lib/data-loader";
@@ -35,7 +32,6 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
 
 const DISPLAY_MODES = [
   { value: "mixed" as const, label: "混合" },
@@ -78,11 +74,10 @@ export default function WordsPage() {
   const [isStarted, setIsStarted] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const [isHelpOpen, setIsHelpOpen] = useState(false);
+  const { isHelpOpen, toggleHelp } = useGlobalShortcuts();
   const [mixedModeDisplay, setMixedModeDisplay] = useState<"kana" | "japanese">(
     "kana"
   );
-  const navigate = useNavigate();
 
   useEffect(() => {
     setMounted(true);
@@ -285,15 +280,10 @@ export default function WordsPage() {
     onToggleHint: handleToggleHint,
     onPlaySound: handlePronounce,
     onStart: handleStart,
-    onGoHome: () => navigate("/"),
-    onGoKana: () => navigate("/kana"),
-    onGoWords: () => navigate("/words"),
-    onGoPhrases: () => navigate("/phrases"),
     onToggleSettings: () => setIsSettingsOpen((prev) => !prev),
-    onToggleHelp: () => setIsHelpOpen((prev) => !prev),
     isStarted,
     isSettingsOpen,
-    isHelpOpen,
+    isDialogOpen: isHelpOpen,
   });
 
   const selectedKanaCount = kanaList.filter((k) => k.selected).length;
@@ -308,7 +298,7 @@ export default function WordsPage() {
       <Navigation
         showBackButton
         onSettingsClick={() => setIsSettingsOpen(true)}
-        onHelpClick={() => setIsHelpOpen(true)}
+        onHelpClick={toggleHelp}
       />
 
       <main className="flex-1 flex flex-col items-center justify-center p-0 sm:p-6 md:p-8">
@@ -482,13 +472,6 @@ export default function WordsPage() {
           </div>
         </SheetContent>
       </Sheet>
-
-      {/* Help Dialog */}
-      <HelpDialog
-        open={isHelpOpen}
-        onOpenChange={setIsHelpOpen}
-        shortcuts={STANDARD_SHORTCUTS}
-      />
     </div>
   );
 }
