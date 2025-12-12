@@ -94,7 +94,7 @@ export default function PlanLearnPage() {
       }
     } else if (stage.type === "phrase" && stage.category) {
       const phrasesData = await DataLoader.loadPhrasesData();
-      const categoryPhrases = phrasesData.categories[stage.category] || [];
+      const categoryPhrases = phrasesData[stage.category] || [];
       const limit = stage.targetCount || categoryPhrases.length;
 
       for (let i = 0; i < Math.min(limit, categoryPhrases.length); i++) {

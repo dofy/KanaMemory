@@ -16,7 +16,6 @@ import {
   useKeyboardShortcuts,
 } from "@/hooks/use-keyboard-shortcuts";
 import { HeaderActions } from "@/components/header-actions";
-import { BadgeService } from "@/lib/badge-service";
 import { ProgressService } from "@/lib/progress-service";
 
 export default function Home() {

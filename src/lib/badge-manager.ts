@@ -27,7 +27,7 @@ class BadgeManagerClass {
   }
 
   // Emit event and trigger badge check
-  async emit(event: BadgeEvent): Promise<void> {
+  async emit(_event: BadgeEvent): Promise<void> {
     // Debounce: if already checking, mark pending
     if (this.checkingLock) {
       this.pendingCheck = true;

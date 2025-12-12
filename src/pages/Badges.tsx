@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { BadgeService } from "@/lib/badge-service";
 import { ProgressService } from "@/lib/progress-service";
-import { loadBadgeDefinitions, getBadgeDefinition } from "@/lib/badge-definitions";
+import { loadBadgeDefinitions } from "@/lib/badge-definitions";
 import { BadgeShowDialog } from "@/components/badge-show-dialog";
 import type { Badge, BadgeDefinition } from "@/lib/db-types";
 import { Award, Lock, Flame, Trophy, Star, Target, ScrollText, ArrowRight } from "lucide-react";
