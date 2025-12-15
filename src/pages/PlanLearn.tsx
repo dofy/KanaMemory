@@ -18,6 +18,7 @@ import { ProgressService } from "@/lib/progress-service";
 import { DataLoader } from "@/lib/data-loader";
 import type { StudyStage } from "@/lib/db-types";
 import { toast } from "sonner";
+import { useKeyboardShortcuts } from "@/hooks/use-keyboard-shortcuts";
 import { useCheckIn } from "@/hooks/use-checkin";
 import { BadgeUnlockDialog } from "@/components/badge-unlock-dialog";
 
@@ -41,15 +42,14 @@ export default function PlanLearnPage() {
   const [items, setItems] = useState<LearnItem[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
-  const [progressStats, setProgressStats] = useState<ProgressStats>({ learned: 0, mastered: 0 });
+  const [progressStats, setProgressStats] = useState<ProgressStats>({
+    learned: 0,
+    mastered: 0,
+  });
   const [loading, setLoading] = useState(true);
   const learnedCountRef = useRef(0);
-  const {
-    checkIn,
-    unlockedBadge,
-    showBadgeDialog,
-    closeBadgeDialog,
-  } = useCheckIn();
+  const { checkIn, unlockedBadge, showBadgeDialog, closeBadgeDialog } =
+    useCheckIn();
 
   useEffect(() => {
     loadPlan();
@@ -115,11 +115,16 @@ export default function PlanLearnPage() {
     await updateProgressStats(stage, learnItems);
   };
 
-  const updateProgressStats = async (stage: StudyStage, learnItems: LearnItem[]) => {
+  const updateProgressStats = async (
+    stage: StudyStage,
+    learnItems: LearnItem[]
+  ) => {
     let learned = 0;
     let mastered = 0;
     for (const item of learnItems) {
-      const progress = await db.learningProgress.get(`${stage.type}_${item.id}`);
+      const progress = await db.learningProgress.get(
+        `${stage.type}_${item.id}`
+      );
       if (progress) {
         learned++;
         if (progress.masteryLevel >= stage.requiredMastery) {
@@ -134,7 +139,11 @@ export default function PlanLearnPage() {
     if (!currentStage || items.length === 0) return;
 
     const currentItem = items[currentIndex];
-    await ProgressService.recordPractice(currentStage.type, currentItem.id, correct);
+    await ProgressService.recordPractice(
+      currentStage.type,
+      currentItem.id,
+      correct
+    );
 
     learnedCountRef.current += 1;
 
@@ -142,7 +151,8 @@ export default function PlanLearnPage() {
       await checkIn({
         kanaCount: currentStage.type === "kana" ? learnedCountRef.current : 0,
         wordCount: currentStage.type === "word" ? learnedCountRef.current : 0,
-        phraseCount: currentStage.type === "phrase" ? learnedCountRef.current : 0,
+        phraseCount:
+          currentStage.type === "phrase" ? learnedCountRef.current : 0,
         totalTime: 0,
       });
       learnedCountRef.current = 0;
@@ -155,15 +165,19 @@ export default function PlanLearnPage() {
       setShowAnswer(false);
     } else {
       if (progressStats.learned + 1 >= items.length && plan) {
-        await ProgressService.updatePlanProgress(plan.id, plan.currentStage, true);
-        
+        await ProgressService.updatePlanProgress(
+          plan.id,
+          plan.currentStage,
+          true
+        );
+
         await checkIn({
           kanaCount: currentStage.type === "kana" ? items.length : 0,
           wordCount: currentStage.type === "word" ? items.length : 0,
           phraseCount: currentStage.type === "phrase" ? items.length : 0,
           totalTime: 0,
         });
-        
+
         toast.success(`🎉 階段「${currentStage.name}」已完成！`);
         await loadPlan();
       } else {
@@ -182,6 +196,41 @@ export default function PlanLearnPage() {
       window.speechSynthesis.speak(utterance);
     }
   }, []);
+
+  // Keyboard shortcuts: 支援下一個 / 顯示提示 / 播放音頻
+  useKeyboardShortcuts({
+    onNext: () => {
+      if (items.length === 0) return;
+      if (!showAnswer) {
+        setShowAnswer(true);
+      } else {
+        handleNext();
+      }
+    },
+    onPrev: () => {
+      if (items.length === 0) return;
+      handlePrev();
+    },
+    onMarkIncorrect: () => {
+      if (!showAnswer) return;
+      handleAnswer(false);
+    },
+    onMarkCorrect: () => {
+      if (!showAnswer) return;
+      handleAnswer(true);
+    },
+    onToggleHint: () => {
+      if (items.length === 0) return;
+      setShowAnswer((s) => !s);
+    },
+    onPlaySound: () => {
+      if (items.length === 0) return;
+      speak(currentItem.primary);
+    },
+    isStarted: items.length > 0,
+    isSettingsOpen: false,
+    isDialogOpen: showBadgeDialog,
+  });
 
   const handlePrev = () => {
     if (currentIndex > 0) {
@@ -223,9 +272,13 @@ export default function PlanLearnPage() {
   const currentItem = items[currentIndex];
   const completedStages = plan.stages.filter((s) => s.completed).length;
   const overallProgress = Math.round(
-    ((completedStages + progressStats.learned / items.length) / plan.stages.length) * 100
+    ((completedStages + progressStats.learned / items.length) /
+      plan.stages.length) *
+      100
   );
-  const stageProgress = Math.round((progressStats.learned / items.length) * 100);
+  const stageProgress = Math.round(
+    (progressStats.learned / items.length) * 100
+  );
 
   return (
     <div className="min-h-screen flex flex-col">

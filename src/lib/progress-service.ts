@@ -21,9 +21,13 @@ export class ProgressService {
       const total = correctCount + wrongCount;
       const accuracy = correctCount / total;
 
-      // Mastery calculation: accuracy * practice count factor (max at 10 practices)
-      const practiceFactor = Math.min(total, 10) / 10;
-      const masteryLevel = Math.min(5, Math.floor(accuracy * 5 * practiceFactor));
+      // Mastery calculation: accuracy * practice count factor (max at 5 practices)
+      // Use 5 as the saturation point so ~3 correct answers can reach mastery 3.
+      const practiceFactor = Math.min(total, 5) / 5;
+      const masteryLevel = Math.min(
+        5,
+        Math.floor(accuracy * 5 * practiceFactor)
+      );
 
       progress = {
         ...existing,
@@ -50,7 +54,10 @@ export class ProgressService {
     }
 
     // Emit event for badge manager
-    BadgeManager.emit({ type: "practice:recorded", data: { type, itemId, correct } });
+    BadgeManager.emit({
+      type: "practice:recorded",
+      data: { type, itemId, correct },
+    });
 
     return progress;
   }
@@ -92,8 +99,12 @@ export class ProgressService {
       ]);
 
     const kanaMastered = kanaProgress.filter((p) => p.masteryLevel >= 3).length;
-    const wordsMastered = wordProgress.filter((p) => p.masteryLevel >= 3).length;
-    const phrasesMastered = phraseProgress.filter((p) => p.masteryLevel >= 3).length;
+    const wordsMastered = wordProgress.filter(
+      (p) => p.masteryLevel >= 3
+    ).length;
+    const phrasesMastered = phraseProgress.filter(
+      (p) => p.masteryLevel >= 3
+    ).length;
 
     return {
       kana: { total: kanaProgress.length, mastered: kanaMastered },
@@ -205,4 +216,3 @@ export class ProgressService {
     };
   }
 }
-

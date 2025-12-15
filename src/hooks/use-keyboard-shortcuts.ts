@@ -5,6 +5,9 @@ interface KeyboardShortcutsConfig {
   onNext?: () => void;
   onToggleHint?: () => void;
   onPlaySound?: () => void;
+  onPrev?: () => void;
+  onMarkIncorrect?: () => void;
+  onMarkCorrect?: () => void;
   onStart?: () => void;
   onToggleSettings?: () => void;
   isStarted?: boolean;
@@ -17,6 +20,9 @@ export function useKeyboardShortcuts({
   onNext,
   onToggleHint,
   onPlaySound,
+  onPrev,
+  onMarkIncorrect,
+  onMarkCorrect,
   onStart,
   onToggleSettings,
   isStarted = false,
@@ -71,6 +77,24 @@ export function useKeyboardShortcuts({
               onToggleHint();
             }
             break;
+          case "arrowleft":
+            if (onPrev) {
+              e.preventDefault();
+              onPrev();
+            }
+            break;
+          case "x":
+            if (onMarkIncorrect) {
+              e.preventDefault();
+              onMarkIncorrect();
+            }
+            break;
+          case "y":
+            if (onMarkCorrect) {
+              e.preventDefault();
+              onMarkCorrect();
+            }
+            break;
           case "p":
           case "v":
             if (onPlaySound) {
@@ -92,6 +116,9 @@ export function useKeyboardShortcuts({
     onNext,
     onToggleHint,
     onPlaySound,
+    onPrev,
+    onMarkIncorrect,
+    onMarkCorrect,
     onStart,
     onToggleSettings,
     isStarted,
@@ -113,6 +140,9 @@ export const STANDARD_SHORTCUTS = [
   { key: "G B", description: "前往成就勳章" },
   { key: "Enter", description: "開始學習" },
   { key: "Space / N / →", description: "下一個" },
+  { key: "←", description: "上一個（學習模式）" },
   { key: "H", description: "顯示/隱藏提示" },
+  { key: "X", description: "標記：還不會（學習方案學習頁）" },
+  { key: "Y", description: "標記：已掌握（學習方案學習頁）" },
   { key: "P / V", description: "播放發音" },
 ];

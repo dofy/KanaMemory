@@ -15,10 +15,7 @@
       content="日語學習,假名,平假名,片假名,五十音,日語單詞,日語句子,日文學習,kana,hiragana,katakana,japanese learning,日語教育,在線學習"
     />
     <meta name="author" content="Seven Yu" />
-    <meta
-      property="og:title"
-      content="Kana Memory | 在線日語學習工具"
-    />
+    <meta property="og:title" content="Kana Memory | 在線日語學習工具" />
     <meta
       property="og:description"
       content="優雅的日語學習應用，提供假名、單詞、句子三大學習模式，系統化掌握日語"
@@ -27,15 +24,29 @@
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="zh_TW" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="Kana Memory | 在線日語學習工具"
-    />
+    <meta name="twitter:title" content="Kana Memory | 在線日語學習工具" />
     <meta
       name="twitter:description"
       content="假名、單詞、句子三大學習模式，系統化日語學習體驗"
     />
     <title>Kana Memory | 在線日語學習工具</title>
+    <link rel="canonical" href="https://kana.yahaha.net/" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#4f46e5" />
+    <link rel="icon" sizes="32x32" href="/images/favicon-32x32.svg" />
+    <link rel="icon" sizes="16x16" href="/images/favicon-16x16.svg" />
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta
+      property="og:image"
+      content="https://kana.yahaha.net/images/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      name="twitter:image"
+      content="https://kana.yahaha.net/images/twitter-card.png"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -46,12 +57,23 @@
       :root {
         --font-klee-one: "Klee One", cursive;
       }
+      /* 全站預設字體：將首選字體改為引入的日文字體（若該字體無中文字形，瀏覽器會自動回退到系統中文字體） */
       body {
-        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-          "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-          "Helvetica Neue", sans-serif;
+        font-family: var(--font-klee-one), "Inter", -apple-system,
+          BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+          "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
       }
     </style>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Kana Memory",
+        "url": "https://kana.yahaha.net/",
+        "description": "優雅的日語學習工具：假名、單詞、句子三大模式，支援學習方案與成就系統。"
+      }
+    </script>
+    <link rel="alternate" hreflang="zh-TW" href="https://kana.yahaha.net/" />
   </head>
   <body>
     <div id="root"></div>

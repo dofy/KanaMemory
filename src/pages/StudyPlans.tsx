@@ -12,13 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import {
-  BookOpen,
-  Clock,
-  CheckCircle2,
-  Play,
-  RotateCcw,
-} from "lucide-react";
+import { BookOpen, Clock, CheckCircle2, Play, RotateCcw } from "lucide-react";
 import { loadStudyPlans } from "@/lib/study-plan-loader";
 import { ProgressService } from "@/lib/progress-service";
 import type { StudyPlanDefinition, StudyPlan } from "@/lib/db-types";
@@ -38,7 +32,9 @@ const DIFFICULTY_NAMES = {
 
 export default function StudyPlansPage() {
   const [mounted, setMounted] = useState(false);
-  const [planDefinitions, setPlanDefinitions] = useState<StudyPlanDefinition[]>([]);
+  const [planDefinitions, setPlanDefinitions] = useState<StudyPlanDefinition[]>(
+    []
+  );
   const [activePlans, setActivePlans] = useState<StudyPlan[]>([]);
   const [completedPlans, setCompletedPlans] = useState<StudyPlan[]>([]);
   const navigate = useNavigate();
@@ -92,7 +88,7 @@ export default function StudyPlansPage() {
 
       <main className="flex-1 container mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold mb-2">學習方案</h2>
+          <h2 className="text-3xl font-bold mb-2 font-kana">學習方案</h2>
           <p className="text-muted-foreground">
             選擇適合你的學習計劃，系統化地提升日語能力
           </p>
@@ -107,10 +103,15 @@ export default function StudyPlansPage() {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {activePlans.map((plan) => (
-                <Card key={plan.id} className="border-primary/50 transition-all hover:shadow-lg">
+                <Card
+                  key={plan.id}
+                  className="border-primary/50 transition-all hover:shadow-lg"
+                >
                   <CardHeader className="pb-2">
                     <div className="flex items-center justify-between">
-                      <CardTitle className="text-lg">{plan.name}</CardTitle>
+                      <CardTitle className="text-lg font-kana">
+                        {plan.name}
+                      </CardTitle>
                       <Badge variant="outline" className="text-primary">
                         進行中
                       </Badge>
@@ -132,7 +133,9 @@ export default function StudyPlansPage() {
                       </p>
                       <Button
                         className="w-full"
-                        onClick={() => navigate(`/study-plans/${plan.id}/learn`)}
+                        onClick={() =>
+                          navigate(`/study-plans/${plan.id}/learn`)
+                        }
                       >
                         繼續學習
                       </Button>
@@ -156,11 +159,16 @@ export default function StudyPlansPage() {
               const completedCount = getCompletedCount(definition.id);
 
               return (
-                <Card key={definition.id} className="flex flex-col transition-all hover:shadow-lg">
+                <Card
+                  key={definition.id}
+                  className="flex flex-col transition-all hover:shadow-lg"
+                >
                   <CardHeader>
                     <div className="flex items-center justify-between mb-2">
                       <Badge
-                        className={`${DIFFICULTY_COLORS[definition.difficulty]} text-white`}
+                        className={`${
+                          DIFFICULTY_COLORS[definition.difficulty]
+                        } text-white`}
                       >
                         {DIFFICULTY_NAMES[definition.difficulty]}
                       </Badge>
@@ -169,7 +177,9 @@ export default function StudyPlansPage() {
                         {definition.estimatedDays}天
                       </div>
                     </div>
-                    <CardTitle>{definition.name}</CardTitle>
+                    <CardTitle className="font-kana">
+                      {definition.name}
+                    </CardTitle>
                     <CardDescription>{definition.description}</CardDescription>
                   </CardHeader>
                   <CardContent className="flex-1 flex flex-col">
@@ -179,7 +189,10 @@ export default function StudyPlansPage() {
                       </p>
                       <ul className="text-sm space-y-1 mb-4">
                         {definition.stages.slice(0, 3).map((stage) => (
-                          <li key={stage.id} className="flex items-center gap-2">
+                          <li
+                            key={stage.id}
+                            className="flex items-center gap-2"
+                          >
                             <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                             {stage.name}
                           </li>
