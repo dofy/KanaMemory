@@ -1,6 +1,7 @@
 import { db, type LearningProgress, type StudyPlan } from "./db";
 import type { StudyPlanDefinition, StudyStage } from "./db-types";
 import { BadgeManager } from "./badge-manager";
+import { DataLoader } from "./data-loader";
 
 export class ProgressService {
   // Record a practice result and update mastery level
@@ -189,12 +190,15 @@ export class ProgressService {
 
     if (stage.targetItems) {
       targetItems = stage.targetItems;
-    } else if (stage.category && stage.targetCount) {
-      // For phrase stages, get items from category
+    } else if (stage.category) {
+      // Ensure phrases are loaded into IndexedDB first
+      await DataLoader.loadPhrasesData();
+
+      const limit = stage.targetCount || 999;
       const phrases = await db.phrases
         .where("category")
         .equals(stage.category)
-        .limit(stage.targetCount)
+        .limit(limit)
         .toArray();
       targetItems = phrases.map((p) => p.id);
     }

@@ -93,14 +93,19 @@ export default function PlanLearnPage() {
         }
       }
     } else if (stage.type === "phrase" && stage.category) {
-      const phrasesData = await DataLoader.loadPhrasesData();
-      const categoryPhrases = phrasesData[stage.category] || [];
-      const limit = stage.targetCount || categoryPhrases.length;
+      // Ensure phrases are loaded into IndexedDB first
+      await DataLoader.loadPhrasesData();
 
-      for (let i = 0; i < Math.min(limit, categoryPhrases.length); i++) {
-        const phrase = categoryPhrases[i];
+      const limit = stage.targetCount || 999;
+      const phrases = await db.phrases
+        .where("category")
+        .equals(stage.category)
+        .limit(limit)
+        .toArray();
+
+      for (const phrase of phrases) {
         learnItems.push({
-          id: `${stage.category}_${i}`,
+          id: phrase.id,
           primary: phrase.japanese,
           secondary: phrase.chinese,
           reading: phrase.hiragana,
@@ -119,19 +124,18 @@ export default function PlanLearnPage() {
     stage: StudyStage,
     learnItems: LearnItem[]
   ) => {
-    let learned = 0;
-    let mastered = 0;
-    for (const item of learnItems) {
-      const progress = await db.learningProgress.get(
-        `${stage.type}_${item.id}`
-      );
-      if (progress) {
-        learned++;
-        if (progress.masteryLevel >= stage.requiredMastery) {
-          mastered++;
-        }
-      }
-    }
+    // Count learned items (existence in learningProgress) and use
+    // ProgressService.checkStageProgress to compute mastered count so
+    // both places use the same DB logic.
+    const learnedPromises = learnItems.map((item) =>
+      db.learningProgress.get(`${stage.type}_${item.id}`)
+    );
+    const learnedResults = await Promise.all(learnedPromises);
+    const learned = learnedResults.filter((p) => !!p).length;
+
+    const stageProgress = await ProgressService.checkStageProgress(stage);
+    const mastered = stageProgress.current;
+
     setProgressStats({ learned, mastered });
   };
 
@@ -212,11 +216,11 @@ export default function PlanLearnPage() {
       handlePrev();
     },
     onMarkIncorrect: () => {
-      if (!showAnswer) return;
+      if (items.length === 0) return;
       handleAnswer(false);
     },
     onMarkCorrect: () => {
-      if (!showAnswer) return;
+      if (items.length === 0) return;
       handleAnswer(true);
     },
     onToggleHint: () => {
@@ -372,25 +376,23 @@ export default function PlanLearnPage() {
         )}
 
         {/* Controls */}
-        {showAnswer && (
-          <div className="flex gap-4 mb-6">
-            <Button
-              variant="outline"
-              className="flex-1 text-red-600 border-red-300 hover:bg-red-50 dark:text-red-400 dark:border-red-800 dark:hover:bg-red-950"
-              onClick={() => handleAnswer(false)}
-            >
-              <RotateCcw className="h-4 w-4 mr-2" />
-              還不會
-            </Button>
-            <Button
-              className="flex-1 bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
-              onClick={() => handleAnswer(true)}
-            >
-              <CheckCircle2 className="h-4 w-4 mr-2" />
-              已掌握
-            </Button>
-          </div>
-        )}
+        <div className="flex gap-4 mb-6">
+          <Button
+            variant="outline"
+            className="flex-1 text-red-600 border-red-300 hover:bg-red-50 dark:text-red-400 dark:border-red-800 dark:hover:bg-red-950"
+            onClick={() => handleAnswer(false)}
+          >
+            <RotateCcw className="h-4 w-4 mr-2" />
+            還不會
+          </Button>
+          <Button
+            className="flex-1 bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
+            onClick={() => handleAnswer(true)}
+          >
+            <CheckCircle2 className="h-4 w-4 mr-2" />
+            已掌握
+          </Button>
+        </div>
 
         {/* Navigation */}
         <div className="flex justify-between">
